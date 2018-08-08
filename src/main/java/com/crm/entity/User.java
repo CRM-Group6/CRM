@@ -217,4 +217,6 @@ public class User {
     public void setDepartment(Integer department) {
         this.department = department;
     }
+
+
 }
