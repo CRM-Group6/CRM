@@ -22,10 +22,12 @@ public class ClientService {
     }
     //查看特价信息
     public List<Info> findBarginInfo(Customer customer){
-        return null;
+        return infoMapper.selectInfoByUserID(customer.getId(),InfoType.BARGAIN.getCode());
     }
     //查看通告
-
+    public List<Info> findBroadCastInfo(Customer customer){
+        return infoMapper.selectInfoByUserID(customer.getId(),InfoType.BROADCAST.getCode());
+    }
     //查看用户订单
 
     //查看用户账单
