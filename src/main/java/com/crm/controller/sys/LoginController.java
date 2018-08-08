@@ -1,6 +1,6 @@
 package com.crm.controller.sys;
 
-import com.crm.entity.sys.User;
+import com.crm.entity.User;
 import com.crm.service.sys.UserService;
 import com.crm.utils.LayuiResult;
 import com.crm.utils.Md5Utils;

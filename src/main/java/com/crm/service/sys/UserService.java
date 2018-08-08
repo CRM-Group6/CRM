@@ -1,8 +1,8 @@
 package com.crm.service.sys;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.crm.entity.sys.User;
-import com.crm.mapper.sys.UserMapper;
+import com.crm.entity.User;
+import com.crm.mapper.UserMapper;
 import com.crm.utils.Md5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
