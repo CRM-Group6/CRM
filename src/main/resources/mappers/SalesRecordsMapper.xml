@@ -33,6 +33,21 @@
     from sales_records
     where id = #{id,jdbcType=BIGINT}
   </select>
+
+  <select id="findByDepartment"  resultMap="BaseResultMap">
+    <!--按部门分析业绩-->
+    select *
+    from sales_records
+    group by department_id
+  </select>
+
+  <select id="findByWorker"  resultMap="BaseResultMap">
+    <!--按人员分析业绩-->
+    select *
+    from sales_records
+    group by salesman_id
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
       WARNING - @mbggenerated

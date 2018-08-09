@@ -219,4 +219,16 @@ public class CustomerStatistics {
     public void setStatisticsDate(Date statisticsDate) {
         this.statisticsDate = statisticsDate;
     }
+
+    @Override
+    public String toString() {
+        return "CustomerStatistics{" +
+                "id=" + id +
+                ", department=" + department +
+                ", updateNumber=" + updateNumber +
+                ", updateRate=" + updateRate +
+                ", dropoutRate=" + dropoutRate +
+                ", statisticsDate=" + statisticsDate +
+                '}';
+    }
 }
