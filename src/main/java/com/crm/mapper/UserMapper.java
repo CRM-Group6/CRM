@@ -1,5 +1,6 @@
 package com.crm.mapper;
 
+import com.crm.entity.Customer;
 import com.crm.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -57,4 +58,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User selectByAccount(@Param("account") String account);
+
+    User selectByCustomerID(Customer customer);
 }

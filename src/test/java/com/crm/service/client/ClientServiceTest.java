@@ -59,5 +59,9 @@ public class ClientServiceTest {
 
     @Test
     public void findCustomerServiceStaff() {
+        Customer user = new Customer();
+        user.setId(1L);
+        User staff = clientService.findCustomerServiceStaff(user);
+        System.out.print(staff);
     }
 }

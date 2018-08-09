@@ -6,6 +6,7 @@ import com.crm.enums.InfoType;
 import com.crm.mapper.BillMapper;
 import com.crm.mapper.InfoMapper;
 import com.crm.mapper.OrderListMapper;
+import com.crm.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ public class ClientService {
     private BillMapper billMapper;
     @Autowired
     private OrderListMapper orderListMapper;
+    @Autowired
+    private UserMapper userMapper;
     //查看商旅咨询
     public List<Info> findTravelInfo(Customer customer){
         return infoMapper.selectInfoByUserID(customer.getId(),InfoType.TRAVEL.getCode());
@@ -42,6 +45,6 @@ public class ClientService {
     }
     //查找专员客服人员
     public User findCustomerServiceStaff(Customer customer){
-        return null;
+        return userMapper.selectByCustomerID(customer);
     }
 }
