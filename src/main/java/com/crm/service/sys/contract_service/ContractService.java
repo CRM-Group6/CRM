@@ -6,6 +6,9 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @author Quinn
  * @Title: ContractService
@@ -69,6 +72,30 @@ public class ContractService {
         Contract contract = contractMapper.selectByPrimaryKey(id);
        // Assert.assertEquals(123,contract.getId().longValue());
     }
+
+    //根据合同时间查找
+    public List<Contract> statisticsByTime(Date time){
+        return contractMapper.selectByCreateTime(time);
+
+    }
+
+    //根据执行状态查找
+    public List<Contract> statisticsByExexute(int status){
+
+        return contractMapper.selectByExecuteStatus(status);
+    }
+    //根据合同类型查找
+    public List<Contract> statisticsByCategory(int category){
+        return contractMapper.selectByCategory(category);
+    }
+    //根据客户类型查找
+    List<Contract> statisticsByClientId(int category){
+        return contractMapper.selectByClientId(category);
+    }
+    List<Contract> statisticsByExexuteAndCategory(int status,int category){
+        return contractMapper.selectByStatusAndType(status, category);
+    }
+
 
 
 

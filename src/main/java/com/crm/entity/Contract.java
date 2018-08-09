@@ -384,4 +384,21 @@ public class Contract {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "id=" + id +
+                ", clientId=" + clientId +
+                ", salesmanId=" + salesmanId +
+                ", verifyStatus=" + verifyStatus +
+                ", verifyOpinion='" + verifyOpinion + '\'' +
+                ", details='" + details + '\'' +
+                ", category=" + category +
+                ", executeStatus=" + executeStatus +
+                ", money=" + money +
+                ", deadline=" + deadline +
+                ", createDate=" + createDate +
+                '}';
+    }
 }
