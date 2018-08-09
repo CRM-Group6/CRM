@@ -1,9 +1,6 @@
 package com.crm.service.client;
 
-import com.crm.entity.Bill;
-import com.crm.entity.Customer;
-import com.crm.entity.Info;
-import com.crm.entity.User;
+import com.crm.entity.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +43,10 @@ public class ClientServiceTest {
 
     @Test
     public void findAllOrderList() {
+        Customer user = new Customer();
+        user.setId(1L);
+        List<OrderList> list = clientService.findAllOrderList(user);
+        System.out.print(list);
     }
 
     @Test

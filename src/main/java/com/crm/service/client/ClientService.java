@@ -1,10 +1,7 @@
 package com.crm.service.client;
 
 
-import com.crm.entity.Bill;
-import com.crm.entity.Customer;
-import com.crm.entity.Info;
-import com.crm.entity.User;
+import com.crm.entity.*;
 import com.crm.enums.InfoType;
 import com.crm.mapper.BillMapper;
 import com.crm.mapper.InfoMapper;
@@ -21,6 +18,8 @@ public class ClientService {
     private InfoMapper infoMapper;
     @Autowired
     private BillMapper billMapper;
+    @Autowired
+    private OrderListMapper orderListMapper;
     //查看商旅咨询
     public List<Info> findTravelInfo(Customer customer){
         return infoMapper.selectInfoByUserID(customer.getId(),InfoType.TRAVEL.getCode());
@@ -34,8 +33,8 @@ public class ClientService {
         return infoMapper.selectInfoByUserID(customer.getId(),InfoType.BROADCAST.getCode());
     }
     //查看用户订单
-    public List<Bill> findAllOrderList(Customer customer){
-        return null;
+    public List<OrderList> findAllOrderList(Customer customer){
+        return orderListMapper.selectByCustomerID(customer);
     }
     //查看用户账单
     public List<Bill> findAllBill(Customer customer){
