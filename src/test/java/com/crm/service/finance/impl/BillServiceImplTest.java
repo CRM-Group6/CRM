@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,5 +36,15 @@ public class BillServiceImplTest {
         Long id = new Long((long)12);
         int a=billService.deleteBill(id);
         System.out.println(a);
+    }
+    @Test
+    public void selectByType(){
+        List<Bill> list=billService.selectByType(1);
+        System.out.println(list.size());
+    }
+    @Test
+    public void selectByBalace(){
+        List<Bill> list=billService.selectByBalance(true);
+        System.out.println(list.size());
     }
 }

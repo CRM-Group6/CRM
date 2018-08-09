@@ -4,6 +4,8 @@ import com.crm.entity.Bill;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component(value = "billMapper")
 public interface BillMapper {
@@ -54,4 +56,7 @@ public interface BillMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Bill record);
+
+    List<Bill> selectByType(Integer type);
+    List<Bill> selectByBalance(Boolean balance);
 }
