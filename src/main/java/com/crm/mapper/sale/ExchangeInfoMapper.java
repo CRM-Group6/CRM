@@ -1,4 +1,4 @@
-package com.crm.mapper;
+package com.crm.mapper.sale;
 
 import com.crm.entity.ExchangeInfo;
 

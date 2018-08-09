@@ -1,6 +1,9 @@
-package com.crm.mapper;
+package com.crm.mapper.sale;
 
 import com.crm.entity.SalesRecords;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
+
 
 public interface SalesRecordsMapper {
     /**
