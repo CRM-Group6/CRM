@@ -252,4 +252,17 @@ public class ExchangeInfo {
     public void setOutline(String outline) {
         this.outline = outline == null ? null : outline.trim();
     }
+
+    @Override
+    public String toString() {
+        return "ExchangeInfo{" +
+                "id=" + id +
+                ", executorId=" + executorId +
+                ", contactId=" + contactId +
+                ", time=" + time +
+                ", place='" + place + '\'' +
+                ", contactWay=" + contactWay +
+                ", outline='" + outline + '\'' +
+                '}';
+    }
 }
