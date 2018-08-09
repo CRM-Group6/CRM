@@ -59,5 +59,7 @@ public interface SalesRecordsMapper {
 
     List<SalesRecords> findByDepartment();
     List<SalesRecords> findByWorker();
+    List<SalesRecords> findByDepartmentOpportunity();
+    List<SalesRecords> findByWorkerOpportunity();
 
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * 销售分析：业绩统计
+ * 销售分析：业绩统计,机会统计
  * Created by JackKo
  * 2018/8/9 20:36
  **/
@@ -32,5 +32,18 @@ public class SaleAnalyService {
         return salesRecordsMapper.findByWorker();
     }
 
+    /**
+     * 机会统计：根据部门来分
+     */
+    public List<SalesRecords> findByDepartmentOpportunity(){
+        return salesRecordsMapper.findByDepartmentOpportunity();
+    }
+
+    /**
+     * 机会统计：根据人员来分
+     */
+    public List<SalesRecords> findByWorkerOpportunity(){
+        return salesRecordsMapper.findByWorkerOpportunity();
+    }
 
 }

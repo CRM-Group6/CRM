@@ -25,12 +25,25 @@ public class SaleAnalyServiceTest {
     @Test
     public void findByDepartment() {
         List<SalesRecords> result = saleAnalyService.findByDepartment();
-        System.out.println("根据部门：" + result);
+        System.out.println("业绩分析根据部门：" + result);
     }
 
     @Test
     public void findByWorker() {
         List<SalesRecords> result = saleAnalyService.findByWorker();
-        System.out.println("根据人员：" + result);
+        System.out.println("业绩分析根据人员：" + result);
+    }
+
+
+    @Test
+    public void findByDepartmentOpportunity() {
+        List<SalesRecords> result = saleAnalyService.findByDepartmentOpportunity();
+        System.out.println("机会分析根据部门：" + result);
+    }
+
+    @Test
+    public void findByWorkerOpportunity() {
+        List<SalesRecords> result = saleAnalyService.findByWorkerOpportunity();
+        System.out.println("机会分析根据人员：" + result);
     }
 }
