@@ -1,0 +1,38 @@
+package com.crm.service.finance.impl;
+
+import com.crm.entity.Bill;
+import com.crm.mapper.BillMapper;
+import com.crm.service.finance.BillService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.junit.Assert.*;
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class BillServiceImplTest {
+    @Autowired
+    private BillService billService;
+    @Test
+    public void insertBill() {
+
+    }
+
+    @Test
+    public void updateBill() {
+        Long id = new Long((long)123);
+        Bill bill=billService.findBill(id);
+        System.out.println(bill.getRemark());
+        bill.setRemark("hello world");
+        billService.updateBill(bill);
+    }
+
+    @Test
+    public void deleteBill() {
+        Long id = new Long((long)12);
+        int a=billService.deleteBill(id);
+        System.out.println(a);
+    }
+}
