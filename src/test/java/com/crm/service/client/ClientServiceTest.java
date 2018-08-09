@@ -1,5 +1,6 @@
 package com.crm.service.client;
 
+import com.crm.entity.Bill;
 import com.crm.entity.Customer;
 import com.crm.entity.Info;
 import com.crm.entity.User;
@@ -25,5 +26,37 @@ public class ClientServiceTest {
         user.setId(1L);
         List<Info> list = clientService.findTravelInfo(user);
         System.out.print(list);
+    }
+
+    @Test
+    public void findBargainInfo() {
+        Customer user = new Customer();
+        user.setId(1L);
+        List<Info> list = clientService.findBargainInfo(user);
+        System.out.print(list);
+    }
+
+    @Test
+    public void findBroadCastInfo() {
+        Customer user = new Customer();
+        user.setId(1L);
+        List<Info> list = clientService.findBroadCastInfo(user);
+        System.out.print(list);
+    }
+
+    @Test
+    public void findAllOrderList() {
+    }
+
+    @Test
+    public void findAllBill() {
+        Customer user = new Customer();
+        user.setId(1L);
+        List<Bill> list = clientService.findAllBill(user);
+        System.out.print(list);
+    }
+
+    @Test
+    public void findCustomerServiceStaff() {
     }
 }
