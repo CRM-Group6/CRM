@@ -2,6 +2,7 @@ package com.crm.mapper;
 
 import com.crm.entity.Customer;
 import com.crm.entity.User;
+import com.crm.enums.Department;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -63,5 +64,5 @@ public interface UserMapper {
 
     User selectByCustomerID(Customer customer);
 
-    List<User> selectAllUser();
+    List<User> selectByDepartment(Integer department);
 }

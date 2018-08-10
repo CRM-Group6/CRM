@@ -30,15 +30,15 @@ public class ClientService {
     private UserMapper userMapper;
     //查看商旅咨询
     public List<Info> findTravelInfo(Customer customer){
-        return infoMapper.selectInfoByUserID(customer.getId(),InfoType.TRAVEL.getCode());
+        return infoMapper.selectInfoByUserID(customer.getId(),InfoType.TRAVEL.getIndex());
     }
     //查看特价信息
     public List<Info> findBargainInfo(Customer customer){
-        return infoMapper.selectInfoByUserID(customer.getId(),InfoType.BARGAIN.getCode());
+        return infoMapper.selectInfoByUserID(customer.getId(),InfoType.BARGAIN.getIndex());
     }
     //查看通告
     public List<Info> findBroadCastInfo(Customer customer){
-        return infoMapper.selectInfoByUserID(customer.getId(),InfoType.BROADCAST.getCode());
+        return infoMapper.selectInfoByUserID(customer.getId(),InfoType.BROADCAST.getIndex());
     }
     //查看用户订单
     public List<OrderList> findAllOrderList(Customer customer){

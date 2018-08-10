@@ -17,4 +17,9 @@ public class CustomerServiceTest {
     public void findAllCustomer() {
         System.out.println(customerService.findAllCustomer());
     }
+
+    @Test
+    public void findAllCustomerServiceStaff() {
+        System.out.println(customerService.findAllCustomerServiceStaff());
+    }
 }

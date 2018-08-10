@@ -1,6 +1,8 @@
 package com.crm.service.client;
 
 import com.crm.entity.Customer;
+import com.crm.entity.User;
+import com.crm.enums.Department;
 import com.crm.mapper.CustomerMapper;
 import com.crm.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ public class CustomerService {
         return customerMapper.selectAllUnassignedCustomer();
     }
     // 获取所有客服
-
+    public List<User> findAllCustomerServiceStaff(){
+        return  userMapper.selectByDepartment(Department.CUSTOMER_SERVICE.getIndex());
+    }
 
 }
