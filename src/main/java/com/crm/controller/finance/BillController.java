@@ -18,7 +18,7 @@ public class BillController {
     public Bill oneBill(@PathVariable("id") Long id){
         return billService.findBill(id);
     }
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deletebill/{id}")
     public int deleteone(@PathVariable("id") Long id){
         return billService.deleteBill(id);
     }

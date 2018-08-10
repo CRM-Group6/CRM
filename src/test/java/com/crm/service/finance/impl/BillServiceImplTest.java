@@ -24,10 +24,13 @@ public class BillServiceImplTest {
 
     @Test
     public void updateBill() {
-        Long id = new Long((long)123);
-        Bill bill=billService.findBill(id);
-        System.out.println(bill.getRemark());
-        bill.setRemark("hello world");
+        Bill bill=new Bill();
+        bill.setId(new Long(123));
+        bill.setOrderId(new Long(111));
+        bill.setContractId(new Long(12));
+        bill.setCustomerId(new Long(11));
+        bill.setAmmount((double) 1);
+        bill.setRemark("hello");
         billService.updateBill(bill);
     }
 
@@ -46,5 +49,17 @@ public class BillServiceImplTest {
     public void selectByBalace(){
         List<Bill> list=billService.selectByBalance(true);
         System.out.println(list.size());
+    }
+
+    @Test
+    public void settleBill() {
+        Bill bill=new Bill();
+        bill.setId(new Long(123));
+        bill.setOrderId(new Long(111));
+        bill.setContractId(new Long(12));
+        bill.setCustomerId(new Long(11));
+        bill.setAmmount((double) 1);
+        bill.setRemark("test");
+        billService.settleBill(bill);
     }
 }

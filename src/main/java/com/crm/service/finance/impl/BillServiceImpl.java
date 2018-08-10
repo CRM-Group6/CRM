@@ -26,6 +26,7 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public int updateBill(Bill bill) {
+
         return billMapper.updateByPrimaryKey(bill);
     }
     @Override
@@ -42,5 +43,20 @@ public class BillServiceImpl implements BillService {
     @Override
     public List<Bill> selectByBalance(Boolean balance) {
         return billMapper.selectByBalance(balance);
+    }
+
+    @Override
+    public int settleBill(Bill bill) {
+        Bill oldbill=billMapper.selectByPrimaryKey(bill.getId());
+        if(oldbill.getAmmount().equals(bill.getAmmount())){
+            bill.setBalance(true);
+            return billMapper.updateByPrimaryKey(bill);
+        }
+       return 0;
+    }
+
+    @Override
+    public List<Bill> selectByTypeAndBalance(Integer type, Boolean balance) {
+        return null;
     }
 }
