@@ -44,7 +44,7 @@ public class ContractStatisticsService {
 //        return contractMapper.selectByStatusAndType(status, category);
 //    }
 
-    List<Contract> statisticsByCombination(Contract contract){
+    public List<Contract> statisticsByCombination(Contract contract){
         return contractMapper.selectByCombination(contract);
     }
 

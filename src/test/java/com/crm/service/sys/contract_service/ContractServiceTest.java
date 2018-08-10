@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -36,34 +38,24 @@ public class ContractServiceTest {
     }
 
     @Test
-    public void insert1() {
-    }
-
-    @Test
-    public void checkedContract() {
-    }
-
-    @Test
     public void findContract() {
     }
 
     @Test
-    public void statisticsByTime() {
+    public void deleteContract() {
     }
 
-    @Test
-    public void statisticsByExexute() {
-    }
 
     @Test
-    public void statisticsByCategory() {
-    }
+    public void statisticsByCombination() {
+        Contract contract = new Contract();
 
-    @Test
-    public void statisticsByClientId() {
-    }
+        contract.setVerifyOpinion("2");
+        List<Contract> contractList =  contractService.statisticsByCombination(contract);
+        for (Contract contract1:contractList){
+            System.out.println(contract1);
+        }
 
-    @Test
-    public void statisticsByExexuteAndCategory() {
+        System.out.println(contractList.size());
     }
 }
