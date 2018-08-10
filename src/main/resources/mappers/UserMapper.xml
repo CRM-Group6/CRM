@@ -150,5 +150,10 @@
     from user
     where id=(select custom_service_id from customer where id =#{id,jdbcType=BIGINT})
   </select>
+  <select id="selectAllUser" resultType="com.crm.entity.User">
+    select
+    <include refid="Base_Column_List" />
+    from user
+  </select>
 
 </mapper>

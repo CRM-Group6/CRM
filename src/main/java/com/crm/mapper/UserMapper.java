@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component(value = "userMapper")
 public interface UserMapper {
@@ -60,4 +62,6 @@ public interface UserMapper {
     User selectByAccount(@Param("account") String account);
 
     User selectByCustomerID(Customer customer);
+
+    List<User> selectAllUser();
 }

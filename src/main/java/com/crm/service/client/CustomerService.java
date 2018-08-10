@@ -2,6 +2,7 @@ package com.crm.service.client;
 
 import com.crm.entity.Customer;
 import com.crm.mapper.CustomerMapper;
+import com.crm.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,14 @@ import java.util.List;
 public class CustomerService {
     @Autowired
     private CustomerMapper customerMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     // 获取客户列表
     public List<Customer> findAllCustomer(){
         return customerMapper.selectAllUnassignedCustomer();
     }
+    // 获取所有客服
 
 
 }
