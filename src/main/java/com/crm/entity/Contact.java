@@ -448,4 +448,23 @@ public class Contact {
     public void setCategory(String category) {
         this.category = category == null ? null : category.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", salesmanId=" + salesmanId +
+                ", name='" + name + '\'' +
+                ", job='" + job + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", importance=" + importance +
+                ", personalInterest='" + personalInterest + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", source='" + source + '\'' +
+                ", vocation='" + vocation + '\'' +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }

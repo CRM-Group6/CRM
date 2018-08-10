@@ -252,4 +252,17 @@ public class SalesRecords {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+    @Override
+    public String toString() {
+        return "SalesRecords{" +
+                "id=" + id +
+                ", opportunityId=" + opportunityId +
+                ", salesmanId=" + salesmanId +
+                ", departmentId=" + departmentId +
+                ", status=" + status +
+                ", money=" + money +
+                ", createDate=" + createDate +
+                '}';
+    }
 }

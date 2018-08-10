@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.crm.mapper.SalesRecordsMapper">
+<mapper namespace="com.crm.mapper.sale.SalesRecordsMapper">
   <resultMap id="BaseResultMap" type="com.crm.entity.SalesRecords">
     <!--
       WARNING - @mbggenerated
@@ -33,6 +33,35 @@
     from sales_records
     where id = #{id,jdbcType=BIGINT}
   </select>
+
+  <select id="findByDepartment"  resultType="java.lang.Integer">
+    <!--按部门分析业绩-->
+    select sum(money)
+    from sales_records
+    group by department_id
+  </select>
+
+  <select id="findByWorker"  resultType="java.lang.Integer">
+    <!--按人员分析业绩-->
+    select sum(money)
+    from sales_records
+    group by salesman_id
+  </select>
+
+  <select id="findByDepartmentOpportunity"  resultType="java.lang.Integer">
+    <!--按部门分析机会-->
+    select count(opportunity_id)
+    from sales_records
+    group by department_id
+  </select>
+
+  <select id="findByWorkerOpportunity"  resultType="java.lang.Integer">
+    <!--按人员分析机会-->
+    select count(opportunity_id)
+    from sales_records
+    group by salesman_id
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
       WARNING - @mbggenerated
