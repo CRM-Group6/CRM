@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @Author Ben wu
+ * @Date 2018/8/9
+ * @Description 用于客户基本界面的模块的业务逻辑
+ */
 @Service
 public class ClientService {
 
