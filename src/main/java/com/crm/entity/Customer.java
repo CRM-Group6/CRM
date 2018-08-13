@@ -481,4 +481,24 @@ public class Customer {
     public void setJob(String job) {
         this.job = job == null ? null : job.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", customServiceId=" + customServiceId +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", personalInterest='" + personalInterest + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", source='" + source + '\'' +
+                ", vocation='" + vocation + '\'' +
+                ", category='" + category + '\'' +
+                ", job='" + job + '\'' +
+                '}';
+    }
 }

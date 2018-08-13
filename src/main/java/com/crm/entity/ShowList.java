@@ -12,6 +12,17 @@ import java.util.List;
  */
 @Data
 public class ShowList <T>{
-    private String name;
+    private Region region;
     private List<T> data;
+    public ShowList(Region region,List<T> data){
+        this.region = region;
+        this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "ShowList{" +
+                "region=" + region +
+                '}';
+    }
 }

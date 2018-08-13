@@ -1,6 +1,7 @@
 package com.crm.service.client;
 
 import com.crm.entity.Customer;
+import com.crm.entity.Region;
 import com.crm.entity.ShowList;
 
 import java.util.List;
@@ -43,4 +44,7 @@ public interface CustomerAnalysis {
      */
     List<ShowList<Customer>> customerIndustryAnalysis();
 
+    List<Region> findAllPossibleRegion();
+
+    List<Customer> findAllCustomerByRegion(Region region);
 }

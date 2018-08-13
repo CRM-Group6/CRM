@@ -1,6 +1,8 @@
 package com.crm.mapper;
 
 import com.crm.entity.Customer;
+import com.crm.entity.Region;
+import com.crm.entity.ShowList;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -57,5 +59,13 @@ public interface CustomerMapper {
      */
     int updateByPrimaryKey(Customer record);
 
+    /**
+     * Method is used to find customer who has no customer service staff
+     * @return List<Customer>
+     */
     List<Customer> selectAllUnassignedCustomer();
+
+    List<Region> selectAllCustomerRegion();
+
+    List<Customer> selectAllCustomerByRegion(Region region);
 }
