@@ -22,7 +22,7 @@ public class CustomerService {
     @Autowired
     private UserMapper userMapper;
 
-    // 获取客户列表
+    // 获取未分配客服的客户列表
     public List<Customer> findAllCustomer(){
         return customerMapper.selectAllUnassignedCustomer();
     }
@@ -30,7 +30,7 @@ public class CustomerService {
     public List<User> findAllCustomerServiceStaff(){
         return  userMapper.selectByDepartment(Department.CUSTOMER_SERVICE.getIndex());
     }
-    // 指派一个客服到客户
+    // 指派一个客服到客户（通过ID设置）
     public boolean setCustomerServiceStaff(Customer customer,User user){
         //如果员工为客服则进行设置
         if(user.getDepartment().equals(Department.CUSTOMER_SERVICE.getIndex())){
