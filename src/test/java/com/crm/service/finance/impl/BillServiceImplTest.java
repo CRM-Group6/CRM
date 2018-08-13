@@ -62,4 +62,10 @@ public class BillServiceImplTest {
         bill.setRemark("test");
         billService.settleBill(bill);
     }
+
+    @Test
+    public void selectByTypeAndBalance() {
+        List<Bill> bills =billService.selectByTypeAndBalance(0,true);
+        System.out.println(bills.size());
+    }
 }

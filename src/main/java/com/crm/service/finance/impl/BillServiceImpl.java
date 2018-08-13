@@ -1,6 +1,8 @@
 package com.crm.service.finance.impl;
 
 import com.crm.entity.Bill;
+import com.crm.enums.finance.BillStatusEnum;
+import com.crm.enums.finance.BillTypeEnum;
 import com.crm.mapper.BillMapper;
 import com.crm.service.finance.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +51,7 @@ public class BillServiceImpl implements BillService {
     public int settleBill(Bill bill) {
         Bill oldbill=billMapper.selectByPrimaryKey(bill.getId());
         if(oldbill.getAmmount().equals(bill.getAmmount())){
-            bill.setBalance(true);
+            bill.setBalance(BillStatusEnum.CLOSED.getCode());
             return billMapper.updateByPrimaryKey(bill);
         }
        return 0;
@@ -57,6 +59,6 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public List<Bill> selectByTypeAndBalance(Integer type, Boolean balance) {
-        return null;
+        return billMapper.selectByTypeAndBalance(type,balance);
     }
 }

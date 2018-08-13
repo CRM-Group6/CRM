@@ -59,4 +59,5 @@ public interface BillMapper {
 
     List<Bill> selectByType(Integer type);
     List<Bill> selectByBalance(Boolean balance);
+    List<Bill> selectByTypeAndBalance(Integer type,Boolean balance);
 }
