@@ -58,4 +58,6 @@ public interface OpportunityMapper {
     int updateByPrimaryKey(Opportunity record);
 
     List<Opportunity> findAll();
+
+
 }

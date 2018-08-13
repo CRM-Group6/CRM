@@ -9,8 +9,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by JackKo
  * 2018/8/9 21:34
@@ -20,11 +18,11 @@ import static org.junit.Assert.*;
 public class CustomerAnalyServiceTest {
 
     @Autowired
-    private CustomerAnalyService customerAnalyService;
+    private CustomerAnalysisService customerAnalysisService;
 
     @Test
     public void findAll() {
-        List<CustomerStatistics> result = customerAnalyService.findAll();
+        List<CustomerStatistics> result = customerAnalysisService.findAll();
         System.out.println("客户统计：" + result);
     }
 }

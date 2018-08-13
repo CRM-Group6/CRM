@@ -1,0 +1,29 @@
+package com.crm.controller.sys.sale;
+
+import com.crm.entity.CustomerStatistics;
+import com.crm.service.sale.CustomerAnalysisService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * 销售分析：客户统计
+ * Created by JackKo
+ * 2018/8/13 10:32
+ **/
+@RestController
+@RequestMapping("/sale/customerAnalysis")
+public class CustomerAnalysisController {
+
+    @Autowired
+    private CustomerAnalysisService customerAnalysisService;
+
+    //查看统计
+    @GetMapping("/seeAll")
+    public List<CustomerStatistics> findAll(){
+        return customerAnalysisService.findAll();
+    }
+}

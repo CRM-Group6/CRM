@@ -47,6 +47,7 @@
     -->
     select * from opportunity
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
       WARNING - @mbggenerated

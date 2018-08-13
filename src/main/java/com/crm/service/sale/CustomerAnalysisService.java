@@ -13,7 +13,7 @@ import java.util.List;
  * 2018/8/9 21:15
  **/
 @Service
-public class CustomerAnalyService {
+public class CustomerAnalysisService {
 
     @Autowired
     private CustomerStatisticsMapper customerStatisticsMapper;
