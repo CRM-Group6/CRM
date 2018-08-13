@@ -27,14 +27,12 @@ public class CustomerAnalysisImpTest {
 
     @Test
     public void customerSourceAnalysis() {
-    }
-
-    @Test
-    public void customerTypeAnalysis() {
+        System.out.println(customerService.customerSourceAnalysis());
     }
 
     @Test
     public void customerIndustryAnalysis() {
+        System.out.println(customerService.customerIndustryAnalysis());
     }
 
     @Test

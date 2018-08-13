@@ -11,18 +11,19 @@ import java.util.List;
  * @Modify By:
  */
 @Data
-public class ShowList <T>{
-    private Region region;
+public class ShowList <T,E>{
+    private E type;
     private List<T> data;
-    public ShowList(Region region,List<T> data){
-        this.region = region;
+    public ShowList(E type,List<T> data){
+        this.type = type;
         this.data = data;
     }
 
     @Override
     public String toString() {
         return "ShowList{" +
-                "region=" + region +
+                "region=" + type +
+                "\n data" + data +
                 '}';
     }
 }

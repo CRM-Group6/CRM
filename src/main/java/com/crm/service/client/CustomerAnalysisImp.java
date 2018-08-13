@@ -22,15 +22,15 @@ public class CustomerAnalysisImp implements CustomerAnalysis{
     private CustomerMapper customerMapper;
 
     @Override
-    public List<ShowList<Customer>> customerRegionAnalysis() {
+    public List<ShowList<Customer,Region>> customerRegionAnalysis() {
         //寻找所有区域
-        List<ShowList<Customer>> list = new ArrayList<>();
+        List<ShowList<Customer,Region>> list = new ArrayList<>();
         List<Region> regionList = findAllPossibleRegion();
         for(int i=0 ;i<regionList.size();i++){
             //按照区域寻找所有客户
             List<Customer> userList = findAllCustomerByRegion(regionList.get(i));
             //添加新列表
-            ShowList<Customer> showList = new ShowList<>(regionList.get(i),userList);
+            ShowList<Customer,Region> showList = new ShowList<>(regionList.get(i),userList);
             list.add(showList);
         }
         //返回列表
@@ -38,18 +38,31 @@ public class CustomerAnalysisImp implements CustomerAnalysis{
     }
 
     @Override
-    public List<ShowList<Customer>> customerSourceAnalysis() {
-        return null;
+    public List<ShowList<Customer,String>> customerSourceAnalysis() {
+        List<String> valueList = customerMapper.selectAllPossibleValue("source");
+        System.out.println(valueList);
+        List<ShowList<Customer,String>> list = new ArrayList<>();
+        for(int i=0;i<valueList.size();i++){
+            //寻找对应source值的所有用户
+            List<Customer> customers = customerMapper.selectAllCustomerByValue("source",valueList.get(i));
+            ShowList<Customer,String> showList = new ShowList<>("source",customers);
+            list.add(showList);
+        }
+        return list;
     }
 
     @Override
-    public List<ShowList<Customer>> customerTypeAnalysis() {
-        return null;
-    }
-
-    @Override
-    public List<ShowList<Customer>> customerIndustryAnalysis() {
-        return null;
+    public List<ShowList<Customer,String>> customerIndustryAnalysis() {
+        List<String> valueList = customerMapper.selectAllPossibleValue("vocation");
+        System.out.println(valueList);
+        List<ShowList<Customer,String>> list = new ArrayList<>();
+        for(int i=0;i<valueList.size();i++){
+            //寻找对应vocation值的所有用户
+            List<Customer> customers = customerMapper.selectAllCustomerByValue("vocation",valueList.get(i));
+            ShowList<Customer,String> showList = new ShowList<>("vocation",customers);
+            list.add(showList);
+        }
+        return list;
     }
 
     @Override

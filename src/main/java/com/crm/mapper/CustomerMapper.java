@@ -4,6 +4,7 @@ import com.crm.entity.Customer;
 import com.crm.entity.Region;
 import com.crm.entity.ShowList;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -65,7 +66,19 @@ public interface CustomerMapper {
      */
     List<Customer> selectAllUnassignedCustomer();
 
+    /**
+     * Method is used to find all possible region in the customer list
+     * @return List<Region>
+     */
     List<Region> selectAllCustomerRegion();
-
+    /**
+     * Method is used to find all Customer in the same region
+     * @param region
+     * @return List<Customer>
+     */
     List<Customer> selectAllCustomerByRegion(Region region);
+
+    List<String> selectAllPossibleValue(@Param("name")String name);
+
+    List<Customer> selectAllCustomerByValue(@Param("name")String name, @Param("value")String value);
 }
