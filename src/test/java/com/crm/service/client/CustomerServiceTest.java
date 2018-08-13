@@ -1,5 +1,8 @@
 package com.crm.service.client;
 
+import com.crm.entity.Customer;
+import com.crm.entity.User;
+import com.crm.enums.Department;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +24,15 @@ public class CustomerServiceTest {
     @Test
     public void findAllCustomerServiceStaff() {
         System.out.println(customerService.findAllCustomerServiceStaff());
+    }
+
+    @Test
+    public void setCustomerServiceStaff() {
+        Customer customer = new Customer();
+        customer.setId(2L);
+        User user = new User();
+        user.setId(2L);
+        user.setDepartment(Department.CUSTOMER_SERVICE.getIndex());
+        customerService.setCustomerServiceStaff(customer,user);
     }
 }

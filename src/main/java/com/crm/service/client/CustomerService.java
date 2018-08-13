@@ -30,5 +30,18 @@ public class CustomerService {
     public List<User> findAllCustomerServiceStaff(){
         return  userMapper.selectByDepartment(Department.CUSTOMER_SERVICE.getIndex());
     }
-
+    // 指派一个客服到客户
+    public boolean setCustomerServiceStaff(Customer customer,User user){
+        //如果员工为客服则进行设置
+        if(user.getDepartment().equals(Department.CUSTOMER_SERVICE.getIndex())){
+            //设置用户的客服ID
+            customer.setCustomServiceId(user.getId());
+            //保存客户
+            customerMapper.updateByPrimaryKeySelective(customer);
+            return true;
+        }else{
+            System.err.println("客户不能被赋予非客服人员");
+            return false;
+        }
+    }
 }
