@@ -1,7 +1,9 @@
 package com.crm.controller.sys.sale;
 
+import com.crm.VO.ResultVO;
 import com.crm.entity.CustomerStatistics;
 import com.crm.service.sale.CustomerAnalysisService;
+import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +24,8 @@ public class CustomerAnalysisController {
     private CustomerAnalysisService customerAnalysisService;
 
     //查看统计
-    @GetMapping("/seeAll")
-    public List<CustomerStatistics> findAll(){
-        return customerAnalysisService.findAll();
+    @GetMapping("/see")
+    public ResultVO findAll(){
+        return ResultVOUtil.success(customerAnalysisService.findAll());
     }
 }

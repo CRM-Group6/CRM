@@ -1,7 +1,9 @@
 package com.crm.controller.sys.sale;
 
+import com.crm.VO.ResultVO;
 import com.crm.entity.WorkPlan;
 import com.crm.service.sale.WorkPlanService;
+import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +19,9 @@ public class SelectWorkPlanController {
     @Autowired
     private WorkPlanService workPlanService;
 
-    @GetMapping("/seeWorkPlan/{id}")
-    public WorkPlan seeWorkPlan(@PathVariable("id") Long id){
-        return workPlanService.findOne(id);
+    @GetMapping("/see/{id}")
+    public ResultVO seeWorkPlan(@PathVariable("id") Long id){
+        return ResultVOUtil.success(workPlanService.findOne(id));
     }
 
 }

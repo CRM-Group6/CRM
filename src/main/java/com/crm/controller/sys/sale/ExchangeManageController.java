@@ -1,7 +1,9 @@
 package com.crm.controller.sys.sale;
 
+import com.crm.VO.ResultVO;
 import com.crm.entity.ExchangeInfo;
 import com.crm.service.sale.ExchangeInfoService;
+import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,13 +47,13 @@ public class ExchangeManageController {
 
     //查看所有交往信息
     @GetMapping("/see")
-    public List<ExchangeInfo> seeAll(){
-        return exchangeInfoService.findAll();
+    public ResultVO seeAll(){
+        return ResultVOUtil.success(exchangeInfoService.findAll());
     }
 
     //查看单个交往信息
     @GetMapping("/see/{id}")
-    public ExchangeInfo seeOne(@PathVariable Long id){
-        return exchangeInfoService.findOne(id);
+    public ResultVO seeOne(@PathVariable Long id){
+        return ResultVOUtil.success(exchangeInfoService.findOne(id));
     }
 }

@@ -1,7 +1,9 @@
 package com.crm.controller.sys.sale;
 
+import com.crm.VO.ResultVO;
 import com.crm.entity.Opportunity;
 import com.crm.service.sale.OpportunityService;
+import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,9 +38,10 @@ public class OpportunityController {
     }
 
     //查看销售机会
-    @GetMapping("/seeAll")
-    public List<Opportunity> findAll(){
-        return opportunityService.findAll();
+    @GetMapping("/see")
+    public ResultVO findAll(){
+
+        return ResultVOUtil.success(opportunityService.findAll());
     }
 
     //审核销售机会（查看，更改销售机会，更新字段）

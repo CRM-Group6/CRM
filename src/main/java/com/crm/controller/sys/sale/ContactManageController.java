@@ -1,7 +1,9 @@
 package com.crm.controller.sys.sale;
 
+import com.crm.VO.ResultVO;
 import com.crm.entity.Contact;
 import com.crm.service.sale.ContactService;
+import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,13 +45,13 @@ public class ContactManageController {
 
     //查看所有联系人
     @GetMapping("/see")
-    public List<Contact> seeAll(){
-        return contactService.findAll();
+    public ResultVO seeAll(){
+        return ResultVOUtil.success(contactService.findAll());
     }
 
     //查看单个联系人
     @GetMapping("/see/{id}")
-    public Contact seeOne(@PathVariable Long id){
-        return contactService.findOne(id);
+    public ResultVO seeOne(@PathVariable Long id){
+        return ResultVOUtil.success(contactService.findOne(id));
     }
 }

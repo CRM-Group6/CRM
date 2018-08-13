@@ -1,7 +1,11 @@
 package com.crm.controller.sys.sale;
 
+import com.crm.VO.ResultVO;
+import com.crm.entity.Opportunity;
 import com.crm.entity.WorkPlan;
+import com.crm.service.sale.OpportunityService;
 import com.crm.service.sale.WorkPlanService;
+import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,17 +26,15 @@ public class DevelopmentPlanManageController {
     private WorkPlanService workPlanService;
 
     //制定开发计划
-
-    //执行开发计划
-
-
     //增加开发计划
-    @GetMapping("/add")
-    public int create(WorkPlan workPlan){
+    @GetMapping("/add/{id}")
+    public int create(WorkPlan workPlan , @PathVariable Long id){
+        workPlan.setOpportunityId(id);
         return workPlanService.addWorkPlan(workPlan);
     }
 
 
+    //执行开发计划(修改开发状态)
     //修改开发计划
     @GetMapping("/change")
     public int change(WorkPlan workPlan){
@@ -48,13 +50,13 @@ public class DevelopmentPlanManageController {
 
     //查看所有开发计划
     @GetMapping("/see")
-    public List<WorkPlan> seeAll(){
-        return workPlanService.findAll();
+    public ResultVO seeAll(){
+        return ResultVOUtil.success(workPlanService.findAll());
     }
 
     //查看单个开发计划
     @GetMapping("/see/{id}")
-    public WorkPlan seeOne(@PathVariable Long id){
-        return workPlanService.findOne(id);
+    public ResultVO seeOne(@PathVariable Long id){
+        return ResultVOUtil.success(workPlanService.findOne(id));
     }
 }

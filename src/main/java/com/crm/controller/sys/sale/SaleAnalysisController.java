@@ -1,7 +1,9 @@
 package com.crm.controller.sys.sale;
 
+import com.crm.VO.ResultVO;
 import com.crm.entity.SalesRecords;
 import com.crm.service.sale.SaleAnalyService;
+import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,36 +27,36 @@ public class SaleAnalysisController {
      * 业绩统计：按照部门来分
      */
     @GetMapping("/findByDepartment")
-    public List<SalesRecords> findByDepartment(){
+    public ResultVO findByDepartment(){
 
-        return saleAnalyService.findByDepartment();
+        return ResultVOUtil.success(saleAnalyService.findByDepartment());
     }
 
     /**
      * 业绩统计：按人员来分
      */
     @GetMapping("/findByWorker")
-    public List<SalesRecords> findByWorker(){
+    public ResultVO findByWorker(){
 
-        return saleAnalyService.findByWorker();
+        return ResultVOUtil.success(saleAnalyService.findByWorker());
     }
 
     /**
      * 机会统计：根据部门来分
      */
     @GetMapping("/findByDepartmentOpportunity")
-    public List<SalesRecords> findByDepartmentOpportunity(){
+    public ResultVO findByDepartmentOpportunity(){
 
-        return saleAnalyService.findByDepartmentOpportunity();
+        return ResultVOUtil.success(saleAnalyService.findByDepartmentOpportunity());
     }
 
     /**
      * 机会统计：根据人员来分
      */
     @GetMapping("/findByWorkerOpportunity")
-    public List<SalesRecords> findByWorkerOpportunity(){
+    public ResultVO findByWorkerOpportunity(){
 
-        return saleAnalyService.findByWorkerOpportunity();
+        return ResultVOUtil.success(saleAnalyService.findByWorkerOpportunity());
     }
 
 }
