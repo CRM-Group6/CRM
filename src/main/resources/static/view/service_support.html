@@ -17,63 +17,42 @@
     <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="../css/animate.css" rel="stylesheet">
 <body>
-<table style="width:100%;height:190px">
+<a type="button" id="show">显示全表</a>
+<table class="table table-bordered" id='tabletest'>
     <tr>
-        <td style="width:100%">
-            <table>
-                <thead>
-                <tr class="cen">
-                    <th>问题id</th>
-                    <th>类别</th>
-                    <th>问题</th>
-                    <th>解决方案</th>
-                    <th>创建时间</th>
-                    <th>修改时间</th>
-                </tr>
-                </thead>
-                <tbody id="tbodydata">
-                <tr>
-
-                </tr>
-
-                </tbody>
-            </table>
-        </td>
+        <th>问题编号</th>
+        <th>类别</th>
+        <th>问题</th>
+        <th>解决方案</th>
+        <th>创建时间</th>
+        <th>修改时间</th>
     </tr>
 </table>
-
+<script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"  language="javascript"  src="../js/bootstrap.min.js"></script>
 <script type="text/javascript">
-    function refurbishIndex(){
-
-        var optionJson=[];
-        $.ajax({
-            type:"post",
-            url:"/",
-            data:{},
-            async: false,
-            success:function (data) {
-                optionJson=data;
-
-                var str="";
-
-                str+="<tr>"+
-                    "<td>"+optionJson.totalNumber+"</td>"+
-                    "<td>"+optionJson.actualNumber+"</td>"+
-                    "<td>"+optionJson.highScore+"</td>"+
-                    "<td>"+optionJson.lowScore+"</td>"+
-                    "<td>"+optionJson.avgScore+"</td>"+
-                    "<td>"+optionJson.variance+"</td>"+
-                    "</tr>";
-
-                document.getElementById("tbodydata").innerHTML=str;
-
-
-            }
+    $(document).ready(function(){
+        $("#show").click(function() {
+            $.ajax({
+                url: '/console/financial_management',
+                type: 'get',
+                dataType: 'json',
+                data: {
+                    "id": 11
+                },
+                success: function (data) {
+                    //方法中传入的参数data为后台获取的数据
+                    $.each(data.data,function(index,item){
+                        var tr;
+                        tr='<td>'+item.id+'</td>'+'<td>'+item.category+'</td>'+'<td>'+item.question+'</td>'+'<td>'+item.answer+'</td>'+'<td>'+item.create_date+'</td>'+'<td>'+item.update_date+'</td>';
+                        $("#tabletest").append('<tr>'+tr+'</tr>');
+                    });
+                }
+            });
         });
-    }
+    });
 </script>
 
-<script src="../js/jquery.min.js?v=2.1.4"></script>
-<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+
 </body>
 </html>

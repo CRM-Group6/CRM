@@ -126,6 +126,7 @@
 							type:"GET",
 							url:"/console/financial_management",
                             dataType:"json",
+                            async:"true",
 							data:{ 
 								selectrequest : $("#test").val()
 								 },
@@ -140,7 +141,7 @@
                                     // var json = $.parseJSON(data);
 								    // $("#resultcontext").html(json.id+json.category+json.question+json.answer+json.create_date+json.update_date);
                                 }else {
-												alert("出现错误"+res.msg);
+												alert("出现错误"+data.msg);
 									}
 							
 							},
