@@ -1,5 +1,7 @@
 package com.crm.entity;
 
+import com.crm.enums.verify_enum.VerifyTypeEnum;
+
 import java.util.Date;
 
 public class Contract {
@@ -401,4 +403,6 @@ public class Contract {
                 ", createDate=" + createDate +
                 '}';
     }
+
+
 }

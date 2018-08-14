@@ -80,4 +80,6 @@ public interface ContractMapper {
 
     //根据客户类型寻找，返回数量
     List<Contract> selectByClientId(int catrgory);
+    Contract findById(Long id);
+
 }

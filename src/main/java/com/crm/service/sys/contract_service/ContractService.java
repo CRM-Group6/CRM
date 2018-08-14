@@ -98,6 +98,9 @@ public class ContractService {
 //        return contractMapper.selectByStatusAndType(status, category);
 //    }
 
+    public  Contract findById(Long id){
+      return   contractMapper.findById(id);
+    }
 
 
 
