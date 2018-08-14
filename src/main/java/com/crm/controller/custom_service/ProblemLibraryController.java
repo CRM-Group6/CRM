@@ -20,5 +20,11 @@ public class ProblemLibraryController {
         else
             return ResultVOUtil.success( problemLibraryService.findone(id));
     }
+   public ResultVO addone(@RequestParam("obj") ProblemLibrary problemLibrary){
+        if(problemLibraryService.addone(problemLibrary)==1){
+
+        }
+   }
+
 
 }

@@ -15,8 +15,15 @@ import java.util.List;
 public class ProblemLibraryService {
     @Autowired
     private ProblemLibraryMapper problemLibraryMapper;
-
+//    查询
     public ProblemLibrary findone(Long id){
-       return problemLibraryMapper.selectByPrimaryKey(id);
-    }
+       return problemLibraryMapper.selectByPrimaryKey(id); }
+
+//    插入
+    public int addone(ProblemLibrary problemLibrary){return problemLibraryMapper.insert(problemLibrary);}
+//    删除
+    public int deleteone(Long id ){return  problemLibraryMapper.deleteByPrimaryKey(id);}
+//    修改，但是参数是一个problemLibrary
+    public int updateone(ProblemLibrary problemLibrary){return problemLibraryMapper.updateByPrimaryKey(problemLibrary);}
+
 }
