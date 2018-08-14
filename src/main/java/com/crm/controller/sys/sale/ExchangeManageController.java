@@ -5,10 +5,7 @@ import com.crm.entity.ExchangeInfo;
 import com.crm.service.sale.ExchangeInfoService;
 import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,34 +23,50 @@ public class ExchangeManageController {
     private ExchangeInfoService exchangeInfoService;
 
     //增加交往信息
-    @GetMapping("/add")
-    public int create(ExchangeInfo exchangeInfo){
-        return exchangeInfoService.addExchangeInfo(exchangeInfo);
+    @PostMapping("/add")
+    public ResultVO create(@RequestBody ExchangeInfo exchangeInfo){
+
+        int res = exchangeInfoService.addExchangeInfo(exchangeInfo);
+        if(res == 0) return ResultVOUtil.error();
+        return ResultVOUtil.success(res);
     }
 
 
     //修改交往信息
-    @GetMapping("/change")
-    public int change(ExchangeInfo exchangeInfo){
-        return exchangeInfoService.changeExchangeInfo(exchangeInfo);
+    @PutMapping("/change")
+    public ResultVO change(@RequestBody ExchangeInfo exchangeInfo){
+
+        int res = exchangeInfoService.changeExchangeInfo(exchangeInfo);
+        if(res == 0) return ResultVOUtil.error();
+        return ResultVOUtil.success(res);
     }
 
 
     //删除交往信息
-    @GetMapping("/delete/{id}")
-    public int delete(@PathVariable Long id){
-        return exchangeInfoService.deleteExchangeInfo(id);
+    @DeleteMapping("/delete/{id}")
+    public ResultVO delete(@PathVariable Long id){
+
+        int res = exchangeInfoService.deleteExchangeInfo(id);
+        if(res == 0) return ResultVOUtil.error();
+        return ResultVOUtil.success(res);
     }
 
     //查看所有交往信息
     @GetMapping("/see")
     public ResultVO seeAll(){
-        return ResultVOUtil.success(exchangeInfoService.findAll());
+
+        List<ExchangeInfo> exchangeInfoList = exchangeInfoService.findAll();
+        if(exchangeInfoList == null) return ResultVOUtil.error();
+        return ResultVOUtil.success(exchangeInfoList);
     }
 
     //查看单个交往信息
     @GetMapping("/see/{id}")
     public ResultVO seeOne(@PathVariable Long id){
-        return ResultVOUtil.success(exchangeInfoService.findOne(id));
+
+        ExchangeInfo exchangeInfoList = exchangeInfoService.findOne(id);
+        if(exchangeInfoList == null) return ResultVOUtil.error();
+        return ResultVOUtil.success(exchangeInfoList);
+
     }
 }

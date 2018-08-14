@@ -5,10 +5,7 @@ import com.crm.entity.Opportunity;
 import com.crm.service.sale.OpportunityService;
 import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,23 +22,30 @@ public class OpportunityController {
     private OpportunityService opportunityService;
 
     //添加销售机会
-    @GetMapping("/add")
-    public int create(Opportunity opportunity){
-        return opportunityService.addOpportunity(opportunity);
+    @PostMapping("/add")
+    public ResultVO create(@RequestBody Opportunity opportunity){
+
+        int res = opportunityService.addOpportunity(opportunity);
+        if(res == 0) return ResultVOUtil.error();
+        return ResultVOUtil.success(res);
     }
 
 
     //修改销售机会
-    @GetMapping("/change")
-    public int change(Opportunity opportunity){
-        return opportunityService.changeOpportunity(opportunity);
+    @PutMapping("/change")
+    public ResultVO change(@RequestBody Opportunity opportunity){
+        int res = opportunityService.changeOpportunity(opportunity);
+        if(res == 0) return ResultVOUtil.error();
+        return ResultVOUtil.success(res);
     }
 
     //查看销售机会
     @GetMapping("/see")
     public ResultVO findAll(){
 
-        return ResultVOUtil.success(opportunityService.findAll());
+        List<Opportunity> opportunityList = opportunityService.findAll();
+        if(opportunityList == null) return ResultVOUtil.error();
+        return ResultVOUtil.success(opportunityList);
     }
 
     //审核销售机会（查看，更改销售机会，更新字段）

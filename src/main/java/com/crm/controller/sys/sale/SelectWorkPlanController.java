@@ -7,6 +7,7 @@ import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 /**
  * 销售提醒：查看工作时间计划表
  * Created by JackKo
@@ -21,7 +22,10 @@ public class SelectWorkPlanController {
 
     @GetMapping("/see/{id}")
     public ResultVO seeWorkPlan(@PathVariable("id") Long id){
-        return ResultVOUtil.success(workPlanService.findOne(id));
+
+        WorkPlan workPlanList = workPlanService.findOne(id);
+        if(workPlanList == null) return ResultVOUtil.error();
+        return ResultVOUtil.success(workPlanList);
     }
 
 }

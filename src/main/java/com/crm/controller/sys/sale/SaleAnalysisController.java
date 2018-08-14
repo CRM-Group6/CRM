@@ -29,7 +29,9 @@ public class SaleAnalysisController {
     @GetMapping("/findByDepartment")
     public ResultVO findByDepartment(){
 
-        return ResultVOUtil.success(saleAnalyService.findByDepartment());
+        List<SalesRecords> salesRecords = saleAnalyService.findByDepartment();
+        if(salesRecords == null) return ResultVOUtil.error();
+        return ResultVOUtil.success(salesRecords);
     }
 
     /**
@@ -38,7 +40,9 @@ public class SaleAnalysisController {
     @GetMapping("/findByWorker")
     public ResultVO findByWorker(){
 
-        return ResultVOUtil.success(saleAnalyService.findByWorker());
+        List<SalesRecords> salesRecords = saleAnalyService.findByWorker();
+        if(salesRecords == null) return ResultVOUtil.error();
+        return ResultVOUtil.success(salesRecords);
     }
 
     /**
@@ -47,7 +51,9 @@ public class SaleAnalysisController {
     @GetMapping("/findByDepartmentOpportunity")
     public ResultVO findByDepartmentOpportunity(){
 
-        return ResultVOUtil.success(saleAnalyService.findByDepartmentOpportunity());
+        List<SalesRecords> salesRecords = saleAnalyService.findByDepartmentOpportunity();
+        if(salesRecords == null) return ResultVOUtil.error();
+        return ResultVOUtil.success(salesRecords);
     }
 
     /**
@@ -56,7 +62,9 @@ public class SaleAnalysisController {
     @GetMapping("/findByWorkerOpportunity")
     public ResultVO findByWorkerOpportunity(){
 
-        return ResultVOUtil.success(saleAnalyService.findByWorkerOpportunity());
+        List<SalesRecords> salesRecords = saleAnalyService.findByWorkerOpportunity();
+        if(salesRecords == null) return ResultVOUtil.error();
+        return ResultVOUtil.success(salesRecords);
     }
 
 }

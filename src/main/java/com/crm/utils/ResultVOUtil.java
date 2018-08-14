@@ -11,9 +11,10 @@ public class ResultVOUtil {
         return  resultVO;
     }
     public  static  ResultVO success() {
+
         return success(null);
     }
-    public static ResultVO error(Integer code,String msg) {
+    public static ResultVO error() {
         ResultVO resultVO = new ResultVO();
         resultVO.setSuccess(false);
         resultVO.setMsg("错误");

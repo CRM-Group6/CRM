@@ -26,6 +26,8 @@ public class CustomerAnalysisController {
     //查看统计
     @GetMapping("/see")
     public ResultVO findAll(){
-        return ResultVOUtil.success(customerAnalysisService.findAll());
+        List<CustomerStatistics> customerStatisticsList = customerAnalysisService.findAll();
+        if(customerStatisticsList == null) return ResultVOUtil.error();
+        return ResultVOUtil.success(customerStatisticsList);
     }
 }
