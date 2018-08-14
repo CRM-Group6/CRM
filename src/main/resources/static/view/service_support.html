@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>服务支持</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+<body>
+<table style="width:100%;height:190px">
+    <tr>
+        <td style="width:100%">
+            <table>
+                <thead>
+                <tr class="cen">
+                    <th>实际人数（单位：人）</th>
+                    <th>应到人数（单位：人）</th>
+                    <th>最高分（单位：分）</th>
+                    <th>最低分（单位：分）</th>
+                    <th>考试平均分（单位：分）</th>
+                    <th>考试方差（单位：1）</th>
+                </tr>
+                </thead>
+                <tbody id="tbodydata">
+                <tr>
+                    <td>1111</td>
+                    <td>2222</td>
+                    <td>3333</td>
+                    <td>4444</td>
+                    <td>5555</td>
+                    <td>6666</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    function refurbishIndex(){
+
+        var optionJson=[];
+        $.ajax({
+            type:"post",
+            url:"/",
+            data:{},
+            async: false,
+            success:function (data) {
+                optionJson=data;
+
+                var str="";
+
+                str+="<tr>"+
+                    "<td>"+optionJson.totalNumber+"</td>"+
+                    "<td>"+optionJson.actualNumber+"</td>"+
+                    "<td>"+optionJson.highScore+"</td>"+
+                    "<td>"+optionJson.lowScore+"</td>"+
+                    "<td>"+optionJson.avgScore+"</td>"+
+                    "<td>"+optionJson.variance+"</td>"+
+                    "</tr>";
+
+                document.getElementById("tbodydata").innerHTML=str;
+
+
+            }
+        });
+    }
+</script>
+
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+</body>
+</html>
