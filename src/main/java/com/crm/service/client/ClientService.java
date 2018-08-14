@@ -29,16 +29,16 @@ public class ClientService {
     @Autowired
     private UserMapper userMapper;
     //查看商旅咨询
-    public List<Info> findTravelInfo(Customer customer){
-        return infoMapper.selectInfoByUserID(customer.getId(),InfoType.TRAVEL.getIndex());
+    public List<Info> findTravelInfo(){
+        return infoMapper.selectInfoByUserID(InfoType.TRAVEL.getIndex());
     }
     //查看特价信息
-    public List<Info> findBargainInfo(Customer customer){
-        return infoMapper.selectInfoByUserID(customer.getId(),InfoType.BARGAIN.getIndex());
+    public List<Info> findBargainInfo(){
+        return infoMapper.selectInfoByUserID(InfoType.BARGAIN.getIndex());
     }
     //查看通告
-    public List<Info> findBroadCastInfo(Customer customer){
-        return infoMapper.selectInfoByUserID(customer.getId(),InfoType.BROADCAST.getIndex());
+    public List<Info> findBroadCastInfo(){
+        return infoMapper.selectInfoByUserID(InfoType.BROADCAST.getIndex());
     }
     //查看用户订单
     public List<OrderList> findAllOrderList(Customer customer){

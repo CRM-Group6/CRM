@@ -61,8 +61,8 @@ public interface InfoMapper {
 
     /**
      * 此方法用于返回咨询信息
-     * @param customerID
+     * @param infoType
      * @return List<Info>
      */
-    List<Info> selectInfoByUserID(@Param("id")Long customerID,@Param("infoType")int infoType);
+    List<Info> selectInfoByUserID(@Param("infoType")int infoType);
 }

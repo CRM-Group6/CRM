@@ -19,25 +19,19 @@ public class ClientServiceTest {
     private ClientService clientService;
     @Test
     public void findTravelInfo() {
-        Customer user = new Customer();
-        user.setId(1L);
-        List<Info> list = clientService.findTravelInfo(user);
+        List<Info> list = clientService.findTravelInfo();
         System.out.print(list);
     }
 
     @Test
     public void findBargainInfo() {
-        Customer user = new Customer();
-        user.setId(1L);
-        List<Info> list = clientService.findBargainInfo(user);
+        List<Info> list = clientService.findBargainInfo();
         System.out.print(list);
     }
 
     @Test
     public void findBroadCastInfo() {
-        Customer user = new Customer();
-        user.setId(1L);
-        List<Info> list = clientService.findBroadCastInfo(user);
+        List<Info> list = clientService.findBroadCastInfo();
         System.out.print(list);
     }
 

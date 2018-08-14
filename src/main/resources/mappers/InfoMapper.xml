@@ -37,7 +37,7 @@
     -->
     select *
     from info
-    where info_type = #{infoType,jdbcType=INTEGER} and customer_id = #{id,jdbcType=BIGINT}
+    where info_type = #{infoType,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
