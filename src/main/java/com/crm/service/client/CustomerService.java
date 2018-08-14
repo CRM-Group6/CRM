@@ -23,7 +23,7 @@ public class CustomerService {
     private UserMapper userMapper;
 
     // 获取未分配客服的客户列表
-    public List<Customer> findAllCustomer(){
+    public List<Customer> findAllUnassignedCustomer(){
         return customerMapper.selectAllUnassignedCustomer();
     }
     // 获取所有客服
