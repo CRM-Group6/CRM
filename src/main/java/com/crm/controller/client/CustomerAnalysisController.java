@@ -1,0 +1,54 @@
+package com.crm.controller.client;
+
+import com.crm.VO.ResultVO;
+import com.crm.entity.Customer;
+import com.crm.entity.Region;
+import com.crm.entity.ShowList;
+import com.crm.service.client.CustomerAnalysis;
+import com.crm.utils.ResultVOUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * @Author: Ben wu
+ * @Description:
+ * @Date:Created in 15:26 2018/8/14
+ * @Modify By:
+ */
+@RestController
+@RequestMapping("/analysis")
+public class CustomerAnalysisController {
+    @Autowired
+    private CustomerAnalysis customerAnalysis;
+    //区域
+    @GetMapping(value = "/region")
+    private ResultVO customerRegionAnalysis(){
+        List<ShowList<Customer,Region>> list = customerAnalysis.customerRegionAnalysis();
+        if(list!=null){
+            return ResultVOUtil.success(list);
+        }else
+            return ResultVOUtil.error();
+    }
+    //来源
+    @GetMapping(value = "/source")
+    private ResultVO customerSourceAnalysis(){
+        List<ShowList<Customer,String>> list = customerAnalysis.customerSourceAnalysis();
+        if(list!=null){
+            return ResultVOUtil.success(list);
+        }else
+            return ResultVOUtil.error();
+    }
+    //行业
+    @GetMapping(value = "/industry")
+    private ResultVO customerIndustryAnalysis(){
+        List<ShowList<Customer,String>> list = customerAnalysis.customerIndustryAnalysis();
+        if(list!=null){
+            return ResultVOUtil.success(list);
+        }else
+            return ResultVOUtil.error();
+    }
+}

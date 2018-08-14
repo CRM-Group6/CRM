@@ -27,6 +27,7 @@ public class CustomerAnalysisImp implements CustomerAnalysis{
         List<ShowList<Customer,Region>> list = new ArrayList<>();
         List<Region> regionList = findAllPossibleRegion();
         for(int i=0 ;i<regionList.size();i++){
+            if(regionList.get(i)==null)continue;
             //按照区域寻找所有客户
             List<Customer> userList = findAllCustomerByRegion(regionList.get(i));
             //添加新列表
@@ -43,6 +44,7 @@ public class CustomerAnalysisImp implements CustomerAnalysis{
         System.out.println(valueList);
         List<ShowList<Customer,String>> list = new ArrayList<>();
         for(int i=0;i<valueList.size();i++){
+            if(valueList.get(i)==null)continue;
             //寻找对应source值的所有用户
             List<Customer> customers = customerMapper.selectAllCustomerByValue("source",valueList.get(i));
             ShowList<Customer,String> showList = new ShowList<>("source",customers);
@@ -57,6 +59,7 @@ public class CustomerAnalysisImp implements CustomerAnalysis{
         System.out.println(valueList);
         List<ShowList<Customer,String>> list = new ArrayList<>();
         for(int i=0;i<valueList.size();i++){
+            if(valueList.get(i)==null)continue;
             //寻找对应vocation值的所有用户
             List<Customer> customers = customerMapper.selectAllCustomerByValue("vocation",valueList.get(i));
             ShowList<Customer,String> showList = new ShowList<>("vocation",customers);
