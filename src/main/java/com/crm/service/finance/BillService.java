@@ -1,7 +1,9 @@
 package com.crm.service.finance;
 
 import com.crm.entity.Bill;
+import com.crm.entity.finance.BillStatistic;
 
+import java.util.Date;
 import java.util.List;
 
 public interface BillService {
@@ -12,6 +14,7 @@ public interface BillService {
     List<Bill> selectByType(Integer type);//账单类型查询
     List<Bill> selectByBalance(Boolean balance);//账单状态查询
     int settleBill(Bill bill);          //账单结算
-    List<Bill> selectByTypeAndBalance(Integer type ,Boolean balance);
+    List<Bill> selectByTypeAndBalance(Integer type ,Boolean balance);//账单类型与状态查询
+    BillStatistic selectByDate(Date data,Integer type);
 }
 

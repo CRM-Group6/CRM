@@ -1,6 +1,7 @@
 package com.crm.service.finance.impl;
 
 import com.crm.entity.Bill;
+import com.crm.entity.finance.BillStatistic;
 import com.crm.mapper.BillMapper;
 import com.crm.service.finance.BillService;
 import org.junit.Test;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -67,5 +71,13 @@ public class BillServiceImplTest {
     public void selectByTypeAndBalance() {
         List<Bill> bills =billService.selectByTypeAndBalance(0,true);
         System.out.println(bills.size());
+    }
+
+    @Test
+    public void selectByDate() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        Date date = sdf.parse("2018");
+        BillStatistic billStatistic=billService.selectByDate(date,1);
+        System.out.println(billStatistic.getSums());
     }
 }

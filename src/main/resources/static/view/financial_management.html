@@ -62,8 +62,8 @@
 
 		</div>
 		       <!-- 全局js -->
-		          <script src="../layui/lay/modules/jquery.js"></script>
-	    <script src="../layui/lay/layui.all.js"></script>
+		          <script src="../js/jquery.min.js"></script>
+	    <script src="../js/bootstrap.min.js"></script>
 
 
 	    <!-- 自定义js -->
@@ -123,12 +123,11 @@
 				}
 				$(document).ready(function(){
 					$("#search").click(function(){
-						$ajax({
+						$.ajax({
 							type:"GET",
-							url:"/bill/findbill",
-							dataType:"json",
+							url:"/bill/console/financial_management",
 							data:{ 
-								selectrequest : $("#test").val()
+								"selectrequest" : $("#test").val()
 								 },
 							success:function(data){
 								if(data.success===true){

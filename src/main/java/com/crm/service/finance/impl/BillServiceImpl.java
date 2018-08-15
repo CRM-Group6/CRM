@@ -1,6 +1,7 @@
 package com.crm.service.finance.impl;
 
 import com.crm.entity.Bill;
+import com.crm.entity.finance.BillStatistic;
 import com.crm.enums.finance.BillStatusEnum;
 import com.crm.enums.finance.BillTypeEnum;
 import com.crm.mapper.BillMapper;
@@ -8,6 +9,7 @@ import com.crm.service.finance.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -60,5 +62,10 @@ public class BillServiceImpl implements BillService {
     @Override
     public List<Bill> selectByTypeAndBalance(Integer type, Boolean balance) {
         return billMapper.selectByTypeAndBalance(type,balance);
+    }
+
+    @Override
+    public BillStatistic selectByDate(Date date, Integer type) {
+        return billMapper.selectByDate(date,type);
     }
 }

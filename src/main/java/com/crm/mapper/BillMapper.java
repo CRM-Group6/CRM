@@ -1,9 +1,11 @@
 package com.crm.mapper;
 
 import com.crm.entity.Bill;
+import com.crm.entity.finance.BillStatistic;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -60,4 +62,5 @@ public interface BillMapper {
     List<Bill> selectByType(Integer type);
     List<Bill> selectByBalance(Boolean balance);
     List<Bill> selectByTypeAndBalance(Integer type,Boolean balance);
+    BillStatistic selectByDate(Date date,Integer type);
 }
