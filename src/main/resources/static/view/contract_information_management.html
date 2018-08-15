@@ -33,34 +33,35 @@
 			        <p>合同明细<input name="details" type="text" id="details" tabindex="6" size="16" value=""/></p>
 			         <p>合同类别<input name="category" type="text" id="category" tabindex="7" size="15" value=""/></p>
 			        <p>执行状态<input name="execute_status" type="text" id="execute_status" tabindex="8" size="16" value=""/></p>
-			        <p>合同金额<input name="money" type="text" id="money" tabindex="2" size="9" value=""/></p>
+			        <p>合同金额<input name="money" type="text" id="money" tabindex="9" size="15" value=""/></p>
 			         <p>合同截至时间<input name="deadline" type="text" id="deadline" tabindex="10" size="15" value=""/></p>
 			        <p>合同创建时间<input name="create_date" type="text" id="create_date" tabindex="11" size="16" value=""/></p>
 			     
-			        <p><input type="button" value="提交" onclick="add()">&nbsp;<input type="reset" value="重置"></p>
+			        <p><input type="button" value=提交 onclick="add()">&nbsp;<input type="reset" value="重置"></p>
 
 			    </form>
 
 			</div>
 	</div>
 		       <!-- 全局js -->
-		<script src="../js/jquery.min.js"></script>
+		<script src="../js/jquery-3.1.1.min.js"></script>
 	    <script src="../js/bootstrap.min.js"></script>
 
 
 	    <!-- 自定义js -->
 	    <script src="../js/content.js?v=1.0.0"></script>
 	    <script type="text/javascript">
-	    	 function add(){
-            $.ajax({
+	    	 function add() {
+	    	$(document).ready(function(){
+ 				$.ajax({
             //几个参数需要注意一下
-                type: "PUT",//方法类型
+                type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
-                url: "/contract/insert" ,//url
+                url: "/contract/addcontract" ,//url
                 data: JSON.stringify($('form1').serializeObject()),
                 success: function (result) {
                     console.log(result);//打印服务端返回的数据(调试用)
-                    if (result.success == 200) {
+                    if (result.resultCode == 200) {
                         alert("添加SUCCESS");
                     }
                     ;
@@ -69,6 +70,8 @@
                     alert("异常！");
                 }
             });
+	    	});
+           
         }
 
 	  </script>
