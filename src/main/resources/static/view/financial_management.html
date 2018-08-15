@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,13 +18,13 @@
 	    <link href="../css/style.css?v=4.1.0" rel="stylesheet">
 
 	    <style type="text/css">
-	    	#select_option,#select_value,.btn{
+	    	#select_option,#select_value,a{
 	    		float: left;
 	    	}
 	    </style>
 		</head>
 	<body>
-
+	   <td th:text="${id}"></td>
 		<div class="container-fluid main">
 			<div class="col-xs-6" id="lookup">
 				<div class="col-xs-8" id="select_option">
@@ -49,25 +49,24 @@
 					  <div class="form-group">
 					    <div class="input-group">
 					      <input type="text" class="form-control" id="test" placeholder="请输入搜索值">
-					      <button type="submit" class="btn btn-primary " id="search">确定</button>
+					      <a type="submit" class="btn btn-primary " id="search" >确定</a>
 					    </div>
 					  </div>
 					  
 					</form>
 				</div>	
-				<p>
-					<span id="resultcontext"></span>
+				<p >
+                    <span id="resultcontext"></span>
 				</p>
 			</div>
 
 		</div>
 		       <!-- 全局js -->
-		          <script src="../js/jquery.min.js"></script>
-	    <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript"  language="javascript" src="../js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript"   language="javascript" src="../js/bootstrap.min.js"></script>
 
 
 	    <!-- 自定义js -->
-	    <script src="../js/content.js?v=1.0.0"></script>
 	    <script type="text/javascript">
 	    	var optionselect;
 	    	var selectrequset;
@@ -125,21 +124,30 @@
 					$("#search").click(function(){
 						$.ajax({
 							type:"GET",
-							url:"/bill/console/financial_management",
+							url:"/console/financial_management",
+                            dataType:"json",
+                            async:"true",
 							data:{ 
-								"selectrequest" : $("#test").val()
+								selectrequest : $("#test").val()
 								 },
 							success:function(data){
 								if(data.success===true){
-												$("#resultcontext").html(data.data); 
-									}else {
-												$("#resultcontext").html ("出现错误"+data.msg);
+
+
+
+                                    $("#resultcontext").html(data.data.id+data.data.category);
+                                    // $("#resultcontext").html(problem.id+problem.category+problem.question+problem.answer+problem.create_date+problem.update_date);
+                                    // alert(problem.id);
+                                    // var json = $.parseJSON(data);
+								    // $("#resultcontext").html(json.id+json.category+json.question+json.answer+json.create_date+json.update_date);
+                                }else {
+												alert("出现错误"+data.msg);
 									}
 							
 							},
 							error:function(jqXHR){
-								alert("发生错误："+jqXHR.status);
-								}
+                                alert('动态页错了\n\n'+jqXHR.responseText);
+                            }
 						});
 					});
 

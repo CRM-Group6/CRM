@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	    <title> financial_management</title>
+	    <meta name="keywords" content="">
+	    <meta name="description" content="">
+
+	    <link rel="shortcut icon" href="favicon.ico"> 
+		<link href="../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	    <link href="../static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+	    <link href="../static/css/plugins/footable/footable.core.css" rel="stylesheet">
+
+	    <link href="../static/css/animate.css" rel="stylesheet">
+	    <link href="../static/css/style.css?v=4.1.0" rel="stylesheet">
+
+	    <style type="text/css">
+	    	#select_option,#select_value,a{
+	    		float: left;
+	    	}
+	    </style>
+		</head>
+	<body>
+	   <td th:text="${id.id}"></td>
+		<div class="container-fluid main">
+			<div class="col-xs-6" id="lookup">
+				<div class="col-xs-8" id="select_option">
+				<select class="form-control" onchange = "selectOnchange(this);">
+					<option>主键id</option>
+					<option>订单id</option>
+					<option>合同id</option>
+					<option>客户id</option>
+					<option>单位</option>
+					<option>账单编号</option>
+					<option>备注</option>
+					<option>金额</option>
+					<option>是否结算</option>
+					<option>账单类型</option>
+					<option>银行卡号</option>
+					<option>结算日期</option>
+					<option>实际结算日期</option>
+				</select>
+				</div>
+				<div class="col-xs-4" id="select_value">
+					<form class="form-inline">
+					  <div class="form-group">
+					    <div class="input-group">
+					      <input type="text" class="form-control" id="test" placeholder="请输入搜索值">
+					      <a type="submit" class="btn btn-primary " id="search" >确定</a>
+					    </div>
+					  </div>
+					  
+					</form>
+				</div>	
+				<p >
+                    <span id="resultcontext"></span>
+				</p>
+			</div>
+
+		</div>
+		       <!-- 全局js -->
+    <script type="text/javascript"  language="javascript" src="../static/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript"   language="javascript" src="../static/js/bootstrap.min.js"></script>
+
+
+	    <!-- 自定义js -->
+	    <script type="text/javascript">
+	    	var optionselect;
+	    	var selectrequset;
+
+
+	    	function selectOnchange(obj){
+	    		optionselect=obj.selectedIndex;	    	
+	    	}
+
+	    	switch(optionselect)
+				{
+				case 1:
+				  selectrequest="id";
+				  break;
+				case 2:
+				  selectrequest="order_id";
+				 break;
+				case 3:
+				  selectrequest="contract_id";
+				  break;
+				 case 4:
+				  selectrequest="customer_id";
+				 break;
+				 case 5:
+				  selectrequest="unit";
+				 break;
+				 case 6:
+				  selectrequest="number";
+				 break;
+				 case 7:
+				  selectrequest="remark";
+				 break;
+				 case 8:
+				  selectrequest="ammount";
+				 break;
+				 case 9:
+				  selectrequest="balance";
+				 break;
+				 case 10:
+				  selectrequest="type";
+				  break;
+				 case 11:
+				 selectrequest="account";
+				 break;
+				 case 12:
+				 selectrequest="end_date";
+				 break;
+				 case 13:
+				 select_request="actual_end_date"
+				 break;
+				default:
+				;
+				}
+				$(document).ready(function(){
+					$("#search").click(function(){
+						$.ajax({
+							type:"GET",
+							url:"/console/financial_management",
+                            dataType:"json",
+                            async:"true",
+							data:{ 
+								selectrequest : $("#test").val()
+								 },
+							success:function(data){
+								if(data.success===true){
+
+
+
+                                    $("#resultcontext").html(data.data.id+data.data.category);
+                                    // $("#resultcontext").html(problem.id+problem.category+problem.question+problem.answer+problem.create_date+problem.update_date);
+                                    // alert(problem.id);
+                                    // var json = $.parseJSON(data);
+								    // $("#resultcontext").html(json.id+json.category+json.question+json.answer+json.create_date+json.update_date);
+                                }else {
+												alert("出现错误"+data.msg);
+									}
+							
+							},
+							error:function(jqXHR){
+                                alert('动态页错了\n\n'+jqXHR.responseText);
+                            }
+						});
+					});
+
+				});
+
+	  </script>
+	</body>
+</html>

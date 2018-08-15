@@ -1,10 +1,188 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<img src="/images/ht.png">
-</body>
-</html>
+  <!DOCTYPE HTML>
+  <html>
+  		<head>
+  			<meta charset="utf-8">
+		    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		    <meta name="renderer" content="webkit">
+
+		    <title> CRM主界面</title>
+
+		    <meta name="keywords" content="">
+		    <meta name="description" content="">
+
+		    <!--[if lt IE 9]>
+		    <meta http-equiv="refresh" content="0;ie.html" />
+		    <![endif]-->
+
+		    <link rel="shortcut icon" href="favicon.ico"> 
+		    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		    <link href="../css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+		    <link href="../css/animate.css" rel="stylesheet">
+		    <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+  		</head>
+  		<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+  			<div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs" style="font-size:20px;">
+                                      	<img src="../img/LOGO.png" style="height:50px;"/>
+                                        <strong class="font-bold">CRM</strong>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="logo-element">CRM
+                        </div>
+                    </li>
+                    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                        <span class="ng-scope">分类</span>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="${ctx!}/admin/welcome">
+                            <i class="fa fa-home"></i>
+                            <span class="nav-label">主页</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                    	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">客户服务管理</span><span class="fa arrow"></span></a>
+                    	<ul class="nav nav-second-level">
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_doc.html" >客户档案管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="service_support.html">服务支持</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="maintain.html">维护维修</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_complaint.html">客户投诉</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_statistics.html">客服统计</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_project.html">客服项目</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_distribute.html">客户分配</a></li>
+                    	</ul>
+                    </li>
+
+                    <li>
+                    	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">销售管理</span><span class="fa arrow"></span></a>
+                    	<ul class="nav nav-second-level">
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="sales_analysis.html" >销售分析</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="sales_opportunity_management.html" >销售机会管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="sales_reminding.html">销售提醒</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="contact_management.html" >联系人管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_development_plan_management.html " >客户开发计划管理</a></li>
+                    	</ul>
+                    </li>
+
+                    <li>
+                    	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">客户管理</span><span class="fa arrow"></span></a>
+                    	<ul class="nav nav-second-level">
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_analysis.html">客户分析</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_distribution.html">客户分配</a></li>
+                    	</ul>
+                    </li>
+
+
+                    <li>
+                    	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">合同管理</span><span class="fa arrow"></span></a>
+                    	<ul class="nav nav-second-level">
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="contract_information_management.html" >合同信息管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="contract_statistics.html" >合同统计</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="contract_order_process.html" >合同订单流程管理</a></li>
+                    	</ul>
+                    </li>
+
+
+                    <li>
+                    	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">财务管理</span><span class="fa arrow"></span></a>
+                    	<ul class="nav nav-second-level">
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="financial_management.html" >账单管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="financial_reminding.html" >财务提醒</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="financial_statistics.html" >财务统计</a></li>
+                    	</ul>
+                    </li>
+
+                    <li>
+                    	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">业务管理</span><span class="fa arrow"></span></a>
+                    	<ul class="nav nav-second-level">
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="plane_ticket_management.html" >机票管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="hotel_management.html" >酒店管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="product_management.html" >产品管理</a></li>
+                    	</ul>
+                    </li>
+                    <li class="line dk"></li>
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-user"></i> <span class="label label-primary"></span><!--  <@shiro.principal type="net.sppan.base.entity.User" property="nickName"/>   -->
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                                <li>
+                                    <a onclick="updatePwd()">
+                                        <div>
+                                            <i class="fa fa-refresh"></i> 修改密码
+                                            <span class="pull-right text-muted small"></span><!--  <@shiro.principal type="net.sppan.base.entity.User" property="userName"/>  -->
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="${ctx!}/admin/logout">
+                                        <div>
+                                            <i class="fa fa-remove"></i> 注销
+                                            <span class="pull-right text-muted small"></span><!--    <@shiro.principal type="net.sppan.base.entity.User" property="userName"/>   -->
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row J_mainContent" id="content-main">             <!--主要内容-->
+                <iframe  id="J_iframe" width="100%" height="100%" src="" frameborder="0" data-id="index_v1.html" seamless></iframe>
+        </div>
+        <!--右侧部分结束-->
+            </div>
+
+
+  			<!-- 全局js -->
+		    <script src="../js/jquery.min.js?v=2.1.4"></script>
+		    <script src="../js/bootstrap.min.js?v=3.3.6"></script>
+		    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		    <script src="../js/plugins/layer/layer.min.js"></script>
+
+		    <!-- 自定义js -->
+		    <script src="../js/hAdmin.js?v=4.1.0"></script>
+		    <script type="text/javascript" src="../js/index.js"></script>
+		    <script type="text/javascript">
+		    	<!--自定义js语句-->
+
+                function menu_goto(sender){
+                    
+                   $("#J_iframe").attr("src",$(sender).attr("value"));
+
+                }
+                var custom_services={
+                    login:function(){
+                        $(document).ready(function(){
+                       $("#J_iframe").attr("src","login.html") ;
+                    });
+                        }
+                };
+		    </script>
+  		</body>
+  </html>
