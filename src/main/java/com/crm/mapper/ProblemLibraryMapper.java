@@ -4,6 +4,8 @@ import com.crm.entity.ProblemLibrary;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component(value = "problemLibraryMapper")
 public interface ProblemLibraryMapper {
@@ -54,4 +56,6 @@ public interface ProblemLibraryMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(ProblemLibrary record);
+
+    List<ProblemLibrary> selectAll();
 }

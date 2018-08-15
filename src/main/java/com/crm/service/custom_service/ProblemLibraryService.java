@@ -26,4 +26,7 @@ public class ProblemLibraryService {
 //    修改，但是参数是一个problemLibrary
     public int updateone(ProblemLibrary problemLibrary){return problemLibraryMapper.updateByPrimaryKey(problemLibrary);}
 
+    public List<ProblemLibrary> selectAll(){
+        return problemLibraryMapper.selectAll();
+    }
 }

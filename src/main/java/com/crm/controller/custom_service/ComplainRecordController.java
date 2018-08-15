@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.*;
 public class ComplainRecordController {
 @Autowired
     private ComplaintRecordService complaintRecordService;
-    @GetMapping("console/customer_complaint")
-    public ResultVO findone(@RequestParam("id") Long id)
-    {       if(complaintRecordService.findone(id)==null){
-        return ResultVOUtil.error();
-    }
-    else
-        return ResultVOUtil.success( complaintRecordService.findone(id));
-    }
+//    @GetMapping("console/customer_complaint")
+//    public ResultVO findone(@RequestParam("id") Long id)
+//    {       if(complaintRecordService.findone(id)==null){
+//        return ResultVOUtil.error();
+//    }
+//    else
+//        return ResultVOUtil.success( complaintRecordService.findone(id));
+//    }
+
+
 }
 
 
