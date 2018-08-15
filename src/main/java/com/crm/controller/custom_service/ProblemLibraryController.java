@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-
+@RequestMapping("/problem")
 public class ProblemLibraryController {
     @Autowired
     private ProblemLibraryService problemLibraryService;
@@ -41,7 +41,7 @@ public class ProblemLibraryController {
     /*查询*/
     @RequestMapping("/findone")
     public ModelAndView find(){
-        ModelAndView model =new ModelAndView("financial_management");
+        ModelAndView model =new ModelAndView("service_support");
         model.addObject("id",problemLibraryService.findone((long)11));
         return model;
     }
@@ -61,7 +61,7 @@ public class ProblemLibraryController {
 
        problemLibraryService.addone(problemLibrary);
 
-        return  new ModelAndView("redirect:/selectall");
+        return  new ModelAndView("redirect:problem/selectall");
 
     }
     /*增加一条记录跳转按钮*/
@@ -75,7 +75,7 @@ public class ProblemLibraryController {
     @RequestMapping("/delete")
     public ModelAndView delete(Long id){
         problemLibraryService.deleteone(id);
-        return new ModelAndView("redirect:/selectall");
+        return new ModelAndView("redirect:problem/selectall");
     }
 
 }
