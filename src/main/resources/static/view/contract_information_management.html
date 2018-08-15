@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	    <title> addcontract</title>
+	    <meta name="keywords" content="">
+	    <meta name="description" content="">
+
+	    <link rel="shortcut icon" href="favicon.ico"> 
+		<link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	    <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+	    <link href="../css/plugins/footable/footable.core.css" rel="stylesheet">
+
+	    <link href="../css/animate.css" rel="stylesheet">
+	    <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+
+	    <style type="text/css">
+	    
+	    </style>
+		</head>
+	<body>
+		<div class="container-fluid main">
+			<div id="form-div">
+				<form id="form1" onsubmit="return false" action="##" method="post">
+			        <p>合同编号<input name="id" type="text" id="id" tabindex="1" size="15" value=""/></p>
+			        <p>客户id<input name="client_id" type="text" id="client_id" tabindex="2" size="16" value=""/></p>
+			        <p>销售人员id<input name="salesman_id" type="text" id="salesman_id" tabindex="3" size="16" value=""/></p>
+			         <p>审核状态<input name="verify_status" type="text" id="verify_status" tabindex="4" size="15" value=""/></p>
+			        <p>审核意见<input name="verify_option" type="text" id="verify_option" tabindex="5" size="16" value=""/></p>
+			        <p>合同明细<input name="details" type="text" id="details" tabindex="6" size="16" value=""/></p>
+			         <p>合同类别<input name="category" type="text" id="category" tabindex="7" size="15" value=""/></p>
+			        <p>执行状态<input name="execute_status" type="text" id="execute_status" tabindex="8" size="16" value=""/></p>
+			        <p>合同金额<input name="money" type="text" id="money" tabindex="9" size="15" value=""/></p>
+			         <p>合同截至时间<input name="deadline" type="text" id="deadline" tabindex="10" size="15" value=""/></p>
+			        <p>合同创建时间<input name="create_date" type="text" id="create_date" tabindex="11" size="16" value=""/></p>
+			     
+			        <p><input type="button" value=提交 onclick="add()">&nbsp;<input type="reset" value="重置"></p>
+
+			    </form>
+
+			</div>
+	</div>
+		       <!-- 全局js -->
+		<script src="../js/jquery-3.1.1.min.js"></script>
+	    <script src="../js/bootstrap.min.js"></script>
+
+
+	    <!-- 自定义js -->
+	    <script src="../js/content.js?v=1.0.0"></script>
+	    <script type="text/javascript">
+	    	 function add() {
+	    	$(document).ready(function(){
+ 				$.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/contract/addcontract" ,//url
+                data: JSON.stringify($('form1').serializeObject()),
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.resultCode == 200) {
+                        alert("添加SUCCESS");
+                    }
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+	    	});
+           
+        }
+
+	  </script>
+	</body>
+</html>
