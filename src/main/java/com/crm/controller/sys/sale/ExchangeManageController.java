@@ -91,7 +91,7 @@ public class ExchangeManageController {
     public ModelAndView add(ExchangeInfo exchangeInfo){
 
         exchangeInfoService.addExchangeInfo(exchangeInfo);
-        System.out.println("I'm here");
+//        System.out.println("I'm here");
         return  new ModelAndView("redirect:/sale/exchangeInfo/selectall");
     }
 
