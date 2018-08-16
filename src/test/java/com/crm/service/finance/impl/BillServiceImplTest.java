@@ -1,6 +1,7 @@
 package com.crm.service.finance.impl;
 
 import com.crm.entity.Bill;
+import com.crm.entity.finance.BillChart;
 import com.crm.entity.finance.BillStatistic;
 import com.crm.mapper.BillMapper;
 import com.crm.service.finance.BillService;
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -73,11 +75,31 @@ public class BillServiceImplTest {
         System.out.println(bills.size());
     }
 
+
+
+
     @Test
-    public void selectByDate() throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-        Date date = sdf.parse("2018");
-        BillStatistic billStatistic=billService.selectByDate(date,1);
-        System.out.println(billStatistic.getSums());
+    public void getBillList() {
+        List<Bill> list =billService.getBillList();
+        list.size();
+    }
+
+    @Test
+    public void selectByDate() {
+        String year="2018";
+        List<BillStatistic> billStatistics= billService.selectByDate(year,1);
+        billStatistics.size();
+        List<Double> list=new ArrayList<Double>();
+        for(int i=0;i<12;i++){
+            list.add(new Double(0));
+            for(int j=0;j<billStatistics.size();j++){
+                int z=Integer.valueOf(billStatistics.get(j).getMonth()).intValue();
+                if(z==i){
+                    list.set(i,billStatistics.get(j).getMoney());
+                }
+            }
+        }
+        BillChart billChart=new BillChart("收支情况",list);
+        billChart.getData().get(7);
     }
 }

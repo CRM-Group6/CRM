@@ -23,7 +23,7 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public int insertBill(Bill bill) {
+    public int insert(Bill bill) {
 
         return billMapper.insert(bill);
     }
@@ -37,6 +37,11 @@ public class BillServiceImpl implements BillService {
     public int deleteBill(Long id) {
 
         return billMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Bill> getBillList() {
+        return billMapper.getBillList();
     }
 
     @Override
@@ -65,7 +70,8 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public BillStatistic selectByDate(Date date, Integer type) {
-        return billMapper.selectByDate(date,type);
+    public List<BillStatistic> selectByDate(String year,Integer type) {
+        return billMapper.selectByDate(year,type);
     }
+
 }

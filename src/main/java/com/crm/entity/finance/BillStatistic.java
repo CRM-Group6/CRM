@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Data
 public class BillStatistic {
-    private Date searchDate;
-    private Double sums;
+    private String month;
+    private Double money;
     private Integer type;
 }
