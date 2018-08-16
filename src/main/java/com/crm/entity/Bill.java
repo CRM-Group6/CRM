@@ -450,4 +450,23 @@ public class Bill {
     public void setActualEndDate(Date actualEndDate) {
         this.actualEndDate = actualEndDate;
     }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "id=" + id +
+                ", orderId=" + orderId +
+                ", contractId=" + contractId +
+                ", customerId=" + customerId +
+                ", unit='" + unit + '\'' +
+                ", number='" + number + '\'' +
+                ", remark='" + remark + '\'' +
+                ", ammount=" + ammount +
+                ", balance=" + balance +
+                ", type=" + type +
+                ", account='" + account + '\'' +
+                ", endDate=" + endDate +
+                ", actualEndDate=" + actualEndDate +
+                '}';
+    }
 }

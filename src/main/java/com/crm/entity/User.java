@@ -218,5 +218,15 @@ public class User {
         this.department = department;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", type=" + type +
+                ", department=" + department +
+                '}';
+    }
 }

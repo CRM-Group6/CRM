@@ -186,4 +186,15 @@ public class Info {
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
+
+    @Override
+    public String toString() {
+        return "Info{" +
+                "id=" + id +
+                ", infoType=" + infoType +
+                ", info='" + info + '\'' +
+                ", createDate=" + createDate +
+                ", customerId=" + customerId +
+                '}';
+    }
 }

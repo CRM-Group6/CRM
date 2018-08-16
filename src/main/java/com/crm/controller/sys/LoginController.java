@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -37,7 +38,14 @@ public class LoginController {
     public String loginSystem(){
         return "/view/login";
     }
-
+    /**
+     * 后台登录入口
+     * @return
+     */
+    @RequestMapping("/main")
+    public ModelAndView loginBackend(){
+        return new ModelAndView("/backend.html");
+    }
 
     /**
      * flag不为空则为前台登录
