@@ -1,4 +1,4 @@
-package com.crm.service.sys.contract_service;
+package com.crm.service.contract_service;
 
 import com.crm.entity.Contract;
 import com.crm.mapper.ContractMapper;
@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,15 +26,15 @@ public class ContractService {
      * @param contract
      * @return
      */
-    public Contract insert(Contract contract){
-        Integer result =  contractMapper.insert(contract);
-        if(result == null) {
-            return null;
-        }
-        else
-        {
-            return contract;
-        }
+    public void insertSelective(Contract contract){
+        contractMapper.insertSelective(contract);
+    }
+
+    /**
+     * 审核更新
+     */
+    public Contract update(Long id){
+        return contractMapper.update(id);
     }
 
     /**
@@ -46,7 +45,13 @@ public class ContractService {
         Integer result =  contractMapper.deleteByPrimaryKey(id);
 
     }
-
+    /**
+     * 显示全表
+     *
+     */
+     public List<Contract> findAll(){
+         return contractMapper.findAll();
+     }
     /**
      *项目经理审核合同,审核结果、审核状态
      * 使用者：销售经理
@@ -62,14 +67,15 @@ public class ContractService {
         else
             return null;
     }
-    public List<Contract> statisticsByCombination(Contract contract){
-        return contractMapper.selectByCombination(contract);
-    }
+
     /**
      * 查询合同，可以组合合同类型、收支类型、执行状态及客户信息
-     * 和其他关键字查询合同相关内容信息。
-     * @param id
+     * 和其他关键查询合同相关内容信息。
+     * @param
      */
+    public List<Contract> statistics(Contract contract){
+        return contractMapper.select(contract);
+    }
 //    public void  findContract(Long id){
 //        Contract contract = contractMapper.selectByPrimaryKey(id);
 //       // Assert.assertEquals(123,contract.getId().longValue());

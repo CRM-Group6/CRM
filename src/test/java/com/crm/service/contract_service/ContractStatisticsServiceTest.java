@@ -1,7 +1,6 @@
-package com.crm.service.sys.contract_service;
+package com.crm.service.contract_service;
 
 import com.crm.entity.Contract;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Quinn
@@ -60,11 +57,11 @@ public class ContractStatisticsServiceTest {
 
     @Test
     public void statisticsByCombination() {
-        Contract contract = new Contract();
-        //contract.setDeadline(2018-08-09);
-        contract.setCategory(1);
-        contract.setExecuteStatus(1);
-        List<Contract> contractList = service.statisticsByCombination(contract);
-        System.out.println(contractList);
+//        Contract contract = new Contract();
+//        //contract.setDeadline(2018-08-09);
+//        contract.setCategory(1);
+//        contract.setExecuteStatus(1);
+//        List<Contract> contractList = service.statisticsByCombination(contract);
+//        System.out.println(contractList);
     }
 }

@@ -2,7 +2,7 @@ package com.crm;
 
 import com.crm.entity.Contract;
 import com.crm.enums.verify_enum.VerifyTypeEnum;
-import com.crm.service.sys.contract_service.ContractService;
+import com.crm.service.contract_service.ContractService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,13 +17,13 @@ public class CrmApplicationTests {
 	ContractService contractService;
 	@Test
 	public void contextLoads() {
-		Contract contract = new Contract();
-		contract.setId((long) 123456);
-		contract.setClientId((long)123);
-		contract.setSalesmanId((long) 12345678);
-		contract.setVerifyStatus(VerifyTypeEnum.CHECKED.getCode());
-		Contract result = contractService.insert(contract);
-		Assert.assertNotNull(result);
+//		Contract contract = new Contract();
+//		contract.setId((long) 123456);
+//		contract.setClientId((long)123);
+//		contract.setSalesmanId((long) 12345678);
+//		contract.setVerifyStatus(VerifyTypeEnum.CHECKED.getCode());
+//		Contract result = contractService.insert(contract);
+//		Assert.assertNotNull(result);
 	}
 
 }

@@ -1,11 +1,10 @@
-package com.crm.service.sys.contract_service;
+package com.crm.service.contract_service;
 
 import com.crm.entity.Contract;
 import com.crm.mapper.ContractMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,7 +43,7 @@ public class ContractStatisticsService {
 //        return contractMapper.selectByStatusAndType(status, category);
 //    }
 
-    public List<Contract> statisticsByCombination(Contract contract){
+    public int statisticsByCombination(Contract contract){
         return contractMapper.selectByCombination(contract);
     }
 
