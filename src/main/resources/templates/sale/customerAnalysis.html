@@ -20,23 +20,21 @@
 <table width="95%" border="0" align="center" cellpadding="0"
        cellspacing="0" class="table01 table-row-cell" id="table01">
     <tr>
-        <td  class="td_top">机会编号</td>
-        <td  class="td_top">开始时间</td>
-        <td  class="td_top">结束时间</td>
-        <td  class="td_top">概要</td>
-        <td  class="td_top">详细信息</td>
-        <td  class="td_top">计划状态</td>
+        <td  class="td_top">部门</td>
+        <td  class="td_top">客户增长数</td>
+        <td  class="td_top">客户增长率</td>
+        <td  class="td_top">客户流失率</td>
+        <td  class="td_top">统计时间</td>
 
 
     </tr>
     <th:block th:if=" ${result.success} eq true">
-        <tr th:each="plan : ${result.data}">
-            <td scope="row" th:text="${plan.opportunityId}">1</td>
-            <td th:text="${#calendars.format(plan.startTime,'yyyy-MM-dd')}"></td>
-            <td th:text="${#calendars.format(plan.endTime,'yyyy-MM-dd')}"></td>
-            <td th:text="${plan.outline}"></td>
-            <td th:text="${plan.detailedInfo}"></td>
-            <td th:text="${plan.status}"></td>
+        <tr th:each="record : ${result.data}">
+            <td scope="row" th:text="${record.department}">1</td>
+            <td th:text="${record.updateNumber}"></td>
+            <td th:text="${record.updateRate}"></td>
+            <td th:text="${record.dropoutRate}"></td>
+            <td th:text="${#calendars.format(record.statisticsDate,'yyyy-MM-dd')}"></td>
 
             <!--<td><a th:href="@{/sale/exchangeInfo/toedit(id=${exchangeInfo.id})}">edit</a></td>-->
             <!--<td><a th:href="@{/sale/exchangeInfo/delete(id=${exchangeInfo.id})}">delete</a></td>-->

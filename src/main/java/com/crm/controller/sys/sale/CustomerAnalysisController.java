@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -25,9 +26,10 @@ public class CustomerAnalysisController {
 
     //查看统计
     @GetMapping("/see")
-    public ResultVO findAll(){
+    public ModelAndView findAll(){
         List<CustomerStatistics> customerStatisticsList = customerAnalysisService.findAll();
-        if(customerStatisticsList == null) return ResultVOUtil.error();
-        return ResultVOUtil.success(customerStatisticsList);
+        ModelAndView model=new ModelAndView("/sale/customerAnalysis");
+        if(customerStatisticsList == null) return model.addObject("result",ResultVOUtil.error());
+        return model.addObject("result",ResultVOUtil.success(customerStatisticsList));
     }
 }
