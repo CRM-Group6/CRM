@@ -1,6 +1,7 @@
 package com.crm.controller.sys.sale;
 
 import com.crm.VO.ResultVO;
+import com.crm.VO.SaleShow;
 import com.crm.entity.SalesRecords;
 import com.crm.service.sale.SaleAnalysisService;
 import com.crm.utils.ResultVOUtil;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -26,45 +28,57 @@ public class SaleAnalysisController {
     /**
      * 业绩统计：按照部门来分
      */
-    @GetMapping("/findByDepartment")
-    public ResultVO findByDepartment(){
-
-        List<SalesRecords> salesRecords = saleAnalysisService.findByDepartment();
-        if(salesRecords == null) return ResultVOUtil.error();
-        return ResultVOUtil.success(salesRecords);
+    @GetMapping("/performance/department")
+    public ModelAndView findByDepartment(){
+        ModelAndView model = new ModelAndView("/sale/sale_analysis");
+        model.addObject("category","performance");
+        model.addObject("name","业绩统计");
+        model.addObject("type","department");
+        List<SaleShow> salesRecords = saleAnalysisService.findByDepartment();
+        if(salesRecords == null) return model.addObject("result",ResultVOUtil.error());
+        return model.addObject("result",ResultVOUtil.success(salesRecords));
     }
 
     /**
      * 业绩统计：按人员来分
      */
-    @GetMapping("/findByWorker")
-    public ResultVO findByWorker(){
-
-        List<SalesRecords> salesRecords = saleAnalysisService.findByWorker();
-        if(salesRecords == null) return ResultVOUtil.error();
-        return ResultVOUtil.success(salesRecords);
+    @GetMapping("/performance/worker")
+    public ModelAndView findByWorker(){
+        ModelAndView model = new ModelAndView("/sale/sale_analysis");
+        model.addObject("category","performance");
+        model.addObject("name","业绩统计");
+        model.addObject("type","worker");
+        List<SaleShow> salesRecords = saleAnalysisService.findByWorker();
+        if(salesRecords == null) return model.addObject("result",ResultVOUtil.error());
+        return model.addObject("result",ResultVOUtil.success(salesRecords));
     }
 
     /**
      * 机会统计：根据部门来分
      */
-    @GetMapping("/findByDepartmentOpportunity")
-    public ResultVO findByDepartmentOpportunity(){
-
-        List<SalesRecords> salesRecords = saleAnalysisService.findByDepartmentOpportunity();
-        if(salesRecords == null) return ResultVOUtil.error();
-        return ResultVOUtil.success(salesRecords);
+    @GetMapping("/chance/department")
+    public ModelAndView findByDepartmentOpportunity(){
+        ModelAndView model = new ModelAndView("/sale/sale_analysis");
+        model.addObject("category","chance");
+        model.addObject("name","机会统计");
+        model.addObject("type","department");
+        List<SaleShow> salesRecords = saleAnalysisService.findByDepartmentOpportunity();
+        if(salesRecords == null) return model.addObject("result",ResultVOUtil.error());
+        return model.addObject("result",ResultVOUtil.success(salesRecords));
     }
 
     /**
      * 机会统计：根据人员来分
      */
-    @GetMapping("/findByWorkerOpportunity")
-    public ResultVO findByWorkerOpportunity(){
-
-        List<SalesRecords> salesRecords = saleAnalysisService.findByWorkerOpportunity();
-        if(salesRecords == null) return ResultVOUtil.error();
-        return ResultVOUtil.success(salesRecords);
+    @GetMapping("/chance/worker")
+    public ModelAndView findByWorkerOpportunity(){
+        ModelAndView model = new ModelAndView("/sale/sale_analysis");
+        model.addObject("category","chance");
+        model.addObject("name","机会统计");
+        model.addObject("type","worker");
+        List<SaleShow> salesRecords = saleAnalysisService.findByWorkerOpportunity();
+        if(salesRecords == null) return model.addObject("result",ResultVOUtil.error());
+        return model.addObject("result",ResultVOUtil.success(salesRecords));
     }
 
 }

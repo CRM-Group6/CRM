@@ -1,5 +1,6 @@
 package com.crm.mapper.sale;
 
+import com.crm.VO.SaleShow;
 import com.crm.entity.SalesRecords;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
@@ -57,9 +58,9 @@ public interface SalesRecordsMapper {
      */
     int updateByPrimaryKey(SalesRecords record);
 
-    List<SalesRecords> findByDepartment();
-    List<SalesRecords> findByWorker();
-    List<SalesRecords> findByDepartmentOpportunity();
-    List<SalesRecords> findByWorkerOpportunity();
+    List<SaleShow> findByDepartment();
+    List<SaleShow> findByWorker();
+    List<SaleShow> findByDepartmentOpportunity();
+    List<SaleShow> findByWorkerOpportunity();
 
 }

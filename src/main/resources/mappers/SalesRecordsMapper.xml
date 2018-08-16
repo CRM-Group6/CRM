@@ -34,30 +34,30 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <select id="findByDepartment"  resultType="java.lang.Integer">
+  <select id="findByDepartment"  resultType="com.crm.VO.SaleShow">
     <!--按部门分析业绩-->
-    select sum(money)
+    select department_id as id,sum(money) as num
     from sales_records
     group by department_id
   </select>
 
-  <select id="findByWorker"  resultType="java.lang.Integer">
+  <select id="findByWorker"  resultType="com.crm.VO.SaleShow">
     <!--按人员分析业绩-->
-    select sum(money)
+    select salesman_id as id ,sum(money) as num
     from sales_records
     group by salesman_id
   </select>
 
-  <select id="findByDepartmentOpportunity"  resultType="java.lang.Integer">
+  <select id="findByDepartmentOpportunity"  resultType="com.crm.VO.SaleShow">
     <!--按部门分析机会-->
-    select count(opportunity_id)
+    select department_id as id,count(opportunity_id) as num
     from sales_records
     group by department_id
   </select>
 
   <select id="findByWorkerOpportunity"  resultType="java.lang.Integer">
     <!--按人员分析机会-->
-    select count(opportunity_id)
+    select salesman_id as id ,count(opportunity_id) as num
     from sales_records
     group by salesman_id
   </select>

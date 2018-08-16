@@ -1,5 +1,6 @@
 package com.crm.service.sale;
 
+import com.crm.VO.SaleShow;
 import com.crm.entity.SalesRecords;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,26 +23,26 @@ public class SaleAnalysisServiceTest {
 
     @Test
     public void findByDepartment() {
-        List<SalesRecords> result = saleAnalysisService.findByDepartment();
+        List<SaleShow> result = saleAnalysisService.findByDepartment();
         System.out.println("业绩分析根据部门：" + result);
     }
 
     @Test
     public void findByWorker() {
-        List<SalesRecords> result = saleAnalysisService.findByWorker();
+        List<SaleShow> result = saleAnalysisService.findByWorker();
         System.out.println("业绩分析根据人员：" + result);
     }
 
 
     @Test
     public void findByDepartmentOpportunity() {
-        List<SalesRecords> result = saleAnalysisService.findByDepartmentOpportunity();
+        List<SaleShow> result = saleAnalysisService.findByDepartmentOpportunity();
         System.out.println("机会分析根据部门：" + result);
     }
 
     @Test
     public void findByWorkerOpportunity() {
-        List<SalesRecords> result = saleAnalysisService.findByWorkerOpportunity();
+        List<SaleShow> result = saleAnalysisService.findByWorkerOpportunity();
         System.out.println("机会分析根据人员：" + result);
     }
 }
