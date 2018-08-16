@@ -55,7 +55,7 @@
     group by department_id
   </select>
 
-  <select id="findByWorkerOpportunity"  resultType="java.lang.Integer">
+  <select id="findByWorkerOpportunity"  resultType="com.crm.VO.SaleShow">
     <!--按人员分析机会-->
     select salesman_id as id ,count(opportunity_id) as num
     from sales_records
