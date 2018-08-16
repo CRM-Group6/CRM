@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class ShowList <T,E>{
     private E type;
-    private List<T> data;
+    public List<T> data;
     public ShowList(E type,List<T> data){
         this.type = type;
         this.data = data;

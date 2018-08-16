@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -26,29 +27,32 @@ public class CustomerAnalysisController {
     private CustomerAnalysis customerAnalysis;
     //区域
     @GetMapping(value = "/region")
-    private ResultVO customerRegionAnalysis(){
+    private ModelAndView customerRegionAnalysis(){
         List<ShowList<Customer,Region>> list = customerAnalysis.customerRegionAnalysis();
+        ModelAndView model= new ModelAndView("/client/customer_analysis");
         if(list!=null){
-            return ResultVOUtil.success(list);
+            return model.addObject("result",ResultVOUtil.success(list));
         }else
-            return ResultVOUtil.error();
+            return model.addObject("result",ResultVOUtil.error());
     }
     //来源
     @GetMapping(value = "/source")
-    private ResultVO customerSourceAnalysis(){
+    private ModelAndView customerSourceAnalysis(){
         List<ShowList<Customer,String>> list = customerAnalysis.customerSourceAnalysis();
+        ModelAndView model= new ModelAndView("/client/customer_analysis");
         if(list!=null){
-            return ResultVOUtil.success(list);
+            return model.addObject("result",ResultVOUtil.success(list));
         }else
-            return ResultVOUtil.error();
+            return model.addObject("result",ResultVOUtil.error());
     }
     //行业
     @GetMapping(value = "/industry")
-    private ResultVO customerIndustryAnalysis(){
+    private ModelAndView customerIndustryAnalysis(){
         List<ShowList<Customer,String>> list = customerAnalysis.customerIndustryAnalysis();
+        ModelAndView model= new ModelAndView("/client/customer_analysis");
         if(list!=null){
-            return ResultVOUtil.success(list);
+            return model.addObject("result",ResultVOUtil.success(list));
         }else
-            return ResultVOUtil.error();
+            return model.addObject("result",ResultVOUtil.error());
     }
 }
