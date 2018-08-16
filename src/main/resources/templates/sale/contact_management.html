@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>联系人管理</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+<body>
+<table width="95%" border="0" align="center" cellpadding="0"
+       cellspacing="0" class="table01 table-row-cell" id="table01">
+    <tr>
+        <td  class="td_top">联系人编号</td>
+        <td  class="td_top">记录人员编号</td>
+        <td  class="td_top">姓名</td>
+        <td  class="td_top">职位</td>
+        <td  class="td_top">电话</td>
+        <td  class="td_top">重要程度</td>
+        <td  class="td_top">个性爱好</td>
+        <td  class="td_top">省</td>
+        <td  class="td_top">市</td>
+        <td  class="td_top">区</td>
+        <td  class="td_top">来源</td>
+        <td  class="td_top">行业</td>
+        <td  class="td_top">客户类型</td>
+        <td  class="td_top">修改</td>
+        <td  class="td_top">删除</td>
+
+
+    </tr>
+    <tr th:each="contact : ${contacts}">
+        <th scope="row" th:text="${contact.id}">1</th>
+        <td th:text="${contact.salesmanId}"></td>
+        <td th:text="${contact.name}"></td>
+        <td th:text="${contact.job}"></td>
+        <td th:text="${contact.telephone}"></td>
+        <td th:text="${contact.importance}"></td>
+        <td th:text="${contact.personalInterest}"></td>
+        <td th:text="${contact.province}"></td>
+        <td th:text="${contact.city}"></td>
+        <td th:text="${contact.area}"></td>
+        <td th:text="${contact.source}"></td>
+        <td th:text="${contact.vocation}"></td>
+        <td th:text="${contact.category}"></td>
+
+        <td><a th:href="@{/sale/contact/toedit(id=${contact.id})}">edit</a></td>
+        <td><a th:href="@{/sale/contact/delete(id=${contact.id})}">delete</a></td>
+        <!--<td>-->
+        <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
+        <!--</td>-->
+    </tr>
+    <tr >
+        <div class="txt"></div>
+    </tr>
+</table>
+<a href="/sale/contact/toAdd" th:href="@{/sale/contact/toAdd}" class="btn btn-info">add</a>
+
+
+<script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"  language="javascript"  src="../js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
+
+
+</body>
+</html>

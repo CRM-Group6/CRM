@@ -50,4 +50,6 @@ public interface ContractMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Contract record);
+
+
 }
