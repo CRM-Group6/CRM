@@ -1,8 +1,7 @@
 package com.crm.service.client;
 
+import com.crm.VO.ShowSum;
 import com.crm.entity.Customer;
-import com.crm.entity.Region;
-import com.crm.entity.ShowList;
 import com.crm.mapper.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,59 +21,45 @@ public class CustomerAnalysisImp implements CustomerAnalysis{
     private CustomerMapper customerMapper;
 
     @Override
-    public List<ShowList<Customer,Region>> customerRegionAnalysis() {
+    public List<ShowSum> customerRegionAnalysis() {
         //寻找所有区域
-        List<ShowList<Customer,Region>> list = new ArrayList<>();
-        List<Region> regionList = findAllPossibleRegion();
-        for(int i=0 ;i<regionList.size();i++){
-            if(regionList.get(i)==null)continue;
-            //按照区域寻找所有客户
-            List<Customer> userList = findAllCustomerByRegion(regionList.get(i));
-            //添加新列表
-            ShowList<Customer,Region> showList = new ShowList<>(regionList.get(i),userList);
-            list.add(showList);
+        List<ShowSum> list = customerMapper.selectSumByValue("province,city,area");
+        int index=-1;
+        for (int i=0;i<list.size();i++) {
+            if (list.get(i).getMsg()==null){
+                index = i;
+            }
         }
-        //返回列表
+        if(index!=-1)
+            list.remove(index);
+       return list;
+    }
+
+    @Override
+    public List<ShowSum> customerSourceAnalysis() {
+        List<ShowSum> list = customerMapper.selectSumByValue("source");
+        int index=-1;
+        for (int i=0;i<list.size();i++) {
+            if (list.get(i).getMsg()==null){
+                index = i;
+            }
+        }
+        if(index!=-1)
+            list.remove(index);
         return list;
     }
 
     @Override
-    public List<ShowList<Customer,String>> customerSourceAnalysis() {
-        List<String> valueList = customerMapper.selectAllPossibleValue("source");
-        System.out.println(valueList);
-        List<ShowList<Customer,String>> list = new ArrayList<>();
-        for(int i=0;i<valueList.size();i++){
-            if(valueList.get(i)==null)continue;
-            //寻找对应source值的所有用户
-            List<Customer> customers = customerMapper.selectAllCustomerByValue("source",valueList.get(i));
-            ShowList<Customer,String> showList = new ShowList<>("source",customers);
-            list.add(showList);
+    public List<ShowSum> customerIndustryAnalysis() {
+        List<ShowSum> list = customerMapper.selectSumByValue("vocation");
+        int index=-1;
+        for (int i=0;i<list.size();i++) {
+            if (list.get(i).getMsg()==null){
+                index = i;
+            }
         }
+        if(index!=-1)
+            list.remove(index);
         return list;
-    }
-
-    @Override
-    public List<ShowList<Customer,String>> customerIndustryAnalysis() {
-        List<String> valueList = customerMapper.selectAllPossibleValue("vocation");
-        System.out.println(valueList);
-        List<ShowList<Customer,String>> list = new ArrayList<>();
-        for(int i=0;i<valueList.size();i++){
-            if(valueList.get(i)==null)continue;
-            //寻找对应vocation值的所有用户
-            List<Customer> customers = customerMapper.selectAllCustomerByValue("vocation",valueList.get(i));
-            ShowList<Customer,String> showList = new ShowList<>("vocation",customers);
-            list.add(showList);
-        }
-        return list;
-    }
-
-    @Override
-    public List<Region> findAllPossibleRegion() {
-        return customerMapper.selectAllCustomerRegion();
-    }
-
-    @Override
-    public List<Customer> findAllCustomerByRegion(Region region) {
-        return customerMapper.selectAllCustomerByRegion(region);
     }
 }

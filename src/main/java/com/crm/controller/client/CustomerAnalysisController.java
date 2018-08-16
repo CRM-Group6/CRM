@@ -1,9 +1,7 @@
 package com.crm.controller.client;
 
-import com.crm.VO.ResultVO;
+import com.crm.VO.ShowSum;
 import com.crm.entity.Customer;
-import com.crm.entity.Region;
-import com.crm.entity.ShowList;
 import com.crm.service.client.CustomerAnalysis;
 import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +26,7 @@ public class CustomerAnalysisController {
     //区域
     @GetMapping(value = "/region")
     private ModelAndView customerRegionAnalysis(){
-        List<ShowList<Customer,Region>> list = customerAnalysis.customerRegionAnalysis();
+        List<ShowSum> list = customerAnalysis.customerRegionAnalysis();
         ModelAndView model= new ModelAndView("/client/customer_analysis");
         if(list!=null){
             return model.addObject("result",ResultVOUtil.success(list));
@@ -38,7 +36,7 @@ public class CustomerAnalysisController {
     //来源
     @GetMapping(value = "/source")
     private ModelAndView customerSourceAnalysis(){
-        List<ShowList<Customer,String>> list = customerAnalysis.customerSourceAnalysis();
+        List<ShowSum> list = customerAnalysis.customerSourceAnalysis();
         ModelAndView model= new ModelAndView("/client/customer_analysis");
         if(list!=null){
             return model.addObject("result",ResultVOUtil.success(list));
@@ -48,7 +46,7 @@ public class CustomerAnalysisController {
     //行业
     @GetMapping(value = "/industry")
     private ModelAndView customerIndustryAnalysis(){
-        List<ShowList<Customer,String>> list = customerAnalysis.customerIndustryAnalysis();
+        List<ShowSum> list = customerAnalysis.customerIndustryAnalysis();
         ModelAndView model= new ModelAndView("/client/customer_analysis");
         if(list!=null){
             return model.addObject("result",ResultVOUtil.success(list));

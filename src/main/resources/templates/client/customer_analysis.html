@@ -20,25 +20,19 @@
 <table width="95%" border="1" align="center" cellpadding="0"
        cellspacing="0" class="table01" id="table01">
     <tr>
-        <th class="td_top">客户名</th>
-        <th class="td_top">电话</th>
-        <th class="td_top">省份</th>
-        <th class="td_top">城市</th>
-        <th class="td_top">区县</th>
-        <th class="td_top">行业</th>
-        <th class="td_top">职业</th>
+        <th class="td_top">类别</th>
+        <th class="td_top">数量</th>
     </tr>
-    <th:block th:if="${result.success le true}">
-        <tr th:each="customer : ${result.data.data}">
-            <!--<td th:text="${list.data}"></td>-->
-            <!--<tr th:each="customer : ${list}">-->
-                <td scope="row" th:text="${customer.name}">1</td>
-                <td th:text="${customer.telephone}"></td>
-                <td th:text="${customer.province}"></td>
-                <td th:text="${customer.city}"></td>
-                <td th:text="${customer.area}"></td>
-                <td th:text="${customer.vocation}"></td>
-                <td th:text="${customer.job}"></td>
+    <!--<button id="/analysis/region" th:href="@{/analysis/region}" class="btn btn-info">区域分析</button>-->
+    <!--<button id="/analysis/industry" th:href="@{/analysis/industry}" class="btn btn-info">行业分析</button>-->
+    <!--<button id="/analysis/source" th:href="@{/analysis/source}" class="btn btn-info">来源分析</button>-->
+    <a th:href="@{/analysis/region}" class="btn btn-info">区域分析</a>
+    <a th:href="@{/analysis/industry}" class="btn btn-info">行业分析</a>
+    <a th:href="@{/analysis/source}" class="btn btn-info">来源分析</a>
+    <th:block th:if="${result.success eq true}">
+        <tr th:each="item : ${result.data}">
+                <td scope="row" th:text="${item.msg}">1</td>
+                <td th:text="${item.num}"></td>
             <!--</tr>-->
 
             <!--<td><a th:href="@{/delete(id=${customer.id})}">delete</a></td>-->

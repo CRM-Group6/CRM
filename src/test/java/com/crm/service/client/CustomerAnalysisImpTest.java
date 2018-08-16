@@ -1,13 +1,10 @@
 package com.crm.service.client;
 
-import com.crm.entity.Region;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.junit.Assert.*;
 
 /**
  * @Author: Ben wu
@@ -35,13 +32,4 @@ public class CustomerAnalysisImpTest {
         System.out.println(customerService.customerIndustryAnalysis());
     }
 
-    @Test
-    public void findAllPossibleRegion() {
-        System.out.println(customerService.findAllPossibleRegion());
-    }
-
-    @Test
-    public void findAllCustomerByRegion() {
-        System.out.println(customerService.findAllCustomerByRegion(new Region("GD","GZ","Tianhe")));
-    }
 }
