@@ -21,30 +21,36 @@
 </head>
 <body>
 <div class="with:80%">
-    <form class="form-horizontal"   th:action="@{/problem/edit}" th:object="${user}"  method="post">
-        <input type="hidden" id="userId" name="userId" th:value="*{userId}" />
+    <form class="form-horizontal"   th:action="@{/problem/edit}" th:object="${problem}"  method="post">
+        <input type="hidden" id="id" name="id" th:value="*{id}" />
         <div class="form-group">
-            <label for="userName" class="col-sm-2 control-label">userName</label>
+            <label for="category" class="col-sm-2 control-label">category</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="userName"  id="userName" th:value="*{userName}" placeholder="userName"/>
+                <input type="text" class="form-control" name="category"  id="category" th:value="*{category}" />
             </div>
         </div>
         <div class="form-group">
-            <label for="userPassword" class="col-sm-2 control-label" >Password</label>
+            <label for="question" class="col-sm-2 control-label" >question</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" name="userPassword" id="userPassword"  th:value="*{userPassword}" placeholder="Password"/>
+                <input type="text" class="form-control" name="question" id="question"  th:value="*{question}" />
             </div>
         </div>
         <div class="form-group">
-            <label for="userPhonenumber" class="col-sm-2 control-label" >Phonenumber</label>
+            <label for="answer" class="col-sm-2 control-label" >answer</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="userPhonenumber" id="userPhonenumber"  th:value="*{userPhonenumber}" placeholder="phonenumber"/>
+                <input type="text" class="form-control" name="answer" id="answer"  th:value="*{answer}"/>
             </div>
         </div>
         <div class="form-group">
-            <label for="userSex" class="col-sm-2 control-label" >Password</label>
+            <label for="createDate" class="col-sm-2 control-label" >createDate</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="userSex" id="userSex"  th:value="*{userSex}" placeholder="sex"/>
+                <input type="text" class="form-control" name="createDate" id="createDate"  th:value="*{createDate}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="updateDate" class="col-sm-2 control-label" >updateDate</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="updateDate" id="updateDate"  th:value="*{updateDate}"/>
             </div>
         </div>
         <div class="form-group">

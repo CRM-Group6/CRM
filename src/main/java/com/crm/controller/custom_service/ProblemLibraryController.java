@@ -46,22 +46,24 @@ public class ProblemLibraryController {
         return model;
     }
     /*修改update*/
- /*   @RequestMapping("/edit")
+    @RequestMapping("/edit")
     public ModelAndView edit(ProblemLibrary problemLibrary){
       problemLibraryService.updateone(problemLibrary);
-      return  new ModelAndView("redirect:/selectall");
-    }*/
+      return  new ModelAndView("redirect:/problem/selectall");
+    }
     /*修改update跳转按钮*/
- /*   public ModelAndView toedit(){
-        return  new ModelAndView("/service_support_edit");
-    }*/
-    /*增加一条数据*/
+    @RequestMapping("/toedit")
+    public ModelAndView toedit(Long id){
+        ModelAndView model =new ModelAndView("/service_support_edit");
+        model.addObject("problem",problemLibraryService.findone(id));
+        return model;
+    }
+   /* 增加一条数据*/
     @RequestMapping("/add")
     public ModelAndView add(ProblemLibrary problemLibrary){
 
        problemLibraryService.addone(problemLibrary);
-
-        return  new ModelAndView("redirect:problem/selectall");
+        return  new ModelAndView("redirect:/problem/selectall");
 
     }
     /*增加一条记录跳转按钮*/
@@ -75,7 +77,7 @@ public class ProblemLibraryController {
     @RequestMapping("/delete")
     public ModelAndView delete(Long id){
         problemLibraryService.deleteone(id);
-        return new ModelAndView("redirect:problem/selectall");
+        return new ModelAndView("redirect:/problem/selectall");
     }
 
 }
