@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/contract")
 public class ContractController {
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
     @Autowired
     private ContractService contractService;
     @Autowired
@@ -79,7 +81,8 @@ public class ContractController {
           contract1.setDetails(contract.getDetails());
           contract1.setMoney(contract.getMoney());
           contract1.setExecuteStatus(contract.getExecuteStatus());
-         //contract1.setCreateDate(Instant.now().toEpochMilli());
+          contract1.setCreateDate(Instant.now().toEpochMilli());
+          contract1.setDeadline(Instant.now().toEpochMilli());
           contractService.insertSelective(contract1);
 
 //            return  "redict:/mian";
@@ -88,6 +91,7 @@ public class ContractController {
     //审核合同
     @RequestMapping(value = "/update")
     public ModelAndView update(Long id){
+
         Contract contract1 = contractService.findById(id);
         contract1.setVerifyStatus(contract1.getVerifyStatus()?false:true);
         contractService.checkedContract(contract1);
@@ -113,7 +117,7 @@ public class ContractController {
         ModelAndView model = new ModelAndView("contract_information_management_tongji");
 
         model.addObject("contracts",contractService.statistics(contract1));
-        //model.addObject("contracts",service.statisticsByCombination(contract));
+        model.addObject("number",service.statisticsByCombination(contract1));
         return model;
     }
 

@@ -19,7 +19,8 @@
 <body>
 <!--checked="checked"-->
 <form   th:action="@{/contract/statistics}">
-    <button type="submit" name="type" href="@{/contract/statistics(category=${'0'})}">支出类型合同</button>
+    <a>合同数量为：</a>
+    <td th:text=${number}></td>
 </form>
 <tr>
 
@@ -36,6 +37,7 @@
 </tr>
 <table width="95%" border="0" align="center" cellpadding="0"
        cellspacing="0" class="table01" id="table01">
+
     <tr>
         <td width="8%" class="td_top">合同编号</td>
         <td width="8%" class="td_top">客户编号</td>
