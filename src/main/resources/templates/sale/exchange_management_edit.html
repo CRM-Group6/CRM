@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>exchangeManagementEdit</title>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>修改交往信息</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+</head>
+<body>
+<div class="with:80%">
+    <form class="form-horizontal"   th:action="@{/sale/exchangeInfo/edit}" th:object="${exchangeInfo}"  method="post">
+        <input type="hidden" id="id" name="id" th:value="*{id}" />
+
+        <div class="form-group">
+            <label for="executorId" class="col-sm-2 control-label" >executorId</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="executorId" id="executorId" th:value="*{executorId}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="contactId" class="col-sm-2 control-label">contactId</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="contactId"  id="contactId" th:value="*{contactId}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="time" class="col-sm-2 control-label">time</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" name="time"  id="time" th:value="*{time}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="place" class="col-sm-2 control-label">place</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="place"  id="place" th:value="*{place}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="contactWay" class="col-sm-2 control-label">contactWay</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="contactWay"  id="contactWay" th:value="*{contactWay}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="outline" class="col-sm-2 control-label">outline</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="outline"  id="outline" th:value="*{outline}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Submit" class="btn btn-info" />
+                &nbsp; &nbsp; &nbsp;
+            </div>
+
+        </div>
+    </form>
+</div>
+</body>
+</html>

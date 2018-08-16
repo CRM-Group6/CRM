@@ -86,6 +86,23 @@ public class ExchangeManageController {
         return model;
     }
 
+    /*修改update*/
+    @RequestMapping("/edit")
+    public ModelAndView edit(ExchangeInfo exchangeInfo){
+        exchangeInfoService.changeExchangeInfo(exchangeInfo);
+        System.out.println("I'm here!");
+        return  new ModelAndView("redirect:/sale/exchangeInfo/selectall");
+    }
+
+    /*修改update跳转按钮*/
+    @RequestMapping("/toedit")
+    public ModelAndView toedit(Long id){
+        ModelAndView model =new ModelAndView("/sale/exchange_management_edit");
+        model.addObject("exchangeInfo",exchangeInfoService.findOne(id));
+//        System.out.println("jump!");
+        return model;
+    }
+
     /*增加一条数据*/
     @RequestMapping("/add")
     public ModelAndView add(ExchangeInfo exchangeInfo){

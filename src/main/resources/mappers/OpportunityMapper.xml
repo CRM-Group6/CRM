@@ -68,9 +68,9 @@
       assigned_date)
     values (#{id,jdbcType=BIGINT}, #{salesmanId,jdbcType=BIGINT}, #{contactId,jdbcType=BIGINT}, 
       #{source,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}, #{successfulProbability,jdbcType=DOUBLE}, 
-      #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{verifyStatus,jdbcType=BIT}, 
+      #{remark,jdbcType=VARCHAR}, NOW(), #{verifyStatus,jdbcType=BIT},
       #{verifyOpinion,jdbcType=VARCHAR}, #{assigned,jdbcType=BIT}, #{assignedSalesmanId,jdbcType=BIGINT}, 
-      #{assignedDate,jdbcType=TIMESTAMP})
+     NULL)
   </insert>
   <insert id="insertSelective" parameterType="com.crm.entity.Opportunity">
     <!--
@@ -219,12 +219,12 @@
       client_name = #{clientName,jdbcType=VARCHAR},
       successful_probability = #{successfulProbability,jdbcType=DOUBLE},
       remark = #{remark,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
+
       verify_status = #{verifyStatus,jdbcType=BIT},
       verify_opinion = #{verifyOpinion,jdbcType=VARCHAR},
       assigned = #{assigned,jdbcType=BIT},
       assigned_salesman_id = #{assignedSalesmanId,jdbcType=BIGINT},
-      assigned_date = #{assignedDate,jdbcType=TIMESTAMP}
+      assigned_date =NOW()
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

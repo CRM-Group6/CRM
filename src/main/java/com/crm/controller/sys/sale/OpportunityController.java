@@ -1,6 +1,7 @@
 package com.crm.controller.sys.sale;
 
 import com.crm.VO.ResultVO;
+import com.crm.entity.Contact;
 import com.crm.entity.ExchangeInfo;
 import com.crm.entity.Opportunity;
 import com.crm.service.sale.OpportunityService;
@@ -67,6 +68,21 @@ public class OpportunityController {
         model.addObject("id",opportunityService.findOne((long)11));
         return model;
     }
+
+    /*修改update*/
+    @RequestMapping("/edit")
+    public ModelAndView edit(Opportunity opportunity){
+        opportunityService.changeOpportunity(opportunity);
+        return  new ModelAndView("redirect:/sale/opportunityManage/selectall");
+    }
+    /*修改update跳转按钮*/
+    @RequestMapping("/toedit")
+    public ModelAndView toedit(Long id){
+        ModelAndView model =new ModelAndView("/sale/sales_opportunity_management_edit");
+        model.addObject("opportunityManage",opportunityService.findOne(id));
+        return model;
+    }
+
 
     /*增加一条数据*/
     @RequestMapping("/add")
