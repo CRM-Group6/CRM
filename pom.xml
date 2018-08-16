@@ -212,6 +212,11 @@
 			<version>1.0.0-beta</version>
 		</dependency>
 
+		<!--增加thymeleaf-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
