@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
 
-    <title>客户</title>
+    <title>客户投诉</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
@@ -20,24 +20,34 @@
 <table width="95%" border="0" align="center" cellpadding="0"
        cellspacing="0" class="table01 table" id="table01">
     <tr>
-        <td width="12%" class="td_top">问题编号</td>
-        <td width="12%" class="td_top">问题类别</td>
-        <td width="12%" class="td_top">问题描述</td>
-        <td width="12%" class="td_top">解决方案</td>
-        <td width="12%" class="td_top">创建时间</td>
-        <td width="12%" class="td_top">更新时间</td>
-        <td width="12%" class="td_top">删除</td>
-        <td width="16%" class="td_top">修改</td>
+        <td width="7.5%" class="td_top">投诉编号</td>
+        <td width="7.5%" class="td_top">投诉类别</td>
+        <td width="7.5%" class="td_top">投诉内容</td>
+        <td width="7.5%" class="td_top">创建人员编号</td>
+        <td width="7.5%" class="td_top">处理人员编号</td>
+        <td width="7.5%" class="td_top">投诉产品编号</td>
+        <td width="7.5%" class="td_top">投诉服务编号</td>
+        <td width="7.5%" class="td_top">创建时间</td>
+        <td width="7.5%" class="td_top">处理时间</td>
+        <td width="7.5%" class="td_top">是否处理</td>
+        <td width="7.5%" class="td_top">客人编号</td>
+        <td width="7.5%" class="td_top">删除</td>
+        <td width="10%" class="td_top">回复客户投诉</td>
     </tr>
-    <tr th:each="problem : ${problems}">
-        <th scope="row" th:text="${problem.id}">1</th>
-        <td th:text="${problem.category}"></td>
-        <td th:text="${problem.question}"></td>
-        <th th:text="${problem.answer}">1</th>
-        <td th:text="${problem.createDate}"></td>
-        <td th:text="${problem.updateDate}"></td>
-        <td><a th:href="@{/problem/toedit(id=${problem.id})}" class="btn btn-default">edit</a></td>
-        <td><a th:href="@{/problem/delete(id=${problem.id})}" class="btn btn-default">delete</a></td>
+    <tr th:each="complainRecord : ${complainRecords}">
+        <th scope="row" th:text="${complainRecord.id}"></th>
+        <td th:text="${complainRecord.category}"></td>
+        <td th:text="${complainRecord.content}"></td>
+        <th th:text="${complainRecord.creatorId}"></th>
+        <td th:text="${complainRecord.executorId}"></td>
+        <td th:text="${complainRecord.produceId}"></td>
+        <td th:text="${complainRecord.serviceId}"></td>
+        <td th:text="${complainRecord.createDate}"></td>
+        <td th:text="${complainRecord.executeDate}"></td>
+        <td th:text="${complainRecord.executed}"></td>
+        <td th:text="${complainRecord.customerId}"></td>
+        <td><a th:href="@{/complain/toedit(id=${complainRecord.id})}" class="btn btn-default">回复</a></td>
+        <td><a th:href="@{/complain/delete(id=${complainRecord.id})}" class="btn btn-default">删除</a></td>
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
         <!--</td>-->
@@ -46,7 +56,7 @@
         <div class="txt"></div>
     </tr>
 </table>
-<a href="/problem/toAdd" th:href="@{/problem/toAdd}" class="btn btn-info">add</a>
+<a href="/complain/toAdd" th:href="@{/complain/toAdd}" class="btn btn-info">add</a>
 
 
 <script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>

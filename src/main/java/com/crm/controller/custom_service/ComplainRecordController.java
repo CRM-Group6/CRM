@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController
+@RequestMapping("/complain")
 public class ComplainRecordController {
 @Autowired
     private ComplaintRecordService complaintRecordService;
@@ -25,28 +26,28 @@ public class ComplainRecordController {
 
     @RequestMapping("/selectall")
     public ModelAndView list(){
-        ModelAndView model = new ModelAndView("service_support");
-        model.addObject("problems",complaintRecordService.selectAll());
+        ModelAndView model = new ModelAndView("customer_complaint");
+        model.addObject("complainRecords",complaintRecordService.selectAll());
         return model;
     }
     /*查询*/
     @RequestMapping("/findone")
-    public ModelAndView find(){
-        ModelAndView model =new ModelAndView("service_support");
-        model.addObject("id",complaintRecordService.findone((long)11));
+    public ModelAndView find(@RequestParam(name = "id") Long id){
+        ModelAndView model =new ModelAndView("customer_complaint");
+        model.addObject("complainRecord",complaintRecordService.findone(id));
         return model;
     }
     /*修改update*/
     @RequestMapping("/edit")
     public ModelAndView edit(ComplainRecord complainRecord){
         complaintRecordService.updateone(complainRecord);
-        return  new ModelAndView("redirect:/problem/selectall");
+        return  new ModelAndView("redirect:/complain/selectall");
     }
     /*修改update跳转按钮*/
     @RequestMapping("/toedit")
     public ModelAndView toedit(Long id){
-        ModelAndView model =new ModelAndView("/service_support_edit");
-        model.addObject("problem",complaintRecordService.findone(id));
+        ModelAndView model =new ModelAndView("/customer_complaint_edit");
+        model.addObject("complainRecord",complaintRecordService.findone(id));
         return model;
     }
     /* 增加一条数据*/
@@ -54,21 +55,21 @@ public class ComplainRecordController {
     public ModelAndView add(ComplainRecord complainRecord){
 
         complaintRecordService.addone(complainRecord);
-        return  new ModelAndView("redirect:/problem/selectall");
+        return  new ModelAndView("redirect:/complain/selectall");
 
     }
     /*增加一条记录跳转按钮*/
     @RequestMapping("/toAdd")
     public ModelAndView toAdd(){
         //System.out.println("TOADD");
-        return  new ModelAndView("/service_support_add");}
+        return  new ModelAndView("/customer_complaint_add");}
 
     /*删除一条数据*/
 
     @RequestMapping("/delete")
     public ModelAndView delete(Long id){
         complaintRecordService.deleteone(id);
-        return new ModelAndView("redirect:/problem/selectall");
+        return new ModelAndView("redirect:/complain/selectall");
     }
 }
 

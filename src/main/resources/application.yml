@@ -1,6 +1,6 @@
 #app
 server:
-    port: 9999
+    port: 9988
 
 #spring
 spring:

@@ -63,7 +63,7 @@ public class LoginController {
         if(currentUser!=null&&user.getAccount().equals(currentUser.getAccount())){
             session.setAttribute("cUser", currentUser);
             result.setStatus(LayuiResult.OK);
-            result.setMsg("/view/main.html");
+            result.setMsg("/view/main");
         }else{
             //可以写跳转的处理异常的页面
             result.setMsg("账号或者密码错误");
