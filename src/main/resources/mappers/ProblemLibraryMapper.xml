@@ -57,8 +57,8 @@
     insert into problem_library (id, category, question, 
       answer, create_date, update_date
       )
-    values (#{id,jdbcType=BIGINT}, #{category,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
-      #{answer,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+    values (#{id,jdbcType=BIGINT}, #{category,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR},
+      #{answer,jdbcType=VARCHAR}, NOW(), null
       )
   </insert>
   <insert id="insertSelective" parameterType="com.crm.entity.ProblemLibrary">
@@ -124,11 +124,9 @@
       <if test="answer != null">
         answer = #{answer,jdbcType=VARCHAR},
       </if>
-      <if test="createDate != null">
-        create_date = #{createDate,jdbcType=TIMESTAMP},
-      </if>
+
       <if test="updateDate != null">
-        update_date = #{updateDate,jdbcType=TIMESTAMP},
+        update_date = CURDATE(),
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -142,8 +140,8 @@
     set category = #{category,jdbcType=VARCHAR},
       question = #{question,jdbcType=VARCHAR},
       answer = #{answer,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_date = #{updateDate,jdbcType=TIMESTAMP}
+
+      update_date = NOW()
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -1,8 +1,11 @@
 package com.crm.mapper;
 
 import com.crm.entity.ComplainRecord;
+import com.crm.entity.ProblemLibrary;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Mapper
 @Component(value="complainRecordMapper")
@@ -54,4 +57,6 @@ public interface ComplainRecordMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(ComplainRecord record);
+
+    List<ComplainRecord> selectAll();
 }
