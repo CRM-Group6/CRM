@@ -6,9 +6,11 @@ import com.crm.entity.User;
 import com.crm.service.client.CustomerService;
 import com.crm.utils.JsonXMLUtils;
 import com.crm.utils.ResultVOUtil;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -26,23 +28,30 @@ public class CustomerController {
 
     //获取未分配客服的用户列表
     @GetMapping(value="/unassignedCus")
-    public ResultVO findUnassignedCustomer(){
-        return ResultVOUtil.success(customerService.findAllUnassignedCustomer());
+    public ModelAndView findUnassignedCustomer(){
+        ModelAndView model = new ModelAndView("/client/customer_distribution");
+        model.addObject("customerList",customerService.findAllUnassignedCustomer());
+        return model;
     }
     // 获取所有客服
     @GetMapping(value = "/serviceStaff")
-    public ResultVO findAllCustomerServiceStaff(){
-        return ResultVOUtil.success(customerService.findAllCustomerServiceStaff());
+    public ModelAndView findAllCustomerServiceStaff(Long id){
+        ModelAndView model = new ModelAndView("/client/staff_list");
+        model.addObject("userList",customerService.findAllCustomerServiceStaff());
+        model.addObject("customer_id",id);
+        return model;
     }
     // 指派一个客服到客户（通过ID设置）
-    @PutMapping(value = "/setStaff")
-    public ResultVO setStaffToCus(@RequestBody Map<String, Object> models) throws Exception {
-        Customer customer = JsonXMLUtils.map2obj((Map<String,Object>)models.get("customer"),Customer.class);
-        User user=JsonXMLUtils.map2obj((Map<String, Object>)models.get("user"),User.class);
-        System.out.println(user+"\n"+customer);
-        if(customerService.setCustomerServiceStaff(customer,user)){
-            return ResultVOUtil.success();
-        }else
-            return ResultVOUtil.error();
+    @RequestMapping(value = "/setStaff")
+    public ModelAndView setStaffToCus(@RequestParam("user_id")Long userId,@RequestParam("department")int department,@RequestParam("customer_id")Long customerId) throws Exception {
+        User user = new User();
+        user.setId(userId);
+        user.setDepartment(department);
+        Customer customer = new Customer();
+        customer.setId(customerId);
+        ModelAndView model;
+        customerService.setCustomerServiceStaff(customer,user);
+        model = new ModelAndView("redirect:/distribute/unassignedCus");
+        return model;
     }
 }
