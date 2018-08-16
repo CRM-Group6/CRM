@@ -1,5 +1,7 @@
 package com.crm.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class ExchangeInfo {
@@ -33,6 +35,7 @@ public class ExchangeInfo {
      *
      * @mbggenerated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date time;
 
     /**

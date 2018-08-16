@@ -24,12 +24,12 @@ public class ExchangeInfoServiceTest {
 
     @Test
     public void addExchangeInfo() {
-        ExchangeInfo newExchange = new ExchangeInfo();
-        newExchange.setId(new Long((long)1));
-        newExchange.setContactId(new Long((long)3));
-        newExchange.setExecutorId(new Long((long)2));
-        int result = exchangeInfoService.addExchangeInfo(newExchange);
-        System.out.println("添加：" + result);
+//        ExchangeInfo newExchange = new ExchangeInfo();
+//        newExchange.setId(new Long((long)1));
+//        newExchange.setContactId(new Long((long)3));
+//        newExchange.setExecutorId(new Long((long)2));
+//        int result = exchangeInfoService.addExchangeInfo(newExchange);
+//        System.out.println("添加：" + result);
     }
 
     @Test

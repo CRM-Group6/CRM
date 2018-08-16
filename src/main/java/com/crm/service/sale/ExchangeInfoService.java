@@ -22,7 +22,7 @@ public class ExchangeInfoService {
      * 增加联系人
      */
     public int addExchangeInfo(ExchangeInfo exchangeInfo){
-        return exchangeInfoMapper.insert(exchangeInfo);
+        return exchangeInfoMapper.insertSelective(exchangeInfo);
     }
 
     /**

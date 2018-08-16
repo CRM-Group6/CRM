@@ -1,5 +1,7 @@
 package com.crm.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class CustomerStatistics {
@@ -49,6 +51,7 @@ public class CustomerStatistics {
      *
      * @mbggenerated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date statisticsDate;
 
     /**
