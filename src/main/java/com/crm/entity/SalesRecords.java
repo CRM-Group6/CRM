@@ -1,5 +1,7 @@
 package com.crm.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class SalesRecords {
@@ -57,6 +59,7 @@ public class SalesRecords {
      *
      * @mbggenerated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;
 
     /**
@@ -251,5 +254,18 @@ public class SalesRecords {
      */
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    @Override
+    public String toString() {
+        return "SalesRecords{" +
+                "id=" + id +
+                ", opportunityId=" + opportunityId +
+                ", salesmanId=" + salesmanId +
+                ", departmentId=" + departmentId +
+                ", status=" + status +
+                ", money=" + money +
+                ", createDate=" + createDate +
+                '}';
     }
 }

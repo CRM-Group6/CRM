@@ -1,5 +1,7 @@
 package com.crm.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Opportunity {
@@ -65,6 +67,7 @@ public class Opportunity {
      *
      * @mbggenerated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;
 
     /**
@@ -105,6 +108,7 @@ public class Opportunity {
      *
      * @mbggenerated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date assignedDate;
 
     /**
@@ -449,5 +453,24 @@ public class Opportunity {
      */
     public void setAssignedDate(Date assignedDate) {
         this.assignedDate = assignedDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Opportunity{" +
+                "id=" + id +
+                ", salesmanId=" + salesmanId +
+                ", contactId=" + contactId +
+                ", source='" + source + '\'' +
+                ", clientName='" + clientName + '\'' +
+                ", successfulProbability=" + successfulProbability +
+                ", remark='" + remark + '\'' +
+                ", createDate=" + createDate +
+                ", verifyStatus=" + verifyStatus +
+                ", verifyOpinion='" + verifyOpinion + '\'' +
+                ", assigned=" + assigned +
+                ", assignedSalesmanId=" + assignedSalesmanId +
+                ", assignedDate=" + assignedDate +
+                '}';
     }
 }

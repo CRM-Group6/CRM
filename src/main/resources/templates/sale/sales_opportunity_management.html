@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>销售机会管理</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+<body>
+<table width="95%" border="0" align="center" cellpadding="0"
+       cellspacing="0" class="table01 table-row-cell" id="table01">
+    <tr>
+        <td  class="td_top">销售机会编号</td>
+        <td  class="td_top">销售人员/经理编号</td>
+        <td  class="td_top">联系人编号</td>
+        <td  class="td_top">机会来源</td>
+        <td  class="td_top">客户名称</td>
+        <td  class="td_top">成功几率</td>
+        <td  class="td_top">概要</td>
+        <td  class="td_top">创建时间</td>
+        <td  class="td_top">审核状态</td>
+        <td  class="td_top">审核意见</td>
+        <td  class="td_top">销售机会状态</td>
+        <td  class="td_top">被指派职员编号</td>
+        <td  class="td_top">分配时间</td>
+        <td  class="td_top">修改</td>
+        <td  class="td_top">删除</td>
+
+
+    </tr>
+    <tr th:each="opportunity : ${opportunitys}">
+        <th scope="row" th:text="${opportunity.id}">1</th>
+        <td th:text="${opportunity.salesmanId}"></td>
+        <td th:text="${opportunity.contactId}"></td>
+        <td th:text="${opportunity.source}"></td>
+        <td th:text="${opportunity.clientName}"></td>
+        <td th:text="${opportunity.successfulProbability}"></td>
+        <td th:text="${opportunity.remark}"></td>
+        <td th:text="${opportunity.createDate}"></td>
+        <td th:text="${opportunity.verifyStatus}"></td>
+        <td th:text="${opportunity.verifyOpinion}"></td>
+        <td th:text="${opportunity.assigned}"></td>
+        <td th:text="${opportunity.assignedSalesmanId}"></td>
+        <td th:text="${opportunity.assignedDate}"></td>
+
+        <td><a th:href="@{/sale/opportunityManage/toedit(id=${opportunity.id})}">edit</a></td>
+        <td><a th:href="@{/sale/opportunityManage/delete(id=${opportunity.id})}">delete</a></td>
+        <!--<td>-->
+        <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
+        <!--</td>-->
+    </tr>
+    <tr >
+        <div class="txt"></div>
+    </tr>
+</table>
+<a href="/sale/opportunityManage/toAdd" th:href="@{/sale/opportunityManage/toAdd}" class="btn btn-info">add</a>
+
+
+<script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"  language="javascript"  src="../js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
+
+
+</body>
+</html>

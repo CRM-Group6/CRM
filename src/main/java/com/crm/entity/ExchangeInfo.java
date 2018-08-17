@@ -1,5 +1,7 @@
 package com.crm.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class ExchangeInfo {
@@ -33,6 +35,7 @@ public class ExchangeInfo {
      *
      * @mbggenerated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date time;
 
     /**
@@ -251,5 +254,18 @@ public class ExchangeInfo {
      */
     public void setOutline(String outline) {
         this.outline = outline == null ? null : outline.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "ExchangeInfo{" +
+                "id=" + id +
+                ", executorId=" + executorId +
+                ", contactId=" + contactId +
+                ", time=" + time +
+                ", place='" + place + '\'' +
+                ", contactWay=" + contactWay +
+                ", outline='" + outline + '\'' +
+                '}';
     }
 }

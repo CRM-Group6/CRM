@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>contactAdd</title>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>增加联系人</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+</head>
+<body>
+<h1>添加联系人</h1>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal"   th:action="@{/sale/contact/add}"  method="post">
+        <div class="form-group">
+            <label for="id" class="col-sm-2 control-label">id</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="id"  id="id" placeholder="id"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="salesmanId" class="col-sm-2 control-label" >salesmanId</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="salesmanId" id="salesmanId" placeholder="salesmanId"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="name"  id="name" placeholder="name"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="job" class="col-sm-2 control-label">job</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="job"  id="job" placeholder="job"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="telephone" class="col-sm-2 control-label">telephone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="telephone"  id="telephone" placeholder="telephone"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="importance" class="col-sm-2 control-label">importance</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="importance"  id="importance" placeholder="importance"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="personalInterest" class="col-sm-2 control-label">personalInterest</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="personalInterest"  id="personalInterest" placeholder="personalInterest"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="province" class="col-sm-2 control-label">province</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="province"  id="province" placeholder="province"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="city" class="col-sm-2 control-label">city</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="city"  id="city" placeholder="city"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="area" class="col-sm-2 control-label">area</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="area"  id="area" placeholder="area"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="source" class="col-sm-2 control-label">source</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="source"  id="source" placeholder="source"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="vocation" class="col-sm-2 control-label">vocation</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="vocation"  id="vocation" placeholder="vocation"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Submit" class="btn btn-info" />
+                &nbsp; &nbsp; &nbsp;
+                <input type="reset" value="Reset" class="btn btn-info" />
+            </div>
+
+        </div>
+    </form>
+    <script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript"  language="javascript"  src="../js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+    </script>
+
+
+</body>
+</html>
