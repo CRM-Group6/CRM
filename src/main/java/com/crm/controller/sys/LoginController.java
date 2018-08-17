@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -34,9 +35,13 @@ public class LoginController {
      * 后台登录入口
      * @return
      */
-    @RequestMapping(value = {"/sys/login","/"})
+/*    @RequestMapping(value = {"/sys/login","/"})
     public String loginSystem(){
         return "/view/login";
+    }*/
+    @RequestMapping("/sys/login")
+    public ModelAndView loginSystem(){
+        return new ModelAndView("/login");
     }
     /**
      * 后台登录入口
@@ -80,4 +85,8 @@ public class LoginController {
         return result;
     }
 
+    @RequestMapping("/console/tomain")
+    public ModelAndView tomain(){
+        return new ModelAndView("/main");
+    }
 }

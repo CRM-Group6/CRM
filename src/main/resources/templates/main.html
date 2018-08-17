@@ -14,11 +14,11 @@
 		    <meta http-equiv="refresh" content="0;ie.html" />
 		    <![endif]-->
 
-		    <link rel="shortcut icon" href="favicon.ico"> 
-		    <link href="../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-		    <link href="../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-		    <link href="../static/css/animate.css" rel="stylesheet">
-		    <link href="../static/css/style.css?v=4.1.0" rel="stylesheet">
+		    <!--<link rel="shortcut icon" href="favicon.ico"> -->
+		    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		    <link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+		    <link href="/css/animate.css" rel="stylesheet">
+		    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
   		</head>
   		<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
   			<div id="wrapper">
@@ -33,7 +33,7 @@
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                     <span class="block m-t-xs" style="font-size:20px;">
-                                      	<img src="../static/img/LOGO.png" style="height:50px;"/>
+                                      	<img src="/img/LOGO.png" style="height:50px;"/>
                                         <strong class="font-bold">CRM</strong>
                                     </span>
                                 </span>
@@ -55,32 +55,32 @@
                     <li>
                     	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">客户服务管理</span><span class="fa arrow"></span></a>
                     	<ul class="nav nav-second-level">
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_doc.html" >客户档案管理</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="service_support.html">服务支持</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="maintain.html">维护维修</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_complaint.html">客户投诉</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_statistics.html">客服统计</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_project.html">客服项目</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_distribute.html">客户分配</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/customer_doc" >客户档案管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/problem/selectall">服务支持</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/maintain">维护维修</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/complain/selectall">客户投诉</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/customer_statistics">客服统计</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/customer_project">客服项目</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/customer_distribute">客户分配</a></li>
                     	</ul>
                     </li>
 
                     <li>
                     	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">销售管理</span><span class="fa arrow"></span></a>
                     	<ul class="nav nav-second-level">
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="sales_analysis.html" >销售分析</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="sales_opportunity_management.html" >销售机会管理</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="sales_reminding.html">销售提醒</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="contact_management.html" >联系人管理</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_development_plan_management.html " >客户开发计划管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sales_analysis" >销售分析</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sales_opportunity_management" >销售机会管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sales_reminding">销售提醒</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/contact_management.html" >联系人管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/customer_development_plan_management.html " >客户开发计划管理</a></li>
                     	</ul>
                     </li>
 
                     <li>
                     	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">客户管理</span><span class="fa arrow"></span></a>
                     	<ul class="nav nav-second-level">
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_analysis.html">客户分析</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="customer_distribution.html">客户分配</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/analysis/region">客户分析</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/distribute/unassignedCus">客户分配</a></li>
                     	</ul>
                     </li>
 
@@ -88,9 +88,9 @@
                     <li>
                     	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">合同管理</span><span class="fa arrow"></span></a>
                     	<ul class="nav nav-second-level">
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="contract_information_management.html" >合同信息管理</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="contract_statistics.html" >合同统计</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="contract_order_process.html" >合同订单流程管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/contract_information_management" >合同信息管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/contract_statistics" >合同统计</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/contract_order_process" >合同订单流程管理</a></li>
                     	</ul>
                     </li>
 
@@ -98,23 +98,24 @@
                     <li>
                     	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">财务管理</span><span class="fa arrow"></span></a>
                     	<ul class="nav nav-second-level">
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="financial_management.html" >账单管理</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="financial_reminding.html" >财务提醒</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="financial_statistics.html" >财务统计</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/financial_management" >账单管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/financial_reminding" >财务提醒</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/financial_statistics" >财务统计</a></li>
                     	</ul>
                     </li>
 
                     <li>
                     	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">业务管理</span><span class="fa arrow"></span></a>
                     	<ul class="nav nav-second-level">
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="plane_ticket_management.html" >机票管理</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="hotel_management.html" >酒店管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/plane_ticket_management.html" >机票管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/hotel_management.html" >酒店管理</a></li>
                     		<li><a class="J_menuItem" onclick="menu_goto(this);" value="product_management.html" >产品管理</a></li>
                     	</ul>
                     </li>
                     <li class="line dk"></li>
                 </ul>
             </div>
+
         </nav>
         <!--左侧导航结束-->
         <!--右侧部分开始-->
@@ -158,16 +159,16 @@
 
 
   			<!-- 全局js -->
-		    <script src="../static/js/jquery.min.js?v=2.1.4"></script>
-		    <script src="../static/js/bootstrap.min.js?v=3.3.6"></script>
-		    <script src="../static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-		    <script src="../static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		    <script src="/js/jquery.min.js?v=2.1.4"></script>
+		    <script src="/js/bootstrap.min.js?v=3.3.6"></script>
+		    <script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		    <script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-		    <script src="../static/js/plugins/layer/layer.min.js"></script>
+		    <script src="/js/plugins/layer/layer.min.js"></script>
 
 		    <!-- 自定义js -->
-		    <script src="../static/js/hAdmin.js?v=4.1.0"></script>
-		    <script type="text/javascript" src="../static/js/index.js"></script>
+		    <script src="/js/hAdmin.js?v=4.1.0"></script>
+		    <script type="text/javascript" src="/js/index.js"></script>
 		    <script type="text/javascript">
 		    	<!--自定义js语句-->
 
@@ -176,13 +177,14 @@
                    $("#J_iframe").attr("src",$(sender).attr("value"));
 
                 }
-                var custom_services={
-                    login:function(){
-                        $(document).ready(function(){
-                       $("#J_iframe").attr("src","login.html") ;
-                    });
-                        }
-                };
+                var custom_services= {
+                    login: function () {
+                        $(document).ready(function () {
+                            $("#J_iframe").attr("src", "login.html");
+                        });
+
+                    }
+                }
 		    </script>
   		</body>
   </html>
