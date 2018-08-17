@@ -16,7 +16,7 @@
       <arg column="category" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="execute_status" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="money" javaType="java.lang.Double" jdbcType="DOUBLE" />
-      <arg column="deadline" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="deadline" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
@@ -126,7 +126,7 @@
       money = #{money,jdbcType=DOUBLE} and
     </if>
     <if test="deadline != null">
-      deadline = #{deadline,jdbcType=DATE} and
+      deadline = #{deadline,jdbcType=TIMESTAMP} and
     </if>
     <if test="createDate != null">
       create_date = #{createDate,jdbcType=TIMESTAMP} and

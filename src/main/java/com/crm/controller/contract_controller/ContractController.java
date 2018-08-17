@@ -81,8 +81,8 @@ public class ContractController {
           contract1.setDetails(contract.getDetails());
           contract1.setMoney(contract.getMoney());
           contract1.setExecuteStatus(contract.getExecuteStatus());
-          contract1.setCreateDate(Instant.now().toEpochMilli());
-          contract1.setDeadline(Instant.now().toEpochMilli());
+//          contract1.setCreateDate(Instant.now().toEpochMilli());
+//          contract1.setDeadline(Instant.now().toEpochMilli());
           contractService.insertSelective(contract1);
 
 //            return  "redict:/mian";
