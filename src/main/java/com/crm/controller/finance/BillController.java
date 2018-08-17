@@ -62,7 +62,12 @@ public class BillController {
         model.addObject("bill", billService.findBill(id));
         return model;
     }
-
+    @RequestMapping("/billsettlepage")
+    public ModelAndView settlepage(Long id) {
+        ModelAndView model = new ModelAndView("/finance/bill_settle");
+        model.addObject("bill", billService.findBill(id));
+        return model;
+    }
     @RequestMapping("/billstatisticpage")
     public ModelAndView billstatisticpage(){
         return new ModelAndView("/finance/chart");

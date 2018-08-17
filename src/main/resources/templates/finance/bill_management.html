@@ -42,10 +42,11 @@
         <td th:text="${bill.ammount}"></td>
         <td th:text="${bill.account}"></td>
         <td th:text="${bill.balance}"></td>
-        <td th:text="${bill.endDate}"></td>
-        <td th:text="${bill.actualEndDate}"></td>
+        <td th:text="${#calendars.format(bill.endDate,'yyyy-MM-dd')}"></td>
+        <td th:text="${#calendars.format(bill.actualEndDate,'yyyy-MM-dd')}"></td>
         <td><a th:href="@{/billupdatepage(id=${bill.id})}">编辑</a></td>
         <td><a th:href="@{/billdelete(id=${bill.id})}">删除</a></td>
+        <td><a th:href="@{/billsettlepage(id=${bill.id})}">结算</a></td>
 
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
