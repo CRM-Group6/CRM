@@ -79,6 +79,20 @@ public class ContactManageController {
         return model;
     }
 
+    /*修改update*/
+    @RequestMapping("/edit")
+    public ModelAndView edit(Contact contact){
+        contactService.changeContact(contact);
+        return  new ModelAndView("redirect:/sale/contact/selectall");
+    }
+    /*修改update跳转按钮*/
+    @RequestMapping("/toedit")
+    public ModelAndView toedit(Long id){
+        ModelAndView model =new ModelAndView("/sale/contact_management_edit");
+        model.addObject("contact",contactService.findOne(id));
+        return model;
+    }
+
     /*增加一条数据*/
     @RequestMapping("/add")
     public ModelAndView add(Contact contact){
