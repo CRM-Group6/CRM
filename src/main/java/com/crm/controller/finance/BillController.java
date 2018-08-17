@@ -73,21 +73,32 @@ public class BillController {
     public List<BillChart> billStatistic(){
         String year = "2018";
         List<BillStatistic> billStatistics = billService.selectByDate(year, 1);
-        billStatistics.size();
+        List<BillStatistic> billStatistics1=billService.selectByDate(year,0);
+        List<Double> list1=new ArrayList<Double>();
         List<Double> list = new ArrayList<Double>();
+        for (int n = 0; n < 12; n++) {
+            list1.add(new Double(0));
+            for (int m = 0; m < billStatistics1.size(); m++) {
+                int l = Integer.valueOf(billStatistics1.get(m).getMonth()).intValue();
+                if (l == n+1) {
+                    list1.set(n, billStatistics1.get(m).getMoney());
+                }
+            }
+        }
         for (int i = 0; i < 12; i++) {
             list.add(new Double(0));
             for (int j = 0; j < billStatistics.size(); j++) {
                 int z = Integer.valueOf(billStatistics.get(j).getMonth()).intValue();
-                if (z == i) {
+                if (z == i+1) {
                     list.set(i, billStatistics.get(j).getMoney());
                 }
             }
         }
-        BillChart billChart = new BillChart("收支情况", list);
+        BillChart billChart = new BillChart("全年支出情况", list);
+        BillChart billChart1 = new BillChart("全年收入情况", list1);
         List<BillChart> billCharts=new ArrayList<>();
         billCharts.add(billChart);
-        billCharts.add(billChart);
+        billCharts.add(billChart1);
         return billCharts;
     }
 
