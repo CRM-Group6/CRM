@@ -4,6 +4,7 @@ package com.crm.deeplearning;
  * Created by JackKo
  * 2018/8/16 22:25
  **/
+
 import org.deeplearning4j.datasets.iterator.impl.MnistDataSetIterator;
 import org.deeplearning4j.eval.Evaluation;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
@@ -40,6 +41,7 @@ import org.slf4j.LoggerFactory;
  * add up to 1. The highest of these normalized values is picked as the predicted class.
  *
  */
+/*
 public class MnistTest {
 
     private static Logger log = LoggerFactory.getLogger(MnistTest.class);
@@ -105,3 +107,4 @@ public class MnistTest {
     }
 
 }
+*/
