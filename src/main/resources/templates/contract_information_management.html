@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+
+	<title>合同管理</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<!--[if lt IE 9]>
+	<meta http-equiv="refresh" content="0;ie.html" />
+	<![endif]-->
+
+	<link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+	<link href="../css/animate.css" rel="stylesheet">
+<body>
+<section class="content container-fluid">
+	<div class="box box-primary">
+		<form role="form" th:action="@{/contract/findById}"  method="post">
+			<div class="box-body col-md-6">
+
+				<!--<div  class="form-group">-->
+					<!--<label>选择搜索类型：</label>-->
+					<!--&thinsp;-->
+					<!--<input type="radio" id="id" name="select" value="id" checked>车辆加油信息编号</input>-->
+					<!--&thinsp;-->
+					<!--<input type="radio" id="sto" name="select" value="sto">加油车辆编号</input>-->
+				<!--</div>-->
+
+				<div class="form-group">
+					<label for="id">输入查询编号</label>
+					<input type="text" class="form-control" id="id" name="id" placeholder="输入编号">
+				</div>
+				<div class="box-footer ">
+					<button type="submit" class="btn btn-primary">提交</button>、
+					<button type="reset" class="btn btn-primary">重置</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+<table width="95%" border="0" align="center" cellpadding="0"
+	   cellspacing="0" class="table01" id="table01">
+	<tr>
+		<td width="8%" class="td_top">合同编号</td>
+		<td width="8%" class="td_top">客户编号</td>
+		<td width="8%" class="td_top">销售员编号</td>
+		<td width="8%" class="td_top">审核状态</td>
+		<td width="12%" class="td_top">审核意见</td>
+		<td width="12%" class="td_top">具体描述</td>
+		<td width="8%" class="td_top">合同类型</td>
+		<td width="8%" class="td_top">执行状态</td>
+		<td width="8%" class="td_top">金额</td>
+		<td width="8%" class="td_top">最后期限</td>
+		<td width="8%" class="td_top">合同时间</td>
+		<td width="6%" class="td_top">通过审核</td>
+		<td width="6%" class="td_top">修改</td>
+	</tr>
+	<tr th:each="contract : ${contracts}">
+		<th scope="row" th:text="${contract.id}">1</th>
+		<td th:text="${contract.clientId}"></td>
+		<td th:text="${contract.salesmanId}"></td>
+		<td th:text="${contract.verifyStatus}"></td>
+		<td th:text="${contract.verifyOpinion}"></td>
+		<td th:text="${contract.details}"></td>
+		<td th:text="${contract.category}"></td>
+			<td th:text="${contract.executeStatus}"></td>
+		<td th:text="${contract.money}"></td>
+		<td th:text="${contract.deadline}"></td>
+		<td th:text="${contract.createDate}"></td>
+		<td><a th:href="@{/contract/update(id=${contract.id})}">审核通过</a></td>
+		<td><a th:href="@{/contract/deleteContract(id=${contract.id})}">delete</a></td>
+		<!--<td>-->
+		<!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
+		<!--</td>-->
+	</tr>
+	<tr >
+		<div class="txt"></div>
+	</tr>
+</table>
+<a href="/contract/toInsert" th:href="@{/contract/toInsert}" class="btn btn-info">创建合同</a>
+<a href="/contract/tongJiList" th:href="@{/contract/tongJiList}" class="btn btn-info">统计合同</a>
+
+
+
+
+<script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"  language="javascript"  src="../js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>合同统计</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+<body>
+<!--checked="checked"-->
+<form   th:action="@{/contract/statistics}">
+    <a>合同数量为：</a>
+    <td th:text=${number}></td>
+</form>
+<tr>
+
+    <td><a th:href="@{/contract/statistics(category=${'0'})}">支出类型合同</a></td>
+    <td><a th:href="@{/contract/statistics(category=${'1'})}">描述类合同</a></td>
+    <td><a th:href="@{/contract/statistics(category=${'2'})}">收入类型合同</a></td>
+    <br/>
+    <td><a th:href="@{/contract/statistics(verifyStatus=${'0'})}">未审核</a></td>
+    <td><a th:href="@{/contract/statistics(verifyStatus=${'1'})}">已审核</a></td>
+    <br/>
+    <td><a th:href="@{/contract/statistics(executeStatus=${'1'})}">正在执行</a></td>
+    <td><a th:href="@{/contract/statistics(executeStatus=${'0'})}">执行完毕</a></td>
+
+</tr>
+<table width="95%" border="0" align="center" cellpadding="0"
+       cellspacing="0" class="table01" id="table01">
+
+    <tr>
+        <td width="8%" class="td_top">合同编号</td>
+        <td width="8%" class="td_top">客户编号</td>
+        <td width="8%" class="td_top">销售员编号</td>
+        <td width="8%" class="td_top">审核状态</td>
+        <td width="12%" class="td_top">审核意见</td>
+        <td width="12%" class="td_top">具体描述</td>
+        <td width="8%" class="td_top">合同类型</td>
+        <td width="8%" class="td_top">执行状态</td>
+        <td width="8%" class="td_top">金额</td>
+        <td width="8%" class="td_top">最后期限</td>
+        <td width="8%" class="td_top">合同时间</td>
+        <td width="6%" class="td_top">通过审核</td>
+        <td width="6%" class="td_top">修改</td>
+    </tr>
+    <tr th:each="contract : ${contracts}">
+        <th scope="row" th:text="${contract.id}">1</th>
+        <td th:text="${contract.clientId}"></td>
+        <td th:text="${contract.salesmanId}"></td>
+        <td th:text="${contract.verifyStatus}"></td>
+        <td th:text="${contract.verifyOpinion}"></td>
+        <td th:text="${contract.details}"></td>
+        <td th:text="${contract.category}"></td>
+        <td th:text="${contract.executeStatus}"></td>
+        <td th:text="${contract.money}"></td>
+        <td th:text="${contract.deadline}"></td>
+        <td th:text="${contract.createDate}"></td>
+        <td><a th:href="@{/contract/update(id=${contract.id})}">审核通过</a></td>
+        <td><a th:href="@{/contract/deleteContract(id=${contract.id})}">delete</a></td>
+        <!--<td>-->
+        <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
+        <!--</td>-->
+    </tr>
+    <tr >
+        <div class="txt"></div>
+    </tr>
+
+</table>
+<a href="/contract/toInsert" th:href="@{/contract/toInsert}" class="btn btn-info">创建合同</a>
+<a href="/contract/list" th:href="@{/contract/list}" class="btn btn-info">管理页面</a>
+
+
+
+
+
+<script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"  language="javascript"  src="../js/bootstrap.min.js"></script>
+
+<!--<script type="text/javascript">-->
+    <!--$('input[type=radio][name=category]').change(function() {-->
+        <!--if (this.value == '0') {-->
+            <!--window.location.href="/contract/statistics?category="+this.value ;-->
+        <!--}else if (this.value == '1') {-->
+            <!--window.location.href="/contract/statistics?category="+this.value;-->
+        <!--}else if(this.value == '2'){-->
+            <!--window.location.href="/contract/statistics?category="+this.value;-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
+
+
+</body>
+</html>
