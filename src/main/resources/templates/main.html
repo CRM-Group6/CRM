@@ -65,16 +65,50 @@
                     	</ul>
                     </li>
 
+
+
                     <li>
                     	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">销售管理</span><span class="fa arrow"></span></a>
                     	<ul class="nav nav-second-level">
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sales_analysis" >销售分析</a></li>
+                            <li class="treeview">
+                                <a href="">
+                                <i class="fa fa-circle-o"></i>
+                                <span>销售分析</span>
+                                <span class="pull-right-container">
+                                  <i class="fa fa-angle-left pull-right"></i>
+                                </span></a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a onclick="menu_goto(this);" value="/sale/customerAnalysis/see">
+                                        <i class="fa fa-circle-o"></i>客户统计</a>
+                                </li>
+                                <li class="treeview">
+                                    <a href="">
+                                    <i class="fa fa-circle-o"></i>
+                                    <span>销售统计</span>
+                                    <span class="pull-right-container">
+                                  <i class="fa fa-angle-left pull-right"></i>
+                                </span></a>
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a onclick="menu_goto(this);" value="/sale/saleAnalysis/performance/department">
+                                                <i class="fa fa-circle-o"></i>业绩统计</a>
+                                        </li>
+                                        <li>
+                                            <a onclick="menu_goto(this);" value="/sale/saleAnalysis/chance/department">
+                                                <i class="fa fa-circle-o"></i>机会统计</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                            </li>
                     		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sales_opportunity_management" >销售机会管理</a></li>
                     		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sales_reminding">销售提醒</a></li>
                     		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/contact_management.html" >联系人管理</a></li>
                     		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/customer_development_plan_management.html " >客户开发计划管理</a></li>
                     	</ul>
-                    </li>
+            </li>
 
                     <li>
                     	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">客户管理</span><span class="fa arrow"></span></a>
@@ -115,6 +149,7 @@
                     <li class="line dk"></li>
                 </ul>
             </div>
+
 
         </nav>
         <!--左侧导航结束-->
