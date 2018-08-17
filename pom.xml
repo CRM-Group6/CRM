@@ -43,7 +43,7 @@
 		<jfreechart.version>1.0.19</jfreechart.version>
 		<spark.version>2.1.0</spark.version>
 		<!--加入DL4j的backend-->
-		<!--<nd4j.backend>nd4j-native</nd4j.backend>-->
+		<nd4j.backend>nd4j-native-platform</nd4j.backend>
 	</properties>
 
 	<dependencies>
@@ -257,12 +257,26 @@
 		</dependency>
 		<dependency>
 			<groupId>org.nd4j</groupId>
-			<artifactId>nd4j-native</artifactId>
+			<artifactId>nd4j-native-platform</artifactId>
+			<version>${deeplearning4j.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.nd4j/nd4j-jblas -->
+		<dependency>
+			<groupId>org.nd4j</groupId>
+			<artifactId>nd4j-jblas</artifactId>
+			<version>0.4-rc3.6</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.deeplearning4j</groupId>
+			<artifactId>deeplearning4j-core</artifactId>
 			<version>${deeplearning4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-core</artifactId>
+			<artifactId>rl4j</artifactId>
 			<version>${deeplearning4j.version}</version>
 		</dependency>
 		<dependency>
@@ -275,6 +289,7 @@
 			<artifactId>datavec-dataframe</artifactId>
 			<version>${deeplearning4j.version}</version>
 		</dependency>
+
 		<!-- Spark Dependencies -->
 		<dependency>
 			<groupId>org.apache.spark</groupId>

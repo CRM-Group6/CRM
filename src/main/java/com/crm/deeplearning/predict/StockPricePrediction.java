@@ -4,6 +4,7 @@ package com.crm.deeplearning.predict;
  * Created by JackKo
  * 2018/8/17 10:39
  **/
+
 import com.crm.deeplearning.model.RecurrentNets;
 import com.crm.deeplearning.representation.PriceCategory;
 import com.crm.deeplearning.representation.StockDataSetIterator;

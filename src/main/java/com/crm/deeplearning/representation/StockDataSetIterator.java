@@ -4,6 +4,7 @@ package com.crm.deeplearning.representation;
  * Created by JackKo
  * 2018/8/17 10:53
  **/
+
 import com.google.common.collect.ImmutableMap;
 import com.opencsv.CSVReader;
 import javafx.util.Pair;
@@ -16,7 +17,6 @@ import org.nd4j.linalg.factory.Nd4j;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-
 
 public class StockDataSetIterator implements DataSetIterator {
 
@@ -123,7 +123,7 @@ public class StockDataSetIterator implements DataSetIterator {
         return value;
     }
 
-    public int totalExamples() { return train.size() - exampleLength - predictLength; }
+    @Override public int totalExamples() { return train.size() - exampleLength - predictLength; }
 
     @Override public int inputColumns() { return VECTOR_SIZE; }
 
@@ -140,9 +140,9 @@ public class StockDataSetIterator implements DataSetIterator {
 
     @Override public int batch() { return miniBatchSize; }
 
-     public int cursor() { return totalExamples() - exampleStartOffsets.size(); }
+    @Override public int cursor() { return totalExamples() - exampleStartOffsets.size(); }
 
-     public int numExamples() { return totalExamples(); }
+    @Override public int numExamples() { return totalExamples(); }
 
     @Override public void setPreProcessor(DataSetPreProcessor dataSetPreProcessor) {
         throw new UnsupportedOperationException("Not Implemented");
