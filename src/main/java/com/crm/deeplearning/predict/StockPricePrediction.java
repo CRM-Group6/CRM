@@ -27,11 +27,11 @@ public class StockPricePrediction {
 
     private static final Logger log = LoggerFactory.getLogger(StockPricePrediction.class);
 
-    private static int exampleLength = 22; // time series length, assume 22 working days per month
+    private static int exampleLength = 50; // time series length, assume 22 working days per month
 
     public static void main (String[] args) throws IOException {
         String file = new ClassPathResource("prices-split-adjusted.csv").getFile().getAbsolutePath();
-        String symbol = "GOOG"; // stock name
+        String symbol = "WLTW"; // stock name
         int batchSize = 64; // mini-batch size
         double splitRatio = 0.9; // 90% for training, 10% for testing
         int epochs = 100; // training epochs
@@ -44,7 +44,7 @@ public class StockPricePrediction {
 
         log.info("Build lstm networks...");
         MultiLayerNetwork net = RecurrentNets.buildLstmNetworks(iterator.inputColumns(), iterator.totalOutcomes());
-
+/*
         log.info("Training...");
         for (int i = 0; i < epochs; i++) {
             while (iterator.hasNext()) net.fit(iterator.next()); // fit model using mini-batch data
@@ -56,7 +56,8 @@ public class StockPricePrediction {
         File locationToSave = new File("src/main/resources/StockPriceLSTM_".concat(String.valueOf(category)).concat(".zip"));
         // saveUpdater: i.e., the state for Momentum, RMSProp, Adagrad etc. Save this to train your network more in the future
         ModelSerializer.writeModel(net, locationToSave, true);
-
+*/
+        File locationToSave = new File("src/main/resources/StockPriceLSTM_CLOSE.zip");
         log.info("Load model...");
         net = ModelSerializer.restoreMultiLayerNetwork(locationToSave);
 
@@ -75,6 +76,7 @@ public class StockPricePrediction {
 
     /** Predict one feature of a stock one-day ahead */
     private static void predictPriceOneAhead (MultiLayerNetwork net, List<Pair<INDArray, INDArray>> testData, double max, double min, PriceCategory category) {
+//        System.err.println("Inside predict function:"+testData.size());
         double[] predicts = new double[testData.size()];
         double[] actuals = new double[testData.size()];
         for (int i = 0; i < testData.size(); i++) {

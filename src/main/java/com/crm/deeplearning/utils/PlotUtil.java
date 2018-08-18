@@ -16,11 +16,6 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 
-/**
- * Created by zhanghao on 26/7/17.
- * Modified by zhanghao on 28/9/17.
- * @author ZHANG HAO
- */
 public class PlotUtil {
 
     public static void plot(double[] predicts, double[] actuals, String name) {
@@ -45,6 +40,7 @@ public class PlotUtil {
         XYPlot xyPlot = chart.getXYPlot();
         // X-axis
         final NumberAxis domainAxis = (NumberAxis) xyPlot.getDomainAxis();
+//        System.err.println((index.length-1));
         domainAxis.setRange((int) index[0], (int) (index[index.length - 1] + 2));
         domainAxis.setTickUnit(new NumberTickUnit(20));
         domainAxis.setVerticalTickLabels(true);

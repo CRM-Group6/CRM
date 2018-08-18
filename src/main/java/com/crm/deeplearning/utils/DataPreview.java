@@ -13,7 +13,7 @@ import org.apache.spark.sql.functions;
 import org.datavec.api.util.ClassPathResource;
 
 import java.io.IOException;
-/*
+
 // java.lang.ExceptionInInitializerError  ??????
 public class DataPreview {
     public static void main (String[] args) throws IOException {
@@ -50,4 +50,3 @@ public class DataPreview {
                 .drop("features").toDF("features");
     }
 }
-*/

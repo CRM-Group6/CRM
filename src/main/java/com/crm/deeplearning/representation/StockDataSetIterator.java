@@ -53,6 +53,9 @@ public class StockDataSetIterator implements DataSetIterator {
         int split = (int) Math.round(stockDataList.size() * splitRatio);
         train = stockDataList.subList(0, split);
         test = generateTestDataSet(stockDataList.subList(split, stockDataList.size()));
+        System.err.println("总的数据量 = "+stockDataList.size()
+                + "\n" + "用于训练的数据量 = " + train.size()
+                + "\n" + "用于测试的数据量 = " + test.size());
         initializeOffsets();
     }
 
