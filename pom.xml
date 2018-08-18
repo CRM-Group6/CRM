@@ -220,35 +220,7 @@
 		<artifactId>lombok</artifactId>
 		</dependency>
 
-		<!--增加深度学习-->
-		<!-- https://mvnrepository.com/artifact/org.deeplearning4j/deeplearning4j-core -->
-		<!--<dependency>-->
-			<!--<groupId>org.deeplearning4j</groupId>-->
-			<!--<artifactId>deeplearning4j-core</artifactId>-->
-			<!--<version>1.0.0-beta2</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.nd4j</groupId>-->
-			<!--<artifactId>nd4j-native-platform</artifactId>-->
-			<!--<version>1.0.0-beta2</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.nd4j</groupId>-->
-			<!--<artifactId>nd4j-jblas</artifactId>-->
-			<!--<version>0.4-rc3.6</version>-->
-			<!--<scope>test</scope>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.nd4j</groupId>-->
-			<!--<artifactId>nd4j-api</artifactId>-->
-			<!--<version>1.0.0-beta2</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.nd4j</groupId>-->
-			<!--<artifactId>nd4j-jackson</artifactId>-->
-			<!--<version>1.0.0-beta2</version>-->
-		<!--</dependency>-->
-        <!--深度学习-->
+        <!--增加深度学习-->
 		<!-- DL4J and ND4J Related Dependencies -->
 		<dependency>
 			<groupId>org.nd4j</groupId>
@@ -287,11 +259,6 @@
 		<dependency>
 			<groupId>org.datavec</groupId>
 			<artifactId>datavec-api</artifactId>
-			<version>${deeplearning4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.datavec</groupId>
-			<artifactId>datavec-dataframe</artifactId>
 			<version>${deeplearning4j.version}</version>
 		</dependency>
 

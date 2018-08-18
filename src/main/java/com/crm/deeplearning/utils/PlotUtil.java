@@ -4,6 +4,7 @@ package com.crm.deeplearning.utils;
  * Created by JackKo
  * 2018/8/17 10:42
  **/
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -40,7 +41,6 @@ public class PlotUtil {
         XYPlot xyPlot = chart.getXYPlot();
         // X-axis
         final NumberAxis domainAxis = (NumberAxis) xyPlot.getDomainAxis();
-//        System.err.println((index.length-1));
         domainAxis.setRange((int) index[0], (int) (index[index.length - 1] + 2));
         domainAxis.setTickUnit(new NumberTickUnit(20));
         domainAxis.setVerticalTickLabels(true);
