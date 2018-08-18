@@ -28,15 +28,14 @@ public class StockPricePrediction {
     private static int exampleLength = 50; // time series length, assume 22 working days per month
 
     public static void main (String[] args) throws IOException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException {
-        String file = new ClassPathResource("prices-split-adjusted.csv").getFile().getAbsolutePath();
-        String symbol = "WLTW"; // stock name
+        String file = new ClassPathResource("sale_money.csv").getFile().getAbsolutePath();
         int batchSize = 512; // mini-batch size
         double splitRatio = 0.9; // 90% for training, 10% for testing
         int epochs = 10; // training epochs
 
         log.info("Create dataSet iterator...");
         PriceCategory category = PriceCategory.CLOSE; // CLOSE: predict close price
-        StockDataSetIterator iterator = new StockDataSetIterator(file, symbol, batchSize, exampleLength, splitRatio, category);
+        StockDataSetIterator iterator = new StockDataSetIterator(file,  batchSize, exampleLength, splitRatio);
         log.info("Load test dataset...");
         List<Pair<INDArray, INDArray>> test = iterator.getTestDataSet();
 /*
@@ -65,15 +64,11 @@ public class StockPricePrediction {
 
         net.init();
         log.info("Testing...");
-        if (category.equals(PriceCategory.ALL)) {
-            INDArray max = Nd4j.create(iterator.getMaxArray());
-            INDArray min = Nd4j.create(iterator.getMinArray());
-            predictAllCategories(net, test, max, min);
-        } else {
-            double max = iterator.getMaxNum(category);
-            double min = iterator.getMinNum(category);
-            predictPriceOneAhead(net, test, max, min, category);
-        }
+
+        double max = iterator.getMaxArray();
+        double min = iterator.getMinArray();
+        predictPriceOneAhead(net, test, max, min, category);
+
         log.info("Done...");
     }
 
@@ -90,43 +85,6 @@ public class StockPricePrediction {
         log.info("Predict,Actual");
         for (int i = 0; i < predicts.length; i++) log.info(predicts[i] + "," + actuals[i]);
         log.info("Plot...");
-        PlotUtil.plot(predicts, actuals, String.valueOf(category));
+        PlotUtil.plot(predicts, actuals,"销售额");
     }
-
-    private static void predictPriceMultiple (MultiLayerNetwork net, List<Pair<INDArray, INDArray>> testData, double max, double min) {
-        // TODO
-    }
-
-    /** Predict all the features (open, close, low, high prices and volume) of a stock one-day ahead */
-    private static void predictAllCategories (MultiLayerNetwork net, List<Pair<INDArray, INDArray>> testData, INDArray max, INDArray min) {
-        INDArray[] predicts = new INDArray[testData.size()];
-        INDArray[] actuals = new INDArray[testData.size()];
-        for (int i = 0; i < testData.size(); i++) {
-            predicts[i] = net.rnnTimeStep(testData.get(i).getKey()).getRow(exampleLength - 1).mul(max.sub(min)).add(min);
-            actuals[i] = testData.get(i).getValue();
-        }
-        log.info("Print out Predictions and Actual Values...");
-        log.info("Predict\tActual");
-        for (int i = 0; i < predicts.length; i++) log.info(predicts[i] + "\t" + actuals[i]);
-        log.info("Plot...");
-        for (int n = 0; n < 5; n++) {
-            double[] pred = new double[predicts.length];
-            double[] actu = new double[actuals.length];
-            for (int i = 0; i < predicts.length; i++) {
-                pred[i] = predicts[i].getDouble(n);
-                actu[i] = actuals[i].getDouble(n);
-            }
-            String name;
-            switch (n) {
-                case 0: name = "Stock OPEN Price"; break;
-                case 1: name = "Stock CLOSE Price"; break;
-                case 2: name = "Stock LOW Price"; break;
-                case 3: name = "Stock HIGH Price"; break;
-                case 4: name = "Stock VOLUME Amount"; break;
-                default: throw new NoSuchElementException();
-            }
-            PlotUtil.plot(pred, actu, name);
-        }
-    }
-
 }
