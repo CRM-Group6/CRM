@@ -126,7 +126,7 @@ public class StockDataSetIterator implements DataSetIterator {
         return value;
     }
 
-    @Override public int totalExamples() { return train.size() - exampleLength - predictLength; }
+ //   @Override public int totalExamples() { return train.size() - exampleLength - predictLength; }
 
     @Override public int inputColumns() { return VECTOR_SIZE; }
 
@@ -143,9 +143,9 @@ public class StockDataSetIterator implements DataSetIterator {
 
     @Override public int batch() { return miniBatchSize; }
 
-    @Override public int cursor() { return totalExamples() - exampleStartOffsets.size(); }
+//    @Override public int cursor() { return totalExamples() - exampleStartOffsets.size(); }
 
-    @Override public int numExamples() { return totalExamples(); }
+//    @Override public int numExamples() { return totalExamples(); }
 
     @Override public void setPreProcessor(DataSetPreProcessor dataSetPreProcessor) {
         throw new UnsupportedOperationException("Not Implemented");

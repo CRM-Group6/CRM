@@ -4,21 +4,19 @@ package com.crm.deeplearning.predict;
  * Created by JackKo
  * 2018/8/17 10:39
  **/
-
-import com.crm.deeplearning.model.RecurrentNets;
 import com.crm.deeplearning.representation.PriceCategory;
 import com.crm.deeplearning.representation.StockDataSetIterator;
 import com.crm.deeplearning.utils.PlotUtil;
 import javafx.util.Pair;
+import org.deeplearning4j.nn.modelimport.keras.exceptions.InvalidKerasConfigurationException;
+import org.deeplearning4j.nn.modelimport.keras.exceptions.UnsupportedKerasConfigurationException;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
-import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.io.ClassPathResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -29,22 +27,22 @@ public class StockPricePrediction {
 
     private static int exampleLength = 50; // time series length, assume 22 working days per month
 
-    public static void main (String[] args) throws IOException {
+    public static void main (String[] args) throws IOException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException {
         String file = new ClassPathResource("prices-split-adjusted.csv").getFile().getAbsolutePath();
         String symbol = "WLTW"; // stock name
-        int batchSize = 64; // mini-batch size
+        int batchSize = 512; // mini-batch size
         double splitRatio = 0.9; // 90% for training, 10% for testing
-        int epochs = 100; // training epochs
+        int epochs = 10; // training epochs
 
         log.info("Create dataSet iterator...");
         PriceCategory category = PriceCategory.CLOSE; // CLOSE: predict close price
         StockDataSetIterator iterator = new StockDataSetIterator(file, symbol, batchSize, exampleLength, splitRatio, category);
         log.info("Load test dataset...");
         List<Pair<INDArray, INDArray>> test = iterator.getTestDataSet();
-
+/*
         log.info("Build lstm networks...");
         MultiLayerNetwork net = RecurrentNets.buildLstmNetworks(iterator.inputColumns(), iterator.totalOutcomes());
-/*
+
         log.info("Training...");
         for (int i = 0; i < epochs; i++) {
             while (iterator.hasNext()) net.fit(iterator.next()); // fit model using mini-batch data
@@ -57,10 +55,15 @@ public class StockPricePrediction {
         // saveUpdater: i.e., the state for Momentum, RMSProp, Adagrad etc. Save this to train your network more in the future
         ModelSerializer.writeModel(net, locationToSave, true);
 */
-        File locationToSave = new File("src/main/resources/StockPriceLSTM_CLOSE.zip");
+//        File locationToSave = new File("src/main/resources/StockPriceLSTM_CLOSE.zip");
         log.info("Load model...");
-        net = ModelSerializer.restoreMultiLayerNetwork(locationToSave);
+        MultiLayerNetwork net =
+                org.deeplearning4j.nn.modelimport.keras.KerasModelImport.importKerasSequentialModelAndWeights
+                        ("src/main/java/com/crm/deeplearning/model.json" ,
+                                "src/main/java/com/crm/deeplearning/model.h5");
+//        net = ModelSerializer.restoreMultiLayerNetwork(locationToSave);
 
+        net.init();
         log.info("Testing...");
         if (category.equals(PriceCategory.ALL)) {
             INDArray max = Nd4j.create(iterator.getMaxArray());
