@@ -1,9 +1,8 @@
 package com.crm.service.finance.impl;
 
 import com.crm.entity.Bill;
-import com.crm.entity.finance.BillChart;
+import com.crm.VO.chart.Chart;
 import com.crm.entity.finance.BillStatistic;
-import com.crm.mapper.BillMapper;
 import com.crm.service.finance.BillService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,13 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BillServiceImplTest {
@@ -99,7 +94,7 @@ public class BillServiceImplTest {
                 }
             }
         }
-        BillChart billChart=new BillChart("收支情况",list);
-        billChart.getData().get(7);
+        Chart chart =new Chart("收支情况",list);
+        chart.getData().get(7);
     }
 }

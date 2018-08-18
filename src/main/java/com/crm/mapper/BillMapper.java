@@ -1,12 +1,10 @@
 package com.crm.mapper;
 
 import com.crm.entity.Bill;
-import com.crm.entity.finance.BillChart;
 import com.crm.entity.finance.BillStatistic;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
 
 @Mapper

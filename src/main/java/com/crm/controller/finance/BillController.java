@@ -1,13 +1,11 @@
 package com.crm.controller.finance;
 
-import com.crm.VO.ResultVO;
+import com.crm.VO.chart.Axis;
+import com.crm.VO.chart.ChartVO;
 import com.crm.entity.Bill;
-import com.crm.entity.finance.BillChart;
+import com.crm.VO.chart.Chart;
 import com.crm.entity.finance.BillStatistic;
 import com.crm.service.finance.BillService;
-import com.crm.utils.ResultVOUtil;
-import com.sun.org.glassfish.external.amx.BootAMXMBean;
-import io.netty.channel.local.LocalEventLoopGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,7 +30,7 @@ public class BillController {
     @RequestMapping("/addforbill")
     public ModelAndView toAdd() {
         //System.out.println("TOADD");
-        return new ModelAndView("/finance/bill_add");
+        return new ModelAndView("/chart/bill_add");
     }
 
     @RequestMapping("/addbill")
@@ -75,7 +73,7 @@ public class BillController {
 
     @ResponseBody
     @RequestMapping("/billstatistic")
-    public List<BillChart> billStatistic(){
+    public ChartVO billStatistic(){
         String year = "2018";
         List<BillStatistic> billStatistics = billService.selectByDate(year, 1);
         List<BillStatistic> billStatistics1=billService.selectByDate(year,0);
@@ -99,15 +97,63 @@ public class BillController {
                 }
             }
         }
-        BillChart billChart = new BillChart("全年支出情况", list);
-        BillChart billChart1 = new BillChart("全年收入情况", list1);
-        List<BillChart> billCharts=new ArrayList<>();
-        billCharts.add(billChart);
-        billCharts.add(billChart1);
-        return billCharts;
+        Chart chart = new Chart("全年支出情况", list);
+        Chart chart1 = new Chart("全年收入情况", list1);
+        List<Chart> charts =new ArrayList<>();
+        charts.add(chart);
+        charts.add(chart1);
+        Axis axis=new Axis();
+        List<String> date=new ArrayList<String>();
+        date.add("一月");date.add("二月");date.add("三月");date.add("四月");date.add("五月");
+        date.add("六月");date.add("七月");date.add("八月");date.add("九月");date.add("十月");
+        date.add("十一月");date.add("十二月");
+        axis.setCategories(date);
+        ChartVO chartVO =new ChartVO();
+        chartVO.setCharts(charts);
+        chartVO.setAxis(axis);
+        return chartVO;
     }
 
-
+//    @ResponseBody
+//    @RequestMapping("/billstatistic")
+//    public ChartVO billStatistic(){
+//        String year = "2018";
+//        List<BillStatistic> billStatistics = billService.selectByDate(year, 1);
+//        List<BillStatistic> billStatistics1=billService.selectByDate(year,0);
+//        List<Double> list1=new ArrayList<Double>();
+//        List<Double> list = new ArrayList<Double>();
+//        for (int n = 0; n < 12; n++) {
+//            list1.add(new Double(0));
+//            for (int m = 0; m < billStatistics1.size(); m++) {
+//                int l = Integer.valueOf(billStatistics1.get(m).getMonth()).intValue();
+//                if (l == n+1) {
+//                    list1.set(n, billStatistics1.get(m).getMoney());
+//                }
+//            }
+//        }
+//        for (int i = 0; i < 12; i++) {
+//            list.add(new Double(0));
+//            for (int j = 0; j < billStatistics.size(); j++) {
+//                int z = Integer.valueOf(billStatistics.get(j).getMonth()).intValue();
+//                if (z == i+1) {
+//                    list.set(i, billStatistics.get(j).getMoney());
+//                }
+//            }
+//        }
+//        Chart billChart = new Chart("全年支出情况", list);
+//        Chart billChart1 = new Chart("全年收入情况", list1);
+//        List<Chart> charts=new ArrayList<>();
+//        charts.add(billChart);
+//        charts.add(billChart1);
+//        Axis axis=new Axis();
+//        List<String> date=new ArrayList<String>();
+//        date.add("一月");
+//        axis.setCategories(date);
+//        ChartVO billChartVO=new ChartVO();
+//        billChartVO.setCharts(charts);
+//        billChartVO.setAxis(axis);
+//        return billChartVO;
+//    }
 
     //    @GetMapping("/findbill")
 //    public Bill oneBill(Bill bill){

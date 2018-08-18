@@ -10,6 +10,7 @@
 <script language="JavaScript">
     $(document).ready(function() {
         var bilidate
+        var axis
         $.ajax({
             async:false,
             url: "/billstatistic",
@@ -17,7 +18,8 @@
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
-                bilidate=result
+                bilidate=result.charts;
+                axis=result.axis
                 console.log(result);
             },
             error:function(e){
@@ -76,12 +78,14 @@
 
         json.title = title;
         json.subtitle = subtitle;
-        json.xAxis = xAxis;
+        json.xAxis =axis ;
         json.yAxis = yAxis;
         json.tooltip = tooltip;
         json.legend = legend;
         json.series = bilidate;
-        console.log(series)
+        console.log(series);
+        console.log(xAxis);
+
         $('#container').highcharts(json);
     });
 </script>
