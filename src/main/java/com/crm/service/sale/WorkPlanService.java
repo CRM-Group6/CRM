@@ -46,7 +46,12 @@ public class WorkPlanService {
     public WorkPlan findOne(Long id){
         return workPlanMapper.selectByPrimaryKey(id);
     }
-
+    /**
+     * 显示一个计划
+     */
+    public WorkPlan findByAccount(String account){
+        return workPlanMapper.selectByAccount(account);
+    }
     /**
      * 显示所有的计划
      */

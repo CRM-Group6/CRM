@@ -1,8 +1,11 @@
 package com.crm.mapper;
 
 import com.crm.entity.AfterServiceSheet;
+import com.crm.entity.ProblemLibrary;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Mapper
 @Component(value="afterServiceSheetMapper")
@@ -54,4 +57,6 @@ public interface AfterServiceSheetMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(AfterServiceSheet record);
+
+    List<AfterServiceSheet> selectAll();
 }

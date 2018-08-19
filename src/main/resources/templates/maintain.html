@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
 
-    <title>交往信息管理</title>
+    <title>维修维护</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
@@ -18,31 +18,32 @@
     <link href="../css/animate.css" rel="stylesheet">
 <body>
 <table width="95%" border="0" align="center" cellpadding="0"
-       cellspacing="0" class="table01 table-row-cell" id="table01">
+       cellspacing="0" class="table01 table" id="table01">
     <tr>
-        <td  class="td_top">交往记录编号</td>
-        <td  class="td_top">执行人员编号</td>
-        <td  class="td_top">联系人编号</td>
-        <td  class="td_top">时间</td>
-        <td  class="td_top">地点</td>
-        <td  class="td_top">交往方式</td>
-        <td  class="td_top">概要</td>
-        <td  class="td_top">修改</td>
-        <td  class="td_top">删除</td>
-
+        <td width="10%" class="td_top">服务单编号</td>
+        <td width="10%" class="td_top">创建人员编号</td>
+        <td width="10%" class="td_top">处理人员编号</td>
+        <td width="10%" class="td_top">是否处理</td>
+        <td width="10%" class="td_top">概要</td>
+        <td width="10%" class="td_top">创建时间</td>
+        <td width="10%" class="td_top">处理时间</td>
+        <td width="10%" class="td_top">客人编号</td>
+        <td width="10%" class="td_top">编辑</td>
+        <td width="10%" class="td_top">删除</td>
 
     </tr>
-    <tr th:each="exchangeInfo : ${exchangeInfos}">
-        <th scope="row" th:text="${exchangeInfo.id}">1</th>
-        <td th:text="${exchangeInfo.executorId}"></td>
-        <td th:text="${exchangeInfo.contactId}"></td>
-        <td th:text="${exchangeInfo.time}"></td>
-        <td th:text="${exchangeInfo.place}"></td>
-        <td th:text="${exchangeInfo.contactWay}"></td>
-        <td th:text="${exchangeInfo.outline}"></td>
+    <tr th:each="afterServiceSheet : ${afterServiceSheets}">
+        <th scope="row" th:text="${afterServiceSheet.id}"></th>
+        <td th:text="${afterServiceSheet.creatorId}"></td>
+        <td th:text="${afterServiceSheet.executorId}"></td>
+        <th th:text="${afterServiceSheet.executed}"></th>
+        <td th:text="${afterServiceSheet.summary}"></td>
+        <td th:text="${afterServiceSheet.createDate}"></td>
+        <td th:text="${afterServiceSheet.executeDate}"></td>
+        <td th:text="${afterServiceSheet.customId}"></td>
 
-        <td><a th:href="@{/sale/exchangeInfo/toedit(id=${exchangeInfo.id})}">edit</a></td>
-        <td><a class="btn btn-default" onclick="todelete(this);"  th:value="${exchangeInfo.id}">delete</a></td>
+        <td><a th:href="@{/afterservicesheet/toedit(id=${afterServiceSheet.id})}" class="btn btn-default">回复</a></td>
+        <td><a class="btn btn-default" onclick="todelete(this);"  th:value="${afterServiceSheet.id}">delete</a></td>
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
         <!--</td>-->
@@ -51,7 +52,7 @@
         <div class="txt"></div>
     </tr>
 </table>
-<a href="/sale/exchangeInfo/toAdd" th:href="@{/sale/exchangeInfo/toAdd}" class="btn btn-info">add</a>
+<a href="/afterservicesheet/toAdd" th:href="@{/afterservicesheet/toAdd}" class="btn btn-info">add</a>
 
 
 <script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>
@@ -65,7 +66,7 @@
             $(document).ready(function(){
                 $.ajax({
                     type:"GET",
-                    url:"/sale/exchangeInfo/delete?id="+$(sender).attr("value"),
+                    url:"/afterservicesheet/delete?id="+$(sender).attr("value"),
                     async:false,
                     success:function (data) {
                         alert("删除成功");
@@ -73,7 +74,6 @@
                     },
                     error:function (jqXHR) {
                         alert("删除失败");
-
                     }
                 });
             });

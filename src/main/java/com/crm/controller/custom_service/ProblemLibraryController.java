@@ -76,6 +76,7 @@ public class ProblemLibraryController {
 
     @RequestMapping("/delete")
     public ModelAndView delete(Long id){
+
         problemLibraryService.deleteone(id);
         return new ModelAndView("redirect:/problem/selectall");
     }

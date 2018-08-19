@@ -57,4 +57,5 @@ public interface WorkPlanMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(WorkPlan record);
+    WorkPlan selectByAccount(String account);
 }

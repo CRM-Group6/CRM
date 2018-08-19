@@ -68,7 +68,8 @@
                 data:data.field,
                 success: function(data){           //后台程序返回的标签，比如我喜欢使用1和0 表示成功或者失败
                     if (data.status==200){   //如果成功了
-                        window.location.href ="/console/tomain";
+                        window.location.href ="/console/tomain?account="+$("#account").val();
+                        System.out.print($("#account").val());
                     }else if(data.status==500){
                         x.text("登录").removeAttr("disabled").removeClass("layui-disabled");
                         layer.msg(data.msg);

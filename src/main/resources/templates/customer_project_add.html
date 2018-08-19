@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>售后服务项目增加</title>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+</head>
+<body>
+<h1>添加服务单</h1>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal"   th:action="@{/afterserviceproject/add}"  method="post">
+        <div class="form-group">
+            <label for="id" class="col-sm-2 control-label">id</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="id"  id="id" placeholder="id"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="serviceCategory" class="col-sm-2 control-label" >serviceCategory</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="serviceCategory" id="serviceCategory" placeholder="serviceCategory"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="content" class="col-sm-2 control-label">content</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="content"  id="content" placeholder="content"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="feeScale" class="col-sm-2 control-label">feeScale</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="feeScale"  id="feeScale" placeholder="feeScale"/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Submit" class="btn btn-info" />
+                &nbsp; &nbsp; &nbsp;
+                <input type="reset" value="Reset" class="btn btn-info" />
+            </div>
+
+        </div>
+    </form>
+</div>
+<script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"  language="javascript"  src="../js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
+
+
+</body>
+</html>

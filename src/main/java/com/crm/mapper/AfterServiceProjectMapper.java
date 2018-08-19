@@ -1,9 +1,12 @@
 package com.crm.mapper;
 
 import com.crm.entity.AfterServiceProject;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 
 @Mapper
@@ -56,4 +59,6 @@ public interface AfterServiceProjectMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(AfterServiceProject record);
+
+    List<AfterServiceProject> selectAll();
 }

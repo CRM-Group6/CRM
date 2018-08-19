@@ -1,5 +1,7 @@
 package com.crm.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class AfterServiceSheet {
@@ -49,6 +51,7 @@ public class AfterServiceSheet {
      *
      * @mbggenerated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;
 
     /**
@@ -57,6 +60,7 @@ public class AfterServiceSheet {
      *
      * @mbggenerated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date executeDate;
 
     /**

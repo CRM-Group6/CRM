@@ -21,10 +21,12 @@ public class SelectWorkPlanController {
     @Autowired
     private WorkPlanService workPlanService;
 
-    @GetMapping("/see/{id}")
-    public ModelAndView seeWorkPlan(@PathVariable("id") Long id){
+    @GetMapping("/see")
+    public ModelAndView seeWorkPlan(@RequestParam("account") String account){
+
+
         ModelAndView model = new ModelAndView("/sale/sales_reminding");
-        WorkPlan workPlanList = workPlanService.findOne(id);
+        WorkPlan workPlanList = workPlanService.findByAccount(account);
         if(workPlanList == null) return model.addObject("result",ResultVOUtil.error());
         return model.addObject("result",ResultVOUtil.success(workPlanList));
     }

@@ -86,7 +86,9 @@ public class LoginController {
     }
 
     @RequestMapping("/console/tomain")
-    public ModelAndView tomain(){
-        return new ModelAndView("/main");
+    public ModelAndView tomain(String account){
+        ModelAndView model=new ModelAndView("/main");
+        model.addObject("account",account);
+        return model;
     }
 }

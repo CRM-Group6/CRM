@@ -1,5 +1,5 @@
   <!DOCTYPE HTML>
-  <html>
+  <html lang="en" xmlns:th="http://www.thymeleaf.org">
   		<head>
   			<meta charset="utf-8">
 		    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,9 @@
 		    <link href="/css/animate.css" rel="stylesheet">
 		    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
   		</head>
+
   		<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+        <input type="hidden" id="myaccount" name="account" th:value="${account}" />
   			<div id="wrapper">
         <!--左侧导航开始-->
         <nav class="navbar-default navbar-static-side" role="navigation">
@@ -103,10 +105,10 @@
                                 </li>
                             </ul>
                             </li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sales_opportunity_management" >销售机会管理</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sales_reminding">销售提醒</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/contact_management.html" >联系人管理</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/customer_development_plan_management.html " >客户开发计划管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sale/opportunityManage/selectall" >销售机会管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto1(this);" value="" >销售提醒</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sale/contact/selectall" >联系人管理</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sale/developmentPlan/see " >客户开发计划管理</a></li>
                     	</ul>
             </li>
 
@@ -166,15 +168,14 @@
                             </a>
                             <ul class="dropdown-menu dropdown-alerts">
                                 <li>
-                                    <a onclick="updatePwd()">
+                                   <a href="#">
                                         <div>
-                                            <i class="fa fa-refresh"></i> 修改密码
-                                            <span class="pull-right text-muted small"></span><!--  <@shiro.principal type="net.sppan.base.entity.User" property="userName"/>  -->
-                                        </div>
-                                    </a>
+                                            <i class="glyphicon glyphicon-user" th:text="${account}"></i> 在线
+                                            <span class="pull-right text-muted small"></span>
+                                   </a>
                                 </li>
                                 <li>
-                                    <a href="${ctx!}/admin/logout">
+                                    <a href="/sys/login">
                                         <div>
                                             <i class="fa fa-remove"></i> 注销
                                             <span class="pull-right text-muted small"></span><!--    <@shiro.principal type="net.sppan.base.entity.User" property="userName"/>   -->
@@ -207,6 +208,10 @@
 		    <script type="text/javascript">
 		    	<!--自定义js语句-->
 
+                function menu_goto1(sender) {
+                    $(sender).attr("value","/sale/saleRemind/see?account="+$("#myaccount").val()) ;
+                    $("#J_iframe").attr("src",$(sender).attr("value"));
+                }
                 function menu_goto(sender){
                     
                    $("#J_iframe").attr("src",$(sender).attr("value"));

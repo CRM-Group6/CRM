@@ -47,7 +47,7 @@
         <td th:text="${complainRecord.executed}"></td>
         <td th:text="${complainRecord.customerId}"></td>
         <td><a th:href="@{/complain/toedit(id=${complainRecord.id})}" class="btn btn-default">回复</a></td>
-        <td><a th:href="@{/complain/delete(id=${complainRecord.id})}" class="btn btn-default">删除</a></td>
+        <td><a class="btn btn-default" onclick="todelete(this);"  th:value="${complainRecord.id}">delete</a></td>
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
         <!--</td>-->
@@ -63,7 +63,29 @@
 <script type="text/javascript"  language="javascript"  src="../js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+    function todelete(sender) {
+        var mymessage=confirm("确定删除？")         ;    //弹出一个窗口，询问客户信息，然后返回boolean值
+        if(mymessage==true)
+        {
+            $(document).ready(function(){
+                $.ajax({
+                    type:"GET",
+                    url:"/complain/delete?id="+$(sender).attr("value"),
+                    async:false,
+                    success:function (data) {
+                        alert("删除成功");
+                        location.reload();
+                    },
+                    error:function (jqXHR) {
+                        alert("删除失败");
 
+                    }
+                });
+            });
+        }
+        else  {
+        }
+    }
 </script>
 
 
