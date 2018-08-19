@@ -9,6 +9,10 @@ import java.util.List;
 public class Chart {
     String name;//曲线名称
     List<Double> data;//曲线数据
+
+    public Chart() {
+    }
+
     public Chart(String name, List<Double> data) {
         this.name = name;
         this.data = data;

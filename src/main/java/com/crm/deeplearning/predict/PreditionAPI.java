@@ -2,9 +2,9 @@ package com.crm.deeplearning.predict;
 
 /**
  * Created by JackKo
- * 2018/8/17 10:39
+ * 2018/8/19 18:41
  **/
-
+import com.crm.VO.chart.Chart;
 import com.crm.deeplearning.representation.SaleAmountDataSetIterator;
 import com.crm.deeplearning.utils.PlotUtil;
 import javafx.util.Pair;
@@ -19,15 +19,17 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
-public class SaleAmountPrediction {
+public class PreditionAPI {
 
     private static final Logger log = LoggerFactory.getLogger(SaleAmountPrediction.class);
 
     private static int exampleLength = 50; // time series length, assume 22 working days per month
 
-    public static void main (String[] args) throws IOException , InvalidKerasConfigurationException, UnsupportedKerasConfigurationException {
+    public static List<Chart> predictionUI() throws IOException , InvalidKerasConfigurationException, UnsupportedKerasConfigurationException {
         String file = new ClassPathResource("SaleAmountData.csv").getFile().getAbsolutePath();
         int batchSize = 128; // mini-batch size
         double splitRatio = 0.9; // 90% for training, 10% for testing
@@ -49,14 +51,15 @@ public class SaleAmountPrediction {
         log.info("Testing...");
         double max = iterator.getMaxArray();
         double min = iterator.getMinArray();
-        predictPriceOneAhead(net, test, max, min,origin);
+        List<Chart> result  = predictPriceOneAhead(net, test, max, min,origin);
         double predict = (net.rnnTimeStep(iterator.getTest50().getKey()).getDouble(exampleLength - 1) +1)* origin.get(origin.size()-exampleLength);
         System.err.println("最新预测销售额为 = " + changeData(predict) + "亿");
         log.info("Done...");
+        return result;
     }
 
     /** Predict one feature of a stock one-day ahead */
-    private static void predictPriceOneAhead (MultiLayerNetwork net, List<Pair<INDArray, INDArray>> testData, double max, double min,List<Double> origin) {
+    private static List<Chart> predictPriceOneAhead (MultiLayerNetwork net, List<Pair<INDArray, INDArray>> testData, double max, double min,List<Double> origin) {
 //        System.err.println("Inside predict function:"+testData.size());
         double[] predicts = new double[testData.size()];
         double[] actuals = new double[testData.size()];
@@ -64,18 +67,32 @@ public class SaleAmountPrediction {
             predicts[i] = (net.rnnTimeStep(testData.get(i).getKey()).getDouble(exampleLength - 1) +1)* origin.get(origin.size()-(exampleLength+(testData.size()-i)));
             actuals[i] = (testData.get(i).getValue().getDouble(0) +1)* origin.get(origin.size()-(exampleLength+(testData.size()-i)));
         }
+        List<Double> predictionList = new ArrayList<>();
+        List<Double> actualList = new ArrayList<>();
+        for(int i =0 ; i < testData.size() ; i ++){
+            predictionList.add(predicts[i]);
+            actualList.add(actuals[i]);
+        }
+        Chart preChart = new Chart();
+        Chart actChart = new Chart();
+        preChart.setName("预测值");
+        preChart.setData(predictionList);
+        actChart.setName("真实值");
+        actChart.setData(actualList);
+        List<Chart> chartList  = new ArrayList<>() ;
+        chartList.add(preChart);
+        chartList.add(actChart);
+
 //        log.info("Print out Predictions and Actual Values...");
 //        log.info("Predict,Actual");
-        NumberFormat format = NumberFormat.getPercentInstance();
-        format.setMaximumFractionDigits(2);//设置保留几位小数
+//        NumberFormat format = NumberFormat.getPercentInstance();
+//        format.setMaximumFractionDigits(2);//设置保留几位小数
 //        for (int i = 0; i < predicts.length; i++){
 //            log.info(predicts[i] + "," + actuals[i]+" -- 偏移比率："+format.format(Math.abs((actuals[i]-predicts[i])/actuals[i])));
 //        }
-        for (int i = 0; i < predicts.length; i++){
-            log.info(predicts[i] + "," + actuals[i]);
-        }
         log.info("Plot...");
         PlotUtil.plot(predicts, actuals,"Sale Amount");
+        return chartList;
     }
 
     private static  String changeData(Double data){
