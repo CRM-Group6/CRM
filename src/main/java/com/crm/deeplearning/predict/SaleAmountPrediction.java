@@ -42,8 +42,8 @@ public class SaleAmountPrediction {
         log.info("Load model...");
         MultiLayerNetwork net =
                 org.deeplearning4j.nn.modelimport.keras.KerasModelImport.importKerasSequentialModelAndWeights
-                        ("src/main/java/com/crm/deeplearning/model/model.json" ,
-                                "src/main/java/com/crm/deeplearning/model/model.h5");
+                        ("src/main/java/com/crm/deeplearning/model/modelNew.json" ,
+                                "src/main/java/com/crm/deeplearning/model/modelNew.h5");
 
         log.info("Testing...");
         double max = iterator.getMaxArray();
