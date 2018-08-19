@@ -23,7 +23,7 @@ import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PreditionAPI {
+public class PredictionAPI {
 
     private static final Logger log = LoggerFactory.getLogger(SaleAmountPrediction.class);
 
@@ -91,7 +91,7 @@ public class PreditionAPI {
 //            log.info(predicts[i] + "," + actuals[i]+" -- 偏移比率："+format.format(Math.abs((actuals[i]-predicts[i])/actuals[i])));
 //        }
         log.info("Plot...");
-        PlotUtil.plot(predicts, actuals,"Sale Amount");
+//        PlotUtil.plot(predicts, actuals,"Sale Amount");
         return chartList;
     }
 
