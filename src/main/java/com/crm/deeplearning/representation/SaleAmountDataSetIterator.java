@@ -36,11 +36,13 @@ public class SaleAmountDataSetIterator implements DataSetIterator {
     /** adjusted stock dataset for testing */
     private List<Pair<INDArray, INDArray>> test;
 
+    private List<Double> origin;
 
 
     private List<Pair<INDArray, INDArray>> test50;
 
     public SaleAmountDataSetIterator(String filename, int miniBatchSize, int exampleLength, double splitRatio) {
+        origin = new ArrayList<>();
         List<SaleAmountData> saleAmountDataList = readStockDataFromFile(filename);
         this.miniBatchSize = miniBatchSize;
         this.exampleLength = exampleLength;
@@ -161,15 +163,17 @@ public class SaleAmountDataSetIterator implements DataSetIterator {
         List<Pair<INDArray, INDArray>> test = new ArrayList<>();
         for (int i = 0; i < saleAmountDataList.size() - window; i++) {
             INDArray input = Nd4j.create(new int[] {exampleLength, 1}, 'f');
+            double firstItemInWin=saleAmountDataList.get(i).getSaleMoney();
             for (int j = i; j < i + exampleLength; j++) {
+
                 SaleAmountData stock = saleAmountDataList.get(j);
-                input.putScalar(new int[] {j - i , 0}, (stock.getSaleMoney() - minArray) / (maxArray - minArray));
+                input.putScalar(new int[] {j - i , 0}, (stock.getSaleMoney()/firstItemInWin)-1);
             }
             SaleAmountData stock = saleAmountDataList.get(i + exampleLength);
 
             INDArray label; //设置第51个为标签
             label = Nd4j.create(new int[] {1}, 'f'); //创建矩阵大小为1*1
-            label.putScalar(new int[] {0}, stock.getSaleMoney());
+            label.putScalar(new int[] {0}, (stock.getSaleMoney()/firstItemInWin)-1);
 
             test.add(new Pair<>(input, label));
         }
@@ -191,6 +195,7 @@ public class SaleAmountDataSetIterator implements DataSetIterator {
                 if (num < minArray) minArray = num;
 
                 saleAmountDataList.add(new SaleAmountData(arr[0],  num));
+                origin.add(num);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -200,5 +205,9 @@ public class SaleAmountDataSetIterator implements DataSetIterator {
 
     public List<Pair<INDArray, INDArray>> getTest50() {
         return test50;
+    }
+
+    public List<Double> getOrigin() {
+        return origin;
     }
 }

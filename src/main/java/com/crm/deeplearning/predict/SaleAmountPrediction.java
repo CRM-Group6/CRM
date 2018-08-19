@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class SaleAmountPrediction {
@@ -36,6 +37,8 @@ public class SaleAmountPrediction {
         log.info("Load test dataset...");
         List<Pair<INDArray, INDArray>> test = iterator.getTestDataSet();
 
+        List<Double> origin = iterator.getOrigin();
+
         log.info("Load model...");
         MultiLayerNetwork net =
                 org.deeplearning4j.nn.modelimport.keras.KerasModelImport.importKerasSequentialModelAndWeights
@@ -45,23 +48,27 @@ public class SaleAmountPrediction {
         log.info("Testing...");
         double max = iterator.getMaxArray();
         double min = iterator.getMinArray();
-        predictPriceOneAhead(net, test, max, min);
+        predictPriceOneAhead(net, test, max, min,origin);
 
         log.info("Done...");
     }
 
     /** Predict one feature of a stock one-day ahead */
-    private static void predictPriceOneAhead (MultiLayerNetwork net, List<Pair<INDArray, INDArray>> testData, double max, double min) {
+    private static void predictPriceOneAhead (MultiLayerNetwork net, List<Pair<INDArray, INDArray>> testData, double max, double min,List<Double> origin) {
 //        System.err.println("Inside predict function:"+testData.size());
         double[] predicts = new double[testData.size()];
         double[] actuals = new double[testData.size()];
         for (int i = 0; i < testData.size(); i++) {
-            predicts[i] = net.rnnTimeStep(testData.get(i).getKey()).getDouble(exampleLength - 1) * (max - min) + min;
-            actuals[i] = testData.get(i).getValue().getDouble(0);
+            predicts[i] = (net.rnnTimeStep(testData.get(i).getKey()).getDouble(exampleLength - 1) +1)* origin.get(origin.size()-(exampleLength+(testData.size()-i)));
+            actuals[i] = (testData.get(i).getValue().getDouble(0) +1)* origin.get(origin.size()-(exampleLength+(testData.size()-i)));
         }
         log.info("Print out Predictions and Actual Values...");
         log.info("Predict,Actual");
-        for (int i = 0; i < predicts.length; i++) log.info(predicts[i] + "," + actuals[i]);
+        NumberFormat format = NumberFormat.getPercentInstance();
+        format.setMaximumFractionDigits(2);//设置保留几位小数
+        for (int i = 0; i < predicts.length; i++){
+            log.info(predicts[i] + "," + actuals[i]+" -- 偏移比率："+format.format(Math.abs((actuals[i]-predicts[i])/actuals[i])));
+        }
         log.info("Plot...");
         PlotUtil.plot(predicts, actuals,"Sale Amount");
     }
