@@ -97,4 +97,10 @@ public class BillServiceImplTest {
         Chart chart =new Chart("收支情况",list);
         chart.getData().get(7);
     }
+
+    @Test
+    public void selectByDay() {
+        List<Bill> list=billService.selectByDay();
+        list.size();
+    }
 }

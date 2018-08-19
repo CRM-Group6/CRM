@@ -74,4 +74,9 @@ public class BillServiceImpl implements BillService {
         return billMapper.selectByDate(year,type);
     }
 
+    @Override
+    public List<Bill> selectByDay() {
+        return billMapper.selectByDay();
+    }
+
 }

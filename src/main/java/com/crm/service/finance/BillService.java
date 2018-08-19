@@ -17,5 +17,6 @@ public interface BillService {
     int settleBill(Bill bill);          //账单结算
     List<Bill> selectByTypeAndBalance(Integer type ,Boolean balance);//账单类型与状态查询
     List<BillStatistic>  selectByDate(String year ,Integer type);
+    List<Bill> selectByDay();
 }
 

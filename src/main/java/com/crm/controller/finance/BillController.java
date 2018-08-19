@@ -25,7 +25,12 @@ public class BillController {
         model.addObject("billList", billService.getBillList());
         return model;
     }
-
+    @RequestMapping("/bill/remind")
+    public ModelAndView remindList() {
+        ModelAndView model = new ModelAndView("finance/bill_remind");
+        model.addObject("billList", billService.selectByDay());
+        return model;
+    }
     //跳转增加页面
     @RequestMapping("/addforbill")
     public ModelAndView toAdd() {

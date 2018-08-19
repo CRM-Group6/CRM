@@ -62,5 +62,5 @@ public interface BillMapper {
     List<Bill> selectByBalance(Boolean balance);
     List<Bill> selectByTypeAndBalance(Integer type,Boolean balance);
     List<BillStatistic> selectByDate(String year,Integer type);
-
+    List<Bill> selectByDay();
 }
