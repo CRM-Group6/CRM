@@ -20,7 +20,7 @@ import java.util.*;
 public class SaleAmountDataSetIterator implements DataSetIterator {
 
     private int miniBatchSize; // mini-batch size
-    private int exampleLength = 22; // default 22, say, 22 working days per month
+    private int exampleLength = 50;
     private int predictLength = 1; // default 1, say, one day ahead prediction
 
     /** minimal values of each feature in stock dataset */
@@ -39,7 +39,7 @@ public class SaleAmountDataSetIterator implements DataSetIterator {
     private List<Double> origin;
 
 
-    private List<Pair<INDArray, INDArray>> test50;
+    private Pair<INDArray, INDArray> test50;
 
     public SaleAmountDataSetIterator(String filename, int miniBatchSize, int exampleLength, double splitRatio) {
         origin = new ArrayList<>();
@@ -49,7 +49,7 @@ public class SaleAmountDataSetIterator implements DataSetIterator {
         int split = (int) Math.round(saleAmountDataList.size() * splitRatio);
         train = saleAmountDataList.subList(0, split);
         test = generateTestDataSet(saleAmountDataList.subList(split, saleAmountDataList.size()));
-        test50 = new ArrayList<>();
+        test50 = generateTestFinal50DataSet(origin);
         System.err.println("总的数据量 = "+ saleAmountDataList.size()
                 + "\n" + "用于训练的数据量 = " + train.size()
                 + "\n" + "用于测试的数据量 = " + test.size());
@@ -69,70 +69,11 @@ public class SaleAmountDataSetIterator implements DataSetIterator {
 
     public double getMinArray() { return minArray; }
 
-    @Override
-    public DataSet next(int num) {
-       /* if (exampleStartOffsets.size() == 0) throw new NoSuchElementException();
-        int actualMiniBatchSize = Math.min(num, exampleStartOffsets.size());
-        INDArray input = Nd4j.create(new int[] {actualMiniBatchSize, VECTOR_SIZE, exampleLength}, 'f');
-        INDArray label;
-        if (category.equals(PriceCategory.ALL)) label = Nd4j.create(new int[] {actualMiniBatchSize, VECTOR_SIZE, exampleLength}, 'f');
-        else label = Nd4j.create(new int[] {actualMiniBatchSize, predictLength, exampleLength}, 'f');
-        for (int index = 0; index < actualMiniBatchSize; index++) {
-            int startIdx = exampleStartOffsets.removeFirst();
-            int endIdx = startIdx + exampleLength;
-            SaleAmountData curData = train.get(startIdx);
-            SaleAmountData nextData;
-            for (int i = startIdx; i < endIdx; i++) {
-                int c = i - startIdx;
-                input.putScalar(new int[] {index, 0, c}, (curData.getOpen() - minArray[0]) / (maxArray[0] - minArray[0]));
-                input.putScalar(new int[] {index, 1, c}, (curData.getClose() - minArray[1]) / (maxArray[1] - minArray[1]));
-                input.putScalar(new int[] {index, 2, c}, (curData.getLow() - minArray[2]) / (maxArray[2] - minArray[2]));
-                input.putScalar(new int[] {index, 3, c}, (curData.getHigh() - minArray[3]) / (maxArray[3] - minArray[3]));
-                input.putScalar(new int[] {index, 4, c}, (curData.getVolume() - minArray[4]) / (maxArray[4] - minArray[4]));
-                nextData = train.get(i + 1);
-                if (category.equals(PriceCategory.ALL)) {
-                    label.putScalar(new int[] {index, 0, c}, (nextData.getOpen() - minArray[1]) / (maxArray[1] - minArray[1]));
-                    label.putScalar(new int[] {index, 1, c}, (nextData.getClose() - minArray[1]) / (maxArray[1] - minArray[1]));
-                    label.putScalar(new int[] {index, 2, c}, (nextData.getLow() - minArray[2]) / (maxArray[2] - minArray[2]));
-                    label.putScalar(new int[] {index, 3, c}, (nextData.getHigh() - minArray[3]) / (maxArray[3] - minArray[3]));
-                    label.putScalar(new int[] {index, 4, c}, (nextData.getVolume() - minArray[4]) / (maxArray[4] - minArray[4]));
-                } else {
-                    label.putScalar(new int[]{index, 0, c}, feedLabel(nextData));
-                }
-                curData = nextData;
-            }
-            if (exampleStartOffsets.size() == 0) break;
-        }
-        return new DataSet(input, label);
-        */
-       return null;
-    }
-
-    private double feedLabel(SaleAmountData data) {
-        /*
-        double value;
-
-        switch (category) {
-            case OPEN: value = (data.getOpen() - minArray[0]) / (maxArray[0] - minArray[0]); break;
-            case CLOSE: value = (data.getClose() - minArray[1]) / (maxArray[1] - minArray[1]); break;
-            case LOW: value = (data.getLow() - minArray[2]) / (maxArray[2] - minArray[2]); break;
-            case HIGH: value = (data.getHigh() - minArray[3]) / (maxArray[3] - minArray[3]); break;
-            case VOLUME: value = (data.getVolume() - minArray[4]) / (maxArray[4] - minArray[4]); break;
-            default: throw new NoSuchElementException();
-        }
-        return value;
-        */
-        return 0;
-    }
-
- //   @Override public int totalExamples() { return train.size() - exampleLength - predictLength; }
+    @Override public DataSet next(int num) { return null; }
 
     @Override public int inputColumns() { return 1; }
 
-    @Override public int totalOutcomes() {
-
-              return predictLength;
-    }
+    @Override public int totalOutcomes() { return predictLength; }
 
     @Override public boolean resetSupported() { return false; }
 
@@ -180,6 +121,19 @@ public class SaleAmountDataSetIterator implements DataSetIterator {
         return test;
     }
 
+
+    private Pair<INDArray, INDArray> generateTestFinal50DataSet (List<Double> originList) {
+        INDArray inputFinal50 = Nd4j.create(new int[] {exampleLength, 1}, 'f');
+        double firstItemInWin=originList.get(originList.size() - 50);
+        for (int j = originList.size() - 50 ; j < originList.size(); j++) {
+                Double stock = originList.get(j);
+                inputFinal50.putScalar(new int[] {j - (originList.size() - 50) , 0}, (stock/firstItemInWin)-1);
+            }
+
+        return new Pair<>(inputFinal50 , null);
+
+    }
+
     private List<SaleAmountData> readStockDataFromFile (String filename) {
         List<SaleAmountData> saleAmountDataList = new ArrayList<>();
         try {
@@ -188,6 +142,8 @@ public class SaleAmountDataSetIterator implements DataSetIterator {
                 minArray = Double.MAX_VALUE;
 
             List<String[]> list = new CSVReader(new FileReader(filename)).readAll(); // load all elements in a list
+//            System.err.println("Read csv list[0]=("+list.get(0)[1]+")");
+//            System.err.println("Read csv list[0]=("+Long.valueOf(list.get(0)[1])+")");
             for (String[] arr : list) {
                 double num ;
                 num = Double.valueOf(arr[1]);
@@ -200,10 +156,11 @@ public class SaleAmountDataSetIterator implements DataSetIterator {
         } catch (IOException e) {
             e.printStackTrace();
         }
+//        System.err.println("SaleAmountData list[0]=("+saleAmountDataList.get(0).getSaleMoney()+")");
         return saleAmountDataList;
     }
 
-    public List<Pair<INDArray, INDArray>> getTest50() {
+    public Pair<INDArray, INDArray> getTest50() {
         return test50;
     }
 
