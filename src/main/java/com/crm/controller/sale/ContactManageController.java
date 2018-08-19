@@ -1,16 +1,10 @@
-package com.crm.controller.sys.sale;
+package com.crm.controller.sale;
 
-import com.crm.VO.ResultVO;
 import com.crm.entity.Contact;
-import com.crm.entity.ProblemLibrary;
 import com.crm.service.sale.ContactService;
-import com.crm.utils.ResultVOUtil;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 /**
  * 联系人管理
