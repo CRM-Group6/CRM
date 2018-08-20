@@ -72,13 +72,7 @@ public class BillController {
         return model;
     }
     @RequestMapping("/billstatisticpage")
-    public ModelAndView billstatisticpage(){
-        return new ModelAndView("/finance/chart");
-    }
-
-    @ResponseBody
-    @RequestMapping("/billstatistic")
-    public ChartVO billStatistic(){
+    public ModelAndView billStatistic(){
         String year = "2018";
         List<BillStatistic> billStatistics = billService.selectByDate(year, 1);
         List<BillStatistic> billStatistics1=billService.selectByDate(year,0);
@@ -90,15 +84,6 @@ public class BillController {
                 int l = Integer.valueOf(billStatistics1.get(m).getMonth()).intValue();
                 if (l == n+1) {
                     list1.set(n, billStatistics1.get(m).getMoney());
-                }
-            }
-        }
-        for (int i = 0; i < 12; i++) {
-            list.add(new Double(0));
-            for (int j = 0; j < billStatistics.size(); j++) {
-                int z = Integer.valueOf(billStatistics.get(j).getMonth()).intValue();
-                if (z == i+1) {
-                    list.set(i, billStatistics.get(j).getMoney());
                 }
             }
         }
@@ -116,7 +101,9 @@ public class BillController {
         ChartVO chartVO =new ChartVO();
         chartVO.setCharts(charts);
         chartVO.setAxis(axis);
-        return chartVO;
+        ModelAndView model = new ModelAndView("/finance/chart");
+        model.addObject("result",chartVO);
+        return model;
     }
 
 //    @ResponseBody
