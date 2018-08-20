@@ -9,9 +9,17 @@ import java.util.List;
 public class Chart {
     String name;//曲线名称
     List<Double> data;//曲线数据
+    String color = null;
+    int lineWidth=2;
     public Chart(String name, List<Double> data) {
         this.name = name;
         this.data = data;
+    }
+    public Chart(String name, List<Double> data,String color,int lineWidth) {
+        this.name = name;
+        this.data = data;
+        this.color = color;
+        this.lineWidth = lineWidth;
     }
 }
 
