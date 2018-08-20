@@ -3,12 +3,17 @@ package com.crm.controller.contract_controller;
 import com.crm.VO.ResultVO;
 import com.crm.entity.Contract;
 import com.crm.entity.Customer;
+import com.crm.service.client.CustomerService;
 import com.crm.service.contract_service.ContractService;
 import com.crm.service.contract_service.ContractStatisticsService;
+import com.crm.utils.KeyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.List;
@@ -23,18 +28,20 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/contract")
 public class ContractController {
-    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+   // SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
     @Autowired
     private ContractService contractService;
     @Autowired
     private ContractStatisticsService service;
-
-
+    @Autowired
+    CustomerService customerService;
+    PageRequest request = PageRequest.of(0,10);
     @GetMapping(value = "/list")
     //组合查询&查询
     public ModelAndView list(Contract contract){
+
         ModelAndView model = new ModelAndView("contract_information_management");
-        model.addObject("contracts",contractService.findAll());
+        model.addObject("contracts",contractService.findAll(request));
         return model;
 
     }
@@ -70,10 +77,16 @@ public class ContractController {
 //            result.setMsg("合同ID不能为空");
 //        }判断字段是否为空
 
-          contract1.setId(contract.getId());
+          contract1.setId(KeyUtils.getUniqueKey());
          //添加一个匹配顾客是否存在的判断
-          contract1.setClientId(contract.getClientId());
+//        if(customerService.(contract.getClientId())==null)
+//        {
+//            return null;
+//        }
+//        else{
+            contract1.setClientId(contract.getClientId());
         //以下内容为必填
+
           contract1.setSalesmanId(contract.getSalesmanId());
           contract1.setVerifyStatus(contract.getVerifyStatus());
           contract1.setVerifyOpinion(contract.getVerifyOpinion());
@@ -82,7 +95,13 @@ public class ContractController {
           contract1.setMoney(contract.getMoney());
           contract1.setExecuteStatus(contract.getExecuteStatus());
 //          contract1.setCreateDate(Instant.now().toEpochMilli());
-//          contract1.setDeadline(Instant.now().toEpochMilli());
+          SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        //SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+//        String  date = df.format(new Date());
+//         contract1.setDeadline(date);
+        c.add(Calendar.DAY_OF_MONTH, 30);//添加时间
+        contract1.setDeadline(df.format(c.getTime()));
           contractService.insertSelective(contract1);
 
 //            return  "redict:/mian";
@@ -108,7 +127,7 @@ public class ContractController {
     @RequestMapping(path = "/tongJiList")
     public  ModelAndView TongjiList(Contract contract){
         ModelAndView model = new ModelAndView("contract_information_management_tongji");
-        model.addObject("contracts",contractService.findAll());
+        model.addObject("contracts",contractService.findAll(request));
         return model;
     }
     @RequestMapping(path = "/statistics")

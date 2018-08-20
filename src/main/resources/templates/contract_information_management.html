@@ -63,11 +63,43 @@
 		<th scope="row" th:text="${contract.id}">1</th>
 		<td th:text="${contract.clientId}"></td>
 		<td th:text="${contract.salesmanId}"></td>
-		<td th:text="${contract.verifyStatus}"></td>
+		<!--<td th:text="${contract.verifyStatus}"></td>-->
+		<th:block th:if="${contract.verifyStatus eq true}">
+
+			<td th:text="已审核"></td>
+		</th:block>
+		<th:block th:if="${contract.verifyStatus eq false}">
+			<td th:text="未审核"></td>
+		</th:block>
+
 		<td th:text="${contract.verifyOpinion}"></td>
 		<td th:text="${contract.details}"></td>
-		<td th:text="${contract.category}"></td>
-			<td th:text="${contract.executeStatus}"></td>
+		<th:block th:if="${contract.category eq 1}">
+			<td th:text="支出类型"></td>
+		</th:block>
+		<th:block th:if="${contract.category eq 0}">
+			<td th:text="收入类型"></td>
+		</th:block>
+		<th:block th:if="${contract.category eq 2}">
+			<td th:text="描述类型"></td>
+		</th:block>
+		<!--<td th:text="${contract.category}"></td>-->
+
+
+		<!--<th:block th:if="${result.success eq true}">-->
+	<!--<tr th:each="item : ${result.data}">-->
+		<!--<td scope="row" th:text="${item.msg}">1</td>-->
+		<!--<td th:text="${item.num}"></td>-->
+
+
+		<!--<td th:text="${contract.executeStatus}"></td>-->
+		<th:block th:if="${contract.executeStatus eq 1}">
+			<td th:text="正在执行"></td>
+		</th:block>
+		<th:block th:if="${contract.executeStatus eq 0}">
+			<td th:text="执行完毕"></td>
+		</th:block>
+
 		<td th:text="${contract.money}"></td>
 		<td th:text="${contract.deadline}"></td>
 		<td th:text="${contract.createDate}"></td>

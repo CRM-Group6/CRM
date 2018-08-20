@@ -3,6 +3,8 @@ package com.crm.mapper;
 import com.crm.entity.Contract;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -59,7 +61,7 @@ public interface ContractMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Contract record);
-    List<Contract> findAll();
+    List<Contract> findAll(Pageable pageable);
     //查询
     int selectByCombination(Contract contract);
     List<Contract> select(Contract contract);
@@ -71,7 +73,7 @@ public interface ContractMapper {
 //    List<Contract> selectByStatusAndType(@Param("executeStatus") int status, @Param("category")int category);
     /**
      * 根据执行状态寻找，返回数量
-     * @param status
+     //* @param status
      * @return
      */
 //    List<Contract> selectByExecuteStatus(int status);
