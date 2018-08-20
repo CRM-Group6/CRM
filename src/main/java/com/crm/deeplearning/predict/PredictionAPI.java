@@ -27,7 +27,13 @@ public class PredictionAPI {
 
     private static final Logger log = LoggerFactory.getLogger(SaleAmountPrediction.class);
 
-    private static int exampleLength = 50; // time series length, assume 22 working days per month
+    private static int exampleLength = 50;
+
+    private static MultiLayerNetwork net;
+
+    private static SaleAmountDataSetIterator iterator;
+
+    private static List<Double> origin;
 
     public static List<Chart> predictionUI() throws IOException , InvalidKerasConfigurationException, UnsupportedKerasConfigurationException {
         String file = new ClassPathResource("SaleAmountData.csv").getFile().getAbsolutePath();
@@ -36,15 +42,14 @@ public class PredictionAPI {
 
         log.info("Create dataSet iterator...");
 
-        SaleAmountDataSetIterator iterator = new SaleAmountDataSetIterator(file,  batchSize, exampleLength, splitRatio);
+        iterator = new SaleAmountDataSetIterator(file,  batchSize, exampleLength, splitRatio);
         log.info("Load test dataset...");
         List<Pair<INDArray, INDArray>> test = iterator.getTestDataSet();
 
-        List<Double> origin = iterator.getOrigin();
+        origin = iterator.getOrigin();
 
         log.info("Load model...");
-        MultiLayerNetwork net =
-                org.deeplearning4j.nn.modelimport.keras.KerasModelImport.importKerasSequentialModelAndWeights
+        net = org.deeplearning4j.nn.modelimport.keras.KerasModelImport.importKerasSequentialModelAndWeights
                         ("src/main/java/com/crm/deeplearning/model/model.json" ,
                                 "src/main/java/com/crm/deeplearning/model/model.h5");
 
@@ -53,7 +58,7 @@ public class PredictionAPI {
         double min = iterator.getMinArray();
         List<Chart> result  = predictPriceOneAhead(net, test, max, min,origin);
         double predict = (net.rnnTimeStep(iterator.getTest50().getKey()).getDouble(exampleLength - 1) +1)* origin.get(origin.size()-exampleLength);
-        System.err.println("最新预测销售额为 = " + changeData(predict) + "亿");
+        System.err.println("最新预测销售额为 = " + changeData(predict));
         log.info("Done...");
         return result;
     }
@@ -101,7 +106,15 @@ public class PredictionAPI {
 
     private static  String changeData(Double data){
         BigDecimal predictResult = new BigDecimal(data);
-        String res = predictResult.toPlainString();
-        return res.substring(0,2);
+        String res1 = predictResult.toPlainString();
+        res1 = res1.substring(0,10);
+        String res2 = res1.substring(0,2);
+        String res = res1 + "￥  ≈ " +res2 + "亿元";
+        return res;
+    }
+
+    public static String newestPredict(){
+        double predict = (net.rnnTimeStep(iterator.getTest50().getKey()).getDouble(exampleLength - 1) +1)* origin.get(origin.size()-exampleLength);
+        return changeData(predict);
     }
 }

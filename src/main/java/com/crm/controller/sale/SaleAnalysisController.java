@@ -75,6 +75,10 @@ public class SaleAnalysisController {
         return ResultVOUtil.success(salesRecords);
     }
 
+    /**
+     * 销售额预测
+     * @return
+     */
     @RequestMapping("/prediction")
     public ModelAndView prediction(){
         ChartVO chartVO = new ChartVO();
@@ -97,6 +101,7 @@ public class SaleAnalysisController {
         chartVO.setAxis(axis);
         ModelAndView model = new ModelAndView("/sale/predictchart");
         model.addObject("result",chartVO);
+        model.addObject("prediction" , PredictionAPI.newestPredict());
         return model;
     }
 
