@@ -35,7 +35,7 @@ public class BillController {
     @RequestMapping("/addforbill")
     public ModelAndView toAdd() {
         //System.out.println("TOADD");
-        return new ModelAndView("/chart/bill_add");
+        return new ModelAndView("/finance/bill_add");
     }
 
     @RequestMapping("/addbill")
