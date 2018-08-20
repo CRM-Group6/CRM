@@ -66,6 +66,7 @@
     -->
     select *
     from bill
+    where customer_id = #{id,jdbcType=BIGINT}
   </select>
 
   <!--根据账单类型查询-->

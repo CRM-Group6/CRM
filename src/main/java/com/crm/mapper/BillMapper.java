@@ -2,6 +2,8 @@ package com.crm.mapper;
 
 import com.crm.entity.Bill;
 import com.crm.entity.Customer;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 import com.crm.entity.finance.BillStatistic;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
@@ -58,11 +60,12 @@ public interface BillMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Bill record);
+
+    List<Bill> selectBillByCustomerID(Customer customer);
     List<Bill> getBillList();
     List<Bill> selectByType(Integer type);
     List<Bill> selectByBalance(Boolean balance);
     List<Bill> selectByTypeAndBalance(Integer type,Boolean balance);
     List<BillStatistic> selectByDate(String year,Integer type);
     List<Bill> selectByDay();
-    List<Bill> selectBillByCustomerID(Customer customer);
 }
