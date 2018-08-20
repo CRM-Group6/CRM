@@ -1,5 +1,6 @@
 package com.crm.service.sale;
 
+import com.crm.VO.SaleShow;
 import com.crm.entity.SalesRecords;
 import com.crm.mapper.sale.SalesRecordsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,28 +22,28 @@ public class SaleAnalysisService {
     /**
      * 业绩统计：按照部门来分
      */
-    public List<SalesRecords> findByDepartment(){
+    public List<SaleShow> findByDepartment(){
         return salesRecordsMapper.findByDepartment();
     }
 
     /**
      * 业绩统计：按人员来分
      */
-    public List<SalesRecords> findByWorker(){
+    public List<SaleShow> findByWorker(){
         return salesRecordsMapper.findByWorker();
     }
 
     /**
      * 机会统计：根据部门来分
      */
-    public List<SalesRecords> findByDepartmentOpportunity(){
+    public List<SaleShow> findByDepartmentOpportunity(){
         return salesRecordsMapper.findByDepartmentOpportunity();
     }
 
     /**
      * 机会统计：根据人员来分
      */
-    public List<SalesRecords> findByWorkerOpportunity(){
+    public List<SaleShow> findByWorkerOpportunity(){
         return salesRecordsMapper.findByWorkerOpportunity();
     }
 

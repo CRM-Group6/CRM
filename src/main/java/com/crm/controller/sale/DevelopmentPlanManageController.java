@@ -6,6 +6,7 @@ import com.crm.service.sale.WorkPlanService;
 import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -22,49 +23,49 @@ public class DevelopmentPlanManageController {
 
     //制定开发计划
     //增加开发计划
-    @PostMapping("/add")
-    public ResultVO create(@RequestBody WorkPlan workPlan ){
+    @RequestMapping("/add")
+    public ModelAndView create(WorkPlan workPlan ){
 //        workPlan.setOpportunityId(id);
-        int res = workPlanService.addWorkPlan(workPlan);
-        if(res == 0) return ResultVOUtil.error();
-        return ResultVOUtil.success(res);
+        workPlanService.addWorkPlan(workPlan);
+        return new ModelAndView("redirect:/sale/developmentPlan/see");
     }
-
+    @RequestMapping("/toAdd")
+    public ModelAndView goAddUI(){
+        return new ModelAndView("/sale/develop_plan_management_add");
+    }
 
     //执行开发计划(修改开发状态)
     //修改开发计划
-    @PutMapping("/change")
-    public ResultVO change(@RequestBody WorkPlan workPlan){
-
+    @RequestMapping("/change")
+    public ModelAndView change( WorkPlan workPlan){
+        System.out.println(workPlan);
         int res = workPlanService.changeWorkPlan(workPlan);
-        if(res == 0) return ResultVOUtil.error();
-        return ResultVOUtil.success(res);
+        return new ModelAndView("redirect:/sale/developmentPlan/see");
     }
 
 
     //删除开发计划
-    @DeleteMapping("/delete/{id}")
-    public ResultVO delete(@PathVariable Long id){
-
-        int res = workPlanService.deleteWorkPlan(id);
-        if(res == 0) return ResultVOUtil.error();
-        return ResultVOUtil.success(res);
+    @RequestMapping("/delete")
+    public ModelAndView delete(@RequestParam("id") Long id){
+        workPlanService.deleteWorkPlan(id);
+        return new ModelAndView("redirect:/sale/developmentPlan/see");
     }
 
     //查看所有开发计划
     @GetMapping("/see")
-    public ResultVO seeAll(){
-
+    public ModelAndView seeAll(){
+        ModelAndView model = new ModelAndView("/sale/develop_plan_manage");
         List<WorkPlan> workPlanList = workPlanService.findAll();
-        if(workPlanList == null) return ResultVOUtil.error();
-        return ResultVOUtil.success(workPlanList);
+        if(workPlanList == null) return model.addObject("result",ResultVOUtil.error());
+        return model.addObject("result",ResultVOUtil.success(workPlanList));
     }
 
     //查看单个开发计划
-    @GetMapping("/see/{id}")
-    public ResultVO seeOne(@PathVariable Long id){
+    @GetMapping("/check")
+    public ModelAndView seeOne(@RequestParam("id") Long id){
+        ModelAndView model = new ModelAndView("/sale/develop_plan_management_edit");
         WorkPlan workPlanList = workPlanService.findOne(id);
-        if(workPlanList == null) return ResultVOUtil.error();
-        return ResultVOUtil.success(workPlanList);
+        if(workPlanList == null) return model.addObject("result",ResultVOUtil.error());
+        return model.addObject("result",ResultVOUtil.success(workPlanList));
     }
 }

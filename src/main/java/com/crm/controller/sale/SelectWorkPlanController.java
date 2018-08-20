@@ -6,6 +6,7 @@ import com.crm.service.sale.WorkPlanService;
 import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 /**
@@ -21,11 +22,11 @@ public class SelectWorkPlanController {
     private WorkPlanService workPlanService;
 
     @GetMapping("/see/{id}")
-    public ResultVO seeWorkPlan(@PathVariable("id") Long id){
-
+    public ModelAndView seeWorkPlan(@PathVariable("id") Long id){
+        ModelAndView model = new ModelAndView("/sale/sales_reminding");
         WorkPlan workPlanList = workPlanService.findOne(id);
-        if(workPlanList == null) return ResultVOUtil.error();
-        return ResultVOUtil.success(workPlanList);
+        if(workPlanList == null) return model.addObject("result",ResultVOUtil.error());
+        return model.addObject("result",ResultVOUtil.success(workPlanList));
     }
 
 }
