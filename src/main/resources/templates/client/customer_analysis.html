@@ -1,60 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta charset="utf-8">
+    <title>客户分析</title>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/highcharts.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-
-    <title>客户分析</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
 
     <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="../css/animate.css" rel="stylesheet">
+
 <body>
-<table width="95%" border="1" align="center" cellpadding="0"
-       cellspacing="0" class="table01" id="table01">
-    <tr>
-        <th class="td_top">类别</th>
-        <th class="td_top">数量</th>
-    </tr>
-    <!--<button id="/analysis/region" th:href="@{/analysis/region}" class="btn btn-info">区域分析</button>-->
-    <!--<button id="/analysis/industry" th:href="@{/analysis/industry}" class="btn btn-info">行业分析</button>-->
-    <!--<button id="/analysis/source" th:href="@{/analysis/source}" class="btn btn-info">来源分析</button>-->
-    <a th:href="@{/analysis/region}" class="btn btn-info">区域分析</a>
-    <a th:href="@{/analysis/industry}" class="btn btn-info">行业分析</a>
-    <a th:href="@{/analysis/source}" class="btn btn-info">来源分析</a>
-    <th:block th:if="${result.success eq true}">
-        <tr th:each="item : ${result.data}">
-                <td scope="row" th:text="${item.msg}">1</td>
-                <td th:text="${item.num}"></td>
-            <!--</tr>-->
+<a th:href="@{/analysis/region}" class="btn btn-info">区域分析</a>
+<a th:href="@{/analysis/industry}" class="btn btn-info">行业分析</a>
+<a th:href="@{/analysis/source}" class="btn btn-info">来源分析</a>
+<br>
 
-            <!--<td><a th:href="@{/delete(id=${customer.id})}">delete</a></td>-->
-            <!--<td>-->
-            <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
-            <!--</td>-->
-        </tr>
-    </th:block>
-
-    <tr >
-        <div class="txt"></div>
-    </tr>
-</table>
-
-
-<script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>
-<script type="text/javascript"  language="javascript"  src="../js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
-
-</script>
-
-
+<th:block th:if="${result.success eq true}">
+    <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+    <div th:include="/chartTemplate/pie_chart :: pieChart(result=${result.data})"></div>
+</th:block>
+<th:block th:if="${result.success ne true}">
+    暂无相关数据
+</th:block>
 </body>
 </html>
