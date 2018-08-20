@@ -82,11 +82,11 @@ public class PredictionAPI {
         Chart actChart = new Chart();
         preChart.setName("预测值");
         preChart.setData(predictionList);
-        preChart.setColor("#FF7F36");
+        preChart.setColor("#FF0000");
         preChart.setLineWidth(1);
         actChart.setName("真实值");
         actChart.setData(actualList);
-        actChart.setColor("#3826FF");
+        actChart.setColor("#000080");
         actChart.setLineWidth(1);
         List<Chart> chartList  = new ArrayList<>() ;
         chartList.add(preChart);

@@ -3,6 +3,8 @@ package com.crm.controller.sale;
 import com.crm.VO.ResultVO;
 import com.crm.VO.chart.Axis;
 import com.crm.VO.chart.ChartVO;
+import com.crm.VO.chart.Title;
+import com.crm.VO.chart.ToolTip;
 import com.crm.deeplearning.predict.PredictionAPI;
 import com.crm.entity.SalesRecords;
 import com.crm.service.sale.SaleAnalysisService;
@@ -85,6 +87,8 @@ public class SaleAnalysisController {
 
         try {
             chartVO.setCharts(PredictionAPI.predictionUI());
+            Title title = new Title("销售额预测");
+            chartVO.setTitle(title);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InvalidKerasConfigurationException e) {
@@ -94,15 +98,20 @@ public class SaleAnalysisController {
         }
         //设置x轴
         Axis axis = new Axis();
+        axis.setTitle(new Title("天数"));
         axis.setCategories(new ArrayList<>());
         for(int i=0;i<chartVO.getCharts().size();i++){
             axis.getCategories().add(String.valueOf(i));
         }
         chartVO.setAxis(axis);
+        Axis yaxis = new Axis();
+        yaxis.setTitle(new Title("销售额"));
+        chartVO.setYAxis(yaxis);
+        ToolTip tooltip=new ToolTip();
+        chartVO.setToolTip(tooltip);
         ModelAndView model = new ModelAndView("/sale/predictchart");
         model.addObject("result",chartVO);
         model.addObject("prediction" , PredictionAPI.newestPredict());
         return model;
     }
-
 }
