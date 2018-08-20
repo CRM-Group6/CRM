@@ -87,6 +87,15 @@ public class BillController {
                 }
             }
         }
+        for (int n = 0; n < 12; n++) {
+            list.add(new Double(0));
+            for (int m = 0; m < billStatistics.size(); m++) {
+                int l = Integer.valueOf(billStatistics.get(m).getMonth()).intValue();
+                if (l == n+1) {
+                    list.set(n, billStatistics.get(m).getMoney());
+                }
+            }
+        }
         Chart chart = new Chart("全年支出情况", list);
         Chart chart1 = new Chart("全年收入情况", list1);
         List<Chart> charts =new ArrayList<>();
@@ -105,7 +114,19 @@ public class BillController {
         model.addObject("result",chartVO);
         return model;
     }
+    @RequestMapping("/bill/settle")
+    public ModelAndView settleBill(Long id,Double ammout){
+        Bill bill=billService.findBill(id);
+        bill.setAmmount(ammout);
+        billService.settleBill(bill);
 
+
+  /*      System.out.println(bill.getAmmount());
+        billService.settleBill(bill);*/
+
+        return new ModelAndView("redirect:/bill/list");
+
+    }
 //    @ResponseBody
 //    @RequestMapping("/billstatistic")
 //    public ChartVO billStatistic(){
