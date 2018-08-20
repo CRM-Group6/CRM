@@ -18,6 +18,7 @@ public class ChartVO {
         yAxis = new Axis();
         yAxis.setTitle(new Title(yTitle));
         this.title = new Title(title);
+        this.setToolTip(new ToolTip());
     }
     public ChartVO(){}
 }
