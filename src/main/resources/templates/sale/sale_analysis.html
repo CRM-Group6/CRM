@@ -36,18 +36,7 @@
     <!--<button id="/analysis/source" th:href="@{/analysis/source}" class="btn btn-info">来源分析</button>-->
     <a th:href="@{/sale/saleAnalysis/__${category}__/department}" class="btn btn-info">部门分析</a>
     <a th:href="@{/sale/saleAnalysis/__${category}__/worker}" class="btn btn-info">人员分析</a>
-    <th:block th:if="${result.success eq true}">
-        <tr th:each="item : ${result.data}">
-                <td scope="row" th:text="${item.id}">1</td>
-                <td th:text="${item.num}"></td>
-            <!--</tr>-->
 
-            <!--<td><a th:href="@{/delete(id=${customer.id})}">delete</a></td>-->
-            <!--<td>-->
-            <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
-            <!--</td>-->
-        </tr>
-    </th:block>
 
     <tr >
         <div class="txt"></div>

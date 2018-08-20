@@ -25,7 +25,7 @@ public class SaleAmountPrediction {
 
     private static final Logger log = LoggerFactory.getLogger(SaleAmountPrediction.class);
 
-    private static int exampleLength = 50; // time series length, assume 22 working days per month
+    private static int exampleLength = 50;
 
     public static void main (String[] args) throws IOException , InvalidKerasConfigurationException, UnsupportedKerasConfigurationException {
         String file = new ClassPathResource("SaleAmountData.csv").getFile().getAbsolutePath();

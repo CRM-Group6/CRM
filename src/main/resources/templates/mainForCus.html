@@ -14,9 +14,41 @@
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
 
+
     <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="../css/animate.css" rel="stylesheet">
 <body>
+<div id="page-wrapper" class="gray-bg dashbard-1">
+    <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i class="fa fa-bars"></i> </a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user"></i> <span class="label label-primary"></span><!--  <@shiro.principal type="net.sppan.base.entity.User" property="nickName"/>   -->
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="glyphicon glyphicon-user" th:text="${account}"></i> 在线
+                                    <span class="pull-right text-muted small"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/sys/login">
+                                <div>
+                                    <i class="fa fa-remove"></i> 注销
+                                    <span class="pull-right text-muted small"></span><!--    <@shiro.principal type="net.sppan.base.entity.User" property="userName"/>   -->
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
 </body>
 </html>
