@@ -1,6 +1,7 @@
-package com.crm.controller.sys.sale;
+package com.crm.controller.sale;
 
 import com.crm.VO.ResultVO;
+import com.crm.VO.SaleShow;
 import com.crm.VO.chart.Axis;
 import com.crm.VO.chart.ChartVO;
 import com.crm.VO.chart.Title;
