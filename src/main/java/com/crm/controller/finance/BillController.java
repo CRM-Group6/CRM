@@ -87,6 +87,15 @@ public class BillController {
                 }
             }
         }
+        for (int i = 0; i < 12; i++) {
+            list.add(new Double(0));
+            for (int j = 0; j < billStatistics.size(); j++) {
+                int z = Integer.valueOf(billStatistics.get(j).getMonth()).intValue();
+                if (z == i+1) {
+                    list.set(i, billStatistics.get(j).getMoney());
+                }
+            }
+        }
         Chart chart = new Chart("全年支出情况", list);
         Chart chart1 = new Chart("全年收入情况", list1);
         List<Chart> charts =new ArrayList<>();
