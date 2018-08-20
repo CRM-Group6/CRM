@@ -61,4 +61,5 @@ public interface AfterServiceProjectMapper {
     int updateByPrimaryKey(AfterServiceProject record);
 
     List<AfterServiceProject> selectAll();
+
 }
