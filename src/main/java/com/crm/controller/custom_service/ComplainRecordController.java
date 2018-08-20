@@ -34,7 +34,7 @@ public class ComplainRecordController {
     @RequestMapping("/findone")
     public ModelAndView find(@RequestParam(name = "id") Long id){
         ModelAndView model =new ModelAndView("customer_complaint");
-        model.addObject("complainRecord",complaintRecordService.findone(id));
+        model.addObject("complainRecords",complaintRecordService.findone(id));
         return model;
     }
     /*修改update*/

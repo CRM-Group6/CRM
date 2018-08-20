@@ -28,7 +28,7 @@ public class AfterServiceProjectController {
     @RequestMapping("/findone")
     public ModelAndView find(Long id){
         ModelAndView model =new ModelAndView("customer_project");
-        model.addObject("id",afterServiceProjectService.findone(id));
+        model.addObject("afterServiceProjects",afterServiceProjectService.findone(id));
         return model;
     }
     /*修改update*/

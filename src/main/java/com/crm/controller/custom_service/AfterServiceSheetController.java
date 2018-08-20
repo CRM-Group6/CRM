@@ -26,7 +26,7 @@ public class AfterServiceSheetController {
     @RequestMapping("/findone")
     public ModelAndView find(Long id){
         ModelAndView model =new ModelAndView("maintain");
-        model.addObject("id",afterServiceSheetService.findone(id));
+        model.addObject("afterServiceSheets",afterServiceSheetService.findone(id));
         return model;
     }
     /*修改update*/

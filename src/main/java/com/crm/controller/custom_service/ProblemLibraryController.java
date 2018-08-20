@@ -31,6 +31,7 @@ public class ProblemLibraryController {
         return null;
     }
 */
+
     /*显示全表*/
     @RequestMapping("/selectall")
     public ModelAndView list(){
@@ -40,9 +41,9 @@ public class ProblemLibraryController {
     }
     /*查询*/
     @RequestMapping("/findone")
-    public ModelAndView find(){
+    public ModelAndView find(Long id){
         ModelAndView model =new ModelAndView("service_support");
-        model.addObject("id",problemLibraryService.findone((long)11));
+        model.addObject("problems",problemLibraryService.findone(id));
         return model;
     }
     /*修改update*/
