@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
-<div th:fragment="chart (ax,data)">
+<div th:fragment="chart (result)">
 <script th:inline="javascript">
     /*<![CDATA[*/
     $(document).ready(function() {
@@ -37,7 +37,7 @@
         };
 
         var tooltip = {
-            valueSuffix: '￥'
+            valuePrefix: '￥'
         }
 
         var legend = {
@@ -63,12 +63,12 @@
         var json = {};
 
         json.title = title;
-        json.subtitle = subtitle;
-        json.xAxis =[[${ax}]];
-        json.yAxis = yAxis;
-        json.tooltip = tooltip;
+        json.subtitle = [[${result.title}]];
+        json.xAxis =[[${result.axis}]];
+        json.yAxis = [[${result.yAxis}]];
+        json.tooltip = [[${result.toolTip}]];
         json.legend = legend;
-        json.series =[[${data}]];
+        json.series =[[${result.charts}]];
         console.log(series);
         console.log(xAxis);
 
