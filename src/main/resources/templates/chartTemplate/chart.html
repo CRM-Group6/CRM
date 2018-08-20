@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
-<div th:fragment="chart (ax,data)">
+<div th:fragment="chart (result)">
 <script th:inline="javascript">
     /*<![CDATA[*/
     $(document).ready(function() {
@@ -32,12 +32,12 @@
             plotLines: [{
                 value: 0,
                 width: 1,
-                color: '#ff291c'
+                color: '#808080'
             }]
         };
 
         var tooltip = {
-            valueSuffix: '￥'
+            valuePrefix: '￥'
         }
 
         var legend = {
@@ -51,28 +51,24 @@
             {
                 name: '收入情况',
                 data: [7.0,6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
-                    26.5, 23.3, 18.3, 13.9, 9.6],
-                color: '#ff291c'
+                    26.5, 23.3, 18.3, 13.9, 9.6]
             },
             {
                 name: '支出情况',
                 data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
-                24.1, 20.1, 14.1, 8.6, 2.5],
-                color: '#48a4ff'
+                24.1, 20.1, 14.1, 8.6, 2.5]
             }
 
         ];
         var json = {};
 
         json.title = title;
-        json.subtitle = subtitle;
-        json.xAxis =[[${ax}]];
-        // json.xAxis = xAxis;
-        json.yAxis = yAxis;
-        json.tooltip = tooltip;
+        json.subtitle = [[${result.title}]];
+        json.xAxis =[[${result.axis}]];
+        json.yAxis = [[${result.yAxis}]];
+        json.tooltip = [[${result.toolTip}]];
         json.legend = legend;
-        json.series =[[${data}]];
-        // json.series = series;
+        json.series =[[${result.charts}]];
         console.log(series);
         console.log(xAxis);
 

@@ -1,9 +1,7 @@
 package com.crm.controller.finance;
 
-import com.crm.VO.chart.Axis;
-import com.crm.VO.chart.ChartVO;
+import com.crm.VO.chart.*;
 import com.crm.entity.Bill;
-import com.crm.VO.chart.Chart;
 import com.crm.entity.finance.BillStatistic;
 import com.crm.service.finance.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +33,7 @@ public class BillController {
     @RequestMapping("/addforbill")
     public ModelAndView toAdd() {
         //System.out.println("TOADD");
-        return new ModelAndView("/chart/bill_add");
+        return new ModelAndView("/finance/bill_add");
     }
 
     @RequestMapping("/addbill")
@@ -87,20 +85,29 @@ public class BillController {
                 }
             }
         }
+        for (int i = 0; i < 12; i++) {
+            list.add(new Double(0));
+            for (int j = 0; j < billStatistics.size(); j++) {
+                int z = Integer.valueOf(billStatistics.get(j).getMonth()).intValue();
+                if (z == i+1) {
+                    list.set(i, billStatistics.get(j).getMoney());
+                }
+            }
+        }
         Chart chart = new Chart("全年支出情况", list);
         Chart chart1 = new Chart("全年收入情况", list1);
         List<Chart> charts =new ArrayList<>();
         charts.add(chart);
         charts.add(chart1);
-        Axis axis=new Axis();
         List<String> date=new ArrayList<String>();
         date.add("一月");date.add("二月");date.add("三月");date.add("四月");date.add("五月");
         date.add("六月");date.add("七月");date.add("八月");date.add("九月");date.add("十月");
         date.add("十一月");date.add("十二月");
-        axis.setCategories(date);
-        ChartVO chartVO =new ChartVO();
-        chartVO.setCharts(charts);
-        chartVO.setAxis(axis);
+        ChartVO chartVO =new ChartVO(charts,"时间","金额",date,"四川铁航财务统计");
+        ToolTip toolTip = new ToolTip();
+        toolTip.setValueSuffix("元");
+        toolTip.setValuePrefix("￥");
+        chartVO.setToolTip(toolTip);
         ModelAndView model = new ModelAndView("/finance/chart");
         model.addObject("result",chartVO);
         return model;

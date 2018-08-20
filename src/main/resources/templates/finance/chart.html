@@ -7,6 +7,6 @@
 </head>
 <body>
 <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
-<div th:include="/chartTemplate/chart :: chart(ax=${result.axis},data=${result.charts})"></div>
+<div th:include="/chartTemplate/chart :: chart(result=${result})"></div>
 </body>
 </html>
