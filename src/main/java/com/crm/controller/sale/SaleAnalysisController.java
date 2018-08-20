@@ -1,14 +1,12 @@
 package com.crm.controller.sale;
 
-import com.crm.VO.ResultVO;
 import com.crm.VO.SaleShow;
-import com.crm.VO.chart.Axis;
-import com.crm.VO.chart.ChartVO;
-import com.crm.VO.chart.Title;
-import com.crm.VO.chart.ToolTip;
+import com.crm.VO.ScatterData;
+import com.crm.VO.chart.*;
 import com.crm.deeplearning.predict.PredictionAPI;
-import com.crm.entity.SalesRecords;
+import com.crm.entity.User;
 import com.crm.service.sale.SaleAnalysisService;
+import com.crm.service.sys.UserService;
 import com.crm.utils.ResultVOUtil;
 import org.deeplearning4j.nn.modelimport.keras.exceptions.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.exceptions.UnsupportedKerasConfigurationException;
@@ -33,19 +31,31 @@ public class SaleAnalysisController {
 
     @Autowired
     private SaleAnalysisService saleAnalysisService;
+    @Autowired
+    private UserService userService;
 
     /**
      * 业绩统计：按照部门来分
      */
     @GetMapping("/performance/department")
     public ModelAndView findByDepartment(){
-        ModelAndView model = new ModelAndView("/sale/sale_analysis");
-        model.addObject("category","performance");
-        model.addObject("name","业绩统计");
-        model.addObject("type","department");
-        List<SaleShow> salesRecords = saleAnalysisService.findByDepartment();
-        if(salesRecords == null) return model.addObject("result",ResultVOUtil.error());
-        return model.addObject("result",ResultVOUtil.success(salesRecords));
+        List<ScatterData> list = new ArrayList<>();
+        List<SaleShow> saleShowList = saleAnalysisService.findByDepartment();
+        ScatterData scatterData1 = new ScatterData("销售部门",saleShowList.get(0).getNum());
+        ScatterData scatterData2 = new ScatterData("财务部门",saleShowList.get(1).getNum());
+        ScatterData scatterData3 = new ScatterData("客服部门",saleShowList.get(2).getNum());
+        ScatterData scatterData4 = new ScatterData("业务部门",saleShowList.get(3).getNum());
+        list.add(scatterData1);list.add(scatterData2);list.add(scatterData3);list.add(scatterData4);
+
+        ChartVO chartVO = new ChartVO();
+        Histogram histogram = new Histogram("部门业绩统计",list);
+        List<Histogram> histogramsList = new ArrayList<>();
+        histogramsList.add(histogram);
+        chartVO.setCharts(histogramsList);
+//        chartVO.setTitle(new Title("直方图"));
+        ModelAndView model = new ModelAndView("/sale/saleAmount_analysis_chart");
+        model.addObject("result",chartVO);
+        return model;
     }
 
     /**
@@ -53,41 +63,71 @@ public class SaleAnalysisController {
      */
     @GetMapping("/performance/worker")
     public ModelAndView findByWorker(){
-        ModelAndView model = new ModelAndView("/sale/sale_analysis");
-        model.addObject("category","performance");
-        model.addObject("name","业绩统计");
-        model.addObject("type","worker");
-        List<SaleShow> salesRecords = saleAnalysisService.findByWorker();
-        if(salesRecords == null) return model.addObject("result",ResultVOUtil.error());
-        return model.addObject("result",ResultVOUtil.success(salesRecords));
+        List<ScatterData> list = new ArrayList<>();
+        List<SaleShow> saleShowList = saleAnalysisService.findByWorker();
+        for(int i = 0 ; i < saleShowList.size() ; i++){
+            int id = saleShowList.get(i).getId();
+            User user = userService.findOne(id);
+            ScatterData scatterData = new ScatterData(user.getUsername(),saleShowList.get(i).getNum());
+            list.add(scatterData);
+        }
+
+        ChartVO chartVO = new ChartVO();
+        Histogram histogram = new Histogram("人员业绩统计",list);
+        List<Histogram> histogramsList = new ArrayList<>();
+        histogramsList.add(histogram);
+        chartVO.setCharts(histogramsList);
+//        chartVO.setTitle(new Title("直方图"));
+        ModelAndView model = new ModelAndView("/sale/saleAmount_analysis_chart");
+        model.addObject("result",chartVO);
+        return model;
     }
 
     /**
      * 机会统计：根据部门来分
      */
-    @GetMapping("/chance/department")
+    @GetMapping("/opportunity/department")
     public ModelAndView findByDepartmentOpportunity(){
-        ModelAndView model = new ModelAndView("/sale/sale_analysis");
-        model.addObject("category","chance");
-        model.addObject("name","机会统计");
-        model.addObject("type","department");
-        List<SaleShow> salesRecords = saleAnalysisService.findByDepartmentOpportunity();
-        if(salesRecords == null) return model.addObject("result",ResultVOUtil.error());
-        return model.addObject("result",ResultVOUtil.success(salesRecords));
+        List<ScatterData> list = new ArrayList<>();
+        List<SaleShow> saleShowList = saleAnalysisService.findByDepartmentOpportunity();
+        ScatterData scatterData1 = new ScatterData("销售部门",saleShowList.get(0).getNum());
+        ScatterData scatterData2 = new ScatterData("财务部门",saleShowList.get(1).getNum());
+        ScatterData scatterData3 = new ScatterData("客服部门",saleShowList.get(2).getNum());
+        ScatterData scatterData4 = new ScatterData("业务部门",saleShowList.get(3).getNum());
+        list.add(scatterData1);list.add(scatterData2);list.add(scatterData3);list.add(scatterData4);
+
+        ChartVO chartVO = new ChartVO();
+        Histogram histogram = new Histogram("部门销售机会统计",list);
+        List<Histogram> histogramsList = new ArrayList<>();
+        histogramsList.add(histogram);
+        chartVO.setCharts(histogramsList);
+        ModelAndView model = new ModelAndView("/sale/opportunity_analysis_chart");
+        model.addObject("result",chartVO);
+        return model;
     }
 
     /**
      * 机会统计：根据人员来分
      */
-    @GetMapping("/chance/worker")
+    @GetMapping("/opportunity/worker")
     public ModelAndView findByWorkerOpportunity(){
-        ModelAndView model = new ModelAndView("/sale/sale_analysis");
-        model.addObject("category","chance");
-        model.addObject("name","机会统计");
-        model.addObject("type","worker");
-        List<SaleShow> salesRecords = saleAnalysisService.findByWorkerOpportunity();
-        if(salesRecords == null) return model.addObject("result",ResultVOUtil.error());
-        return model.addObject("result",ResultVOUtil.success(salesRecords));
+        List<ScatterData> list = new ArrayList<>();
+        List<SaleShow> saleShowList = saleAnalysisService.findByWorkerOpportunity();
+        for(int i = 0 ; i < saleShowList.size() ; i++){
+            int id = saleShowList.get(i).getId();
+            User user1 = userService.findOne(id);
+            ScatterData scatterData = new ScatterData(user1.getUsername(),saleShowList.get(i).getNum());
+            list.add(scatterData);
+        }
+
+        ChartVO chartVO = new ChartVO();
+        Histogram histogram = new Histogram("人员销售机会统计",list);
+        List<Histogram> histogramsList = new ArrayList<>();
+        histogramsList.add(histogram);
+        chartVO.setCharts(histogramsList);
+        ModelAndView model = new ModelAndView("/sale/opportunity_analysis_chart");
+        model.addObject("result",chartVO);
+        return model;
     }
 
     /**
@@ -127,4 +167,24 @@ public class SaleAnalysisController {
         model.addObject("prediction" , PredictionAPI.newestPredict());
         return model;
     }
+
+//    //测试
+//    @GetMapping("/partment/analysis")
+//    public ModelAndView analysis(){
+//        List<ScatterData> list = new ArrayList<>();
+//        for(int i=0;i<=3;i++){
+//            ScatterData scatterData = new ScatterData(String.valueOf(i),i);
+//            list.add(scatterData);
+//        }
+//        ChartVO chartVO = new ChartVO();
+//        Histogram histogram = new Histogram("分析",list);
+//        List<Histogram> histogramsList = new ArrayList<>();
+//        histogramsList.add(histogram);
+//        chartVO.setCharts(histogramsList);
+//        chartVO.setTitle(new Title("直方图"));
+//
+//        ModelAndView model = new ModelAndView("/sale/sale_analysis_chart");
+//        model.addObject("result",chartVO);
+//        return model;
+//    }
 }

@@ -1,7 +1,7 @@
 package com.crm.service.sale;
 
 import com.crm.VO.SaleShow;
-import com.crm.entity.SalesRecords;
+import com.crm.VO.ScatterData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

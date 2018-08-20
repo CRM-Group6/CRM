@@ -1,7 +1,6 @@
 package com.crm.service.sale;
 
 import com.crm.VO.SaleShow;
-import com.crm.entity.SalesRecords;
 import com.crm.mapper.sale.SalesRecordsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -27,4 +27,9 @@ public class UserService {
         return userMapper.selectByAccount(account);
     }
 
+    public User findOne(int id){
+        return userMapper.selectByPrimaryKey(new Long(id));
+
+    }
+
 }
