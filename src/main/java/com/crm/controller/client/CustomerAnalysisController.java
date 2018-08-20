@@ -58,7 +58,7 @@ public class CustomerAnalysisController {
             PieItem pieItem = new PieItem(list.get(i).getMsg(),list.get(i).getNum());
             dataList.add(pieItem);
         }
-        Pie chart = new Pie("区域分析饼图",dataList);
+        Pie chart = new Pie("来源分析饼图",dataList);
         chart.setType("pie");
         List<Pie> charts = new ArrayList<>();
         charts.add(chart);
@@ -78,7 +78,7 @@ public class CustomerAnalysisController {
             PieItem pieItem = new PieItem(list.get(i).getMsg(),list.get(i).getNum());
             dataList.add(pieItem);
         }
-        Pie chart = new Pie("区域分析饼图",dataList);
+        Pie chart = new Pie("行业分析饼图",dataList);
         chart.setType("pie");
         List<Pie> charts = new ArrayList<>();
         charts.add(chart);
