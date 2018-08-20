@@ -3,13 +3,12 @@ package com.crm.VO;
 import lombok.Data;
 
 /**
- * @Author: Ben wu
- * @Description:
- * @Date:Created in 19:16 2018/8/16
- * @Modify By:
- */
+ * Created by JackKo
+ * 2018/8/20 17:35
+ **/
 @Data
 public class SaleShow {
+
     private int id;
     private int num;
 }

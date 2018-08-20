@@ -8,6 +8,13 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
+
+	<!--<groupId>org.deeplearning4j</groupId>-->
+	<!--<artifactId>deeplearning4j-examples-parent</artifactId>-->
+	<!--<version>1.0.0-beta2</version>-->
+	<!--<modelVersion>4.0.0</modelVersion>-->
+	<!--<packaging>pom</packaging>-->
+
 	<name>crm</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -28,6 +35,15 @@
 		<fastjson.version>1.2.47</fastjson.version>
 		<shiro.version>1.4.0</shiro.version>
 		<beetl.version>2.7.28</beetl.version>
+
+		<deeplearning4j.version>1.0.0-beta2</deeplearning4j.version>
+		<slf4j.version>1.7.21</slf4j.version>
+		<opencsv.version>3.9</opencsv.version>
+		<guava.version>26.0-jre</guava.version>
+		<jfreechart.version>1.0.19</jfreechart.version>
+		<spark.version>2.1.0</spark.version>
+		<!--加入DL4j的backend-->
+		<nd4j.backend>nd4j-native-platform</nd4j.backend>
 	</properties>
 
 	<dependencies>
@@ -208,12 +224,105 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 
-		<!--增加深度学习-->
-		<!-- https://mvnrepository.com/artifact/org.deeplearning4j/deeplearning4j-core -->
+        <!--增加深度学习-->
+		<!-- DL4J and ND4J Related Dependencies -->
+		<dependency>
+			<groupId>org.nd4j</groupId>
+			<artifactId>nd4j-api</artifactId>
+			<version>${deeplearning4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.nd4j</groupId>
+			<artifactId>nd4j-native-platform</artifactId>
+			<version>${deeplearning4j.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.nd4j/nd4j-jblas -->
+		<dependency>
+			<groupId>org.nd4j</groupId>
+			<artifactId>nd4j-jblas</artifactId>
+			<version>0.4-rc3.6</version>
+			<scope>test</scope>
+		</dependency>
+
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-modelimport</artifactId>
+            <version>${deeplearning4j.version}</version>
+        </dependency>
+
 		<dependency>
 			<groupId>org.deeplearning4j</groupId>
-			<artifactId>deeplearning4j-modelimport</artifactId>
-			<version>1.0.0-beta</version>
+			<artifactId>deeplearning4j-core</artifactId>
+			<version>${deeplearning4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.deeplearning4j</groupId>
+			<artifactId>rl4j</artifactId>
+			<version>${deeplearning4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.datavec</groupId>
+			<artifactId>datavec-api</artifactId>
+			<version>${deeplearning4j.version}</version>
+		</dependency>
+
+		<!-- Spark Dependencies -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_2.10</artifactId>
+			<version>${spark.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-mllib_2.10</artifactId>
+			<version>${spark.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_2.10</artifactId>
+			<version>${spark.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- OpenCSV Dependency -->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>${opencsv.version}</version>
+		</dependency>
+		<!-- SLF4J Dependency -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<!-- JFreeChart Dependency -->
+		<dependency>
+			<groupId>org.jfree</groupId>
+			<artifactId>jfreechart</artifactId>
+			<version>${jfreechart.version}</version>
+		</dependency>
+		<!-- Guava dependency -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 
 		<!--增加thymeleaf-->
@@ -295,6 +404,34 @@
 						<version>1.3.2</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com.isaac.stock.predict.StockPricePrediction</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

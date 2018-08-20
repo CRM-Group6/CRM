@@ -11,6 +11,10 @@ public class Chart {
     List<Double> data;//曲线数据
     String color = null;
     int lineWidth=2;
+
+    public Chart() {
+    }
+
     public Chart(String name, List<Double> data) {
         this.name = name;
         this.data = data;

@@ -1,16 +1,10 @@
-package com.crm.controller.sys.sale;
+package com.crm.controller.sale;
 
-import com.crm.VO.ResultVO;
-import com.crm.entity.Contact;
-import com.crm.entity.ExchangeInfo;
 import com.crm.entity.Opportunity;
 import com.crm.service.sale.OpportunityService;
-import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 /**
  * 销售机会管理

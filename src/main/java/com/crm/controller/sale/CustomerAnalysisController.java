@@ -1,4 +1,4 @@
-package com.crm.controller.sys.sale;
+package com.crm.controller.sale;
 
 import com.crm.VO.ResultVO;
 import com.crm.entity.CustomerStatistics;
@@ -19,7 +19,7 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("/sale/customerAnalysis")
-public class CustomerSaleAnalysisController {
+public class CustomerAnalysisController {
 
     @Autowired
     private CustomerAnalysisService customerAnalysisService;

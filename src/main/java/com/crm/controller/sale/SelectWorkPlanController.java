@@ -1,4 +1,4 @@
-package com.crm.controller.sys.sale;
+package com.crm.controller.sale;
 
 import com.crm.VO.ResultVO;
 import com.crm.entity.WorkPlan;
