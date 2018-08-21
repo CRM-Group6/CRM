@@ -1,7 +1,7 @@
 package com.crm.service.client;
 
-import com.crm.VO.ShowRegionSum;
-import com.crm.VO.client.ShowSum;
+import com.crm.VO.client.ShowRegionSum;
+import com.crm.VO.ShowSum;
 
 import java.util.List;
 
