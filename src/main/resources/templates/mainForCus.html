@@ -9,25 +9,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="../custom_main/bootstrap.min.css">
 
     <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="../custom_main/font-awesome.min.css">
 
     <!-- ElegantFonts CSS -->
-    <link rel="stylesheet" href="css/elegant-fonts.css">
+    <link rel="stylesheet" href="../custom_main/elegant-fonts.css">
 
     <!-- themify-icons CSS -->
-    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="../custom_main/themify-icons.css">
 
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="../custom_main/swiper.min.css">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../custom_main/style.css">
     <style>
         .hero-content{
-            background: url(images/123.jpg) no-repeat center;
+            background: url(../img/123.jpg) no-repeat center;
         }
         #menubox ul li{width:100px;}
     </style>
@@ -80,12 +80,12 @@
                         <nav class="site-navigation flex justify-content-end align-items-center" id="menubox">
                             <ul class="flex flex-column flex-lg-row justify-content-lg-end align-content-center">
                                 <li class="current-menu-item"><a href="index.html">Home</a></li>
-                                <li><a href="#">商旅咨询</a></li>
-                                <li><a href="#">特价信息</a></li>
-                                <li><a href="#">通告</a></li>
-                                <li><a href="#">订单</a></li>
-                                <li><a href="#">账单</a></li>
-                                <li><a href="#">客服信息</a></li>
+                                <li><a th:href="@{/client/travel}">商旅咨询</a></li>
+                                <li><a th:href="@{/client/bargain}">特价信息</a></li>
+                                <li><a th:href="@{/client/broadcast}">通告</a></li>
+                                <li><a th:href="@{/client/orderList}">订单</a></li>
+                                <li><a th:href="@{/client/bill}">账单</a></li>
+                                <li><a th:href="@{/client/serviceStaff}">客服信息</a></li>
                             </ul>
 
                             <div class="hamburger-menu d-lg-none">
@@ -112,11 +112,11 @@
                     <div class="hero-content-wrap flex flex-column justify-content-center align-items-start">
                         <header class="entry-header">
                             <h4>Enjoy your journey,we are company with you</h4>
-                            <h1>Best Service<br/>Most </h1>
+                            <h1>Best Service<br/>Most Superiod & Comfortable Flight </h1>
                         </header><!-- .entry-header -->
 
                         <div class="entry-content">
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+                            <p>四川铁航航空运输有限公司是西南最大的综合商旅服务商，服务范围涉及国内国际机票，酒店预订，会务服务，租车预订，旅游度假等领域，凭借着专业的服务素质、完善的营销网络、领先的技术支持，四川铁航赢得了广大客户的高度赞誉。</p>
                         </div><!-- .entry-content -->
 
                         <footer class="entry-footer read-more">
@@ -129,11 +129,11 @@
     </div><!-- .hero-content-hero-content-overlay -->
 </div><!-- .hero-content -->
     <!-- 全局js -->
-<script type='text/javascript' src='js/jquery.js'></script>
-<script type='text/javascript' src='js/swiper.min.js'></script>
-<script type='text/javascript' src='js/masonry.pkgd.min.js'></script>
-<script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
-<script type='text/javascript' src='js/custom.js'></script>
+<script type='text/javascript' src='../custom_main/jquery.js'></script>
+<script type='text/javascript' src='../custom_main/swiper.min.js'></script>
+<script type='text/javascript' src='../custom_main/masonry.pkgd.min.js'></script>
+<script type='text/javascript' src='../custom_main/jquery.collapsible.min.js'></script>
+<script type='text/javascript' src='../custom_main/custom.js'></script>
 
 </body>
 </html>
