@@ -25,7 +25,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/analysis")
-public class CustomerAnalysisController {
+public class ClientCustomerAnalysisController {
     @Autowired
     private CustomerAnalysis customerAnalysis;
     //区域
