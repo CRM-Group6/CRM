@@ -1,16 +1,21 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>销售预测</title>
-    <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/highcharts.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <div class="load-container">
+        <div class="loader"></div>
+        <p>加载中请稍后...</p>
+    </div>
 </head>
 
 <body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/highcharts.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <div id="container" style=" margin: auto">
     <div th:include="/chartTemplate/chart :: chart(result=${result})"></div>
 </div>
-<div>
+<div style="text-align: center; font-size:35px">
+
     <span>总数据量:4038</span><br>
     <span>训练集:3634</span><br>
     <span>测试集:353</span><br>
@@ -19,3 +24,4 @@
 
 </body>
 </html>
+
