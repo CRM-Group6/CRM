@@ -17,11 +17,16 @@
     <link href="../css/animate.css" rel="stylesheet">
 
 <body>
-<a th:href="@{/analysis/region}" class="btn btn-info">区域分析</a>
-<a th:href="@{/analysis/industry}" class="btn btn-info">行业分析</a>
-<a th:href="@{/analysis/source}" class="btn btn-info">来源分析</a>
 <br>
+<div>
+    <h3>分析方式</h3>
+    <br>
+    <a th:href="@{/analysis/region}" class="btn btn-info">区域分析</a>
+    <a th:href="@{/analysis/industry}" class="btn btn-info">行业分析</a>
+    <a th:href="@{/analysis/source}" class="btn btn-info">来源分析</a>
 
+</div>
+<br>
 <th:block th:if="${result.success eq true}">
     <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
     <div th:include="/chartTemplate/pie_chart :: pieChart(result=${result.data})"></div>
