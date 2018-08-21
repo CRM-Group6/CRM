@@ -60,6 +60,8 @@ public interface BillMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Bill record);
+
+    List<Bill> selectBillByCustomerID(Customer customer);
     List<Bill> getBillList();
     List<Bill> selectByType(Integer type);
     List<Bill> selectByBalance(Boolean balance);

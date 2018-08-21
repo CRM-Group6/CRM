@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>客户分析</title>
+    <title>合同分析</title>
     <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery.min.js"></script>
@@ -17,9 +17,9 @@
     <link href="../css/animate.css" rel="stylesheet">
 
 <body>
-<a th:href="@{/analysis/region}" class="btn btn-info">区域分析</a>
-<a th:href="@{/analysis/industry}" class="btn btn-info">行业分析</a>
-<a th:href="@{/analysis/source}" class="btn btn-info">来源分析</a>
+<a th:href="@{/contract/category}" class="btn btn-info">类型分析</a>
+<a th:href="@{/contract/execute}" class="btn btn-info">运行状态分析</a>
+<!--<a th:href="@{/analysis/source}" class="btn btn-info">来源分析</a>-->
 <br>
 
 <th:block th:if="${result.success eq true}">
