@@ -24,52 +24,47 @@
 <br/><br/>
 <div class="with:80%">
     <form class="form-horizontal"   th:action="@{/sale/developmentPlan/change}"  method="post" th:object="${result.data}">
+        <input type="hidden" id="id" name="id" th:value="*{id}" />
         <div class="form-group">
-            <label for="id" class="col-sm-2 control-label">id</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" name="id"  id="id" placeholder="id" th:value="*{id}" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="opportunityId" class="col-sm-2 control-label" >opportunityId</label>
+            <label for="opportunityId" class="col-sm-2 control-label" >机会编号</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" name="opportunityId" id="opportunityId" placeholder="opportunityId" th:value="*{opportunityId}"/>
             </div>
         </div>
         <div class="form-group">
-            <label for="executorId" class="col-sm-2 control-label">executorId</label>
+            <label for="executorId" class="col-sm-2 control-label">执行人编号</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" name="executorId"  id="executorId" placeholder="executorId" th:value="*{executorId}"/>
             </div>
         </div>
         <div class="form-group">
-            <label for="startTime" class="col-sm-2 control-label">startTime</label>
+            <label for="startTime" class="col-sm-2 control-label">开始时间</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="startTime"  id="startTime" placeholder="startTime" th:attr="value=*{#dates.format(startTime, 'yyyy-MM-dd')}"/>
+                <input type="date" class="form-control" name="startTime"  id="startTime" placeholder="startTime" th:attr="value=*{#dates.format(startTime, 'yyyy-MM-dd')}"/>
             </div>
         </div>
         <div class="form-group">
-            <label for="endTime" class="col-sm-2 control-label">endTime</label>
+            <label for="endTime" class="col-sm-2 control-label">结束时间</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="endTime"  id="endTime" placeholder="endTime" th:attr="value=*{#dates.format(endTime, 'yyyy-MM-dd')}"/>
+                <input type="date" class="form-control" name="endTime"  id="endTime" placeholder="endTime" th:attr="value=*{#dates.format(endTime, 'yyyy-MM-dd')}"/>
             </div>
         </div>
         <div class="form-group">
-            <label for="outline" class="col-sm-2 control-label">outline</label>
+            <label for="outline" class="col-sm-2 control-label">概要</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="outline"  id="outline" placeholder="outline" th:value="*{outline}"/>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="detailedInfo" class="col-sm-2 control-label">detailedInfo</label>
+            <label for="detailedInfo" class="col-sm-2 control-label">详细信息</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="detailedInfo"  id="detailedInfo" placeholder="detailedInfo" th:value="*{detailedInfo}"/>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="status" class="col-sm-2 control-label">status</label>
+            <label for="status" class="col-sm-2 control-label">计划状态</label>
             <div class="col-sm-10">
                 <input type="radio" class="form-control" name="status"  id="status" placeholder="status" th:attr="value=*{status}"/>
             </div>
