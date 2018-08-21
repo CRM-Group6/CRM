@@ -53,7 +53,7 @@
         <td th:text="${contact.vocation}"></td>
         <td th:text="${contact.category}"></td>
 
-        <td><a th:href="@{/sale/contact/toedit(id=${contact.id})}">edit</a></td>
+        <td><a class="btn btn-default" th:href="@{/sale/contact/toedit(id=${contact.id})}">edit</a></td>
         <td><a class="btn btn-default" onclick="todelete(this);"  th:value="${contact.id}">delete</a></td>
 
         <!--<td>-->
