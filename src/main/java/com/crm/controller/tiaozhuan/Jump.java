@@ -1,4 +1,4 @@
-package com.crm.controller.client;
+package com.crm.controller.tiaozhuan;
 
 import com.crm.VO.ResultVO;
 import com.crm.entity.Customer;
@@ -23,5 +23,11 @@ public class Jump {
     @RequestMapping("/main")
     public ModelAndView tomain(){
         return new ModelAndView("/mainForCus");
+    }
+
+    @RequestMapping("/cusindex")
+    public ModelAndView cusindex(){
+
+        return new ModelAndView("/cus_index");
     }
 }
