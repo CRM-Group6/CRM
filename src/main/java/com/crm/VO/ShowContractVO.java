@@ -1,5 +1,7 @@
 package com.crm.VO;
 
+import lombok.Data;
+
 /**
  * @author Quinn
  * @Title: ShowVO
@@ -7,5 +9,12 @@ package com.crm.VO;
  * @Description: TODO
  * @date 2018/8/2110:08
  */
-public class ShowVO {
+@Data
+public class ShowContractVO {
+    private int msg;
+    private Long num;
+    public ShowContractVO(int msg,Long num){
+        this.msg = msg;
+        this.num = num;
+    }
 }

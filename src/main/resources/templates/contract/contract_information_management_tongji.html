@@ -5,11 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <title>合同统计</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/highcharts.js"></script>
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
@@ -57,15 +59,46 @@
         <th scope="row" th:text="${contract.id}">1</th>
         <td th:text="${contract.clientId}"></td>
         <td th:text="${contract.salesmanId}"></td>
-        <td th:text="${contract.verifyStatus}"></td>
+        <th:block th:if="${contract.verifyStatus eq true}">
+
+            <td th:text="已审核"></td>
+        </th:block>
+        <th:block th:if="${contract.verifyStatus eq false}">
+            <td th:text="未审核"></td>
+        </th:block>
+
         <td th:text="${contract.verifyOpinion}"></td>
         <td th:text="${contract.details}"></td>
-        <td th:text="${contract.category}"></td>
-        <td th:text="${contract.executeStatus}"></td>
+        <th:block th:if="${contract.category eq 1}">
+            <td th:text="支出类型"></td>
+        </th:block>
+        <th:block th:if="${contract.category eq 0}">
+            <td th:text="收入类型"></td>
+        </th:block>
+        <th:block th:if="${contract.category eq 2}">
+            <td th:text="描述类型"></td>
+        </th:block>
+        <!--<td th:text="${contract.category}"></td>-->
+
+
+        <!--<th:block th:if="${result.success eq true}">-->
+        <!--<tr th:each="item : ${result.data}">-->
+        <!--<td scope="row" th:text="${item.msg}">1</td>-->
+        <!--<td th:text="${item.num}"></td>-->
+
+
+        <!--<td th:text="${contract.executeStatus}"></td>-->
+        <th:block th:if="${contract.executeStatus eq 1}">
+            <td th:text="正在执行"></td>
+        </th:block>
+        <th:block th:if="${contract.executeStatus eq 0}">
+            <td th:text="执行完毕"></td>
+        </th:block>
+
         <td th:text="${contract.money}"></td>
         <td th:text="${contract.deadline}"></td>
         <td th:text="${contract.createDate}"></td>
-        <td><a th:href="@{/contract/update(id=${contract.id})}">审核通过</a></td>
+        <td><a class="btn btn-default" onclick="toshenhe(this);"  th:value="${contract.id}">审核通过</a></td>
         <td><a class="btn btn-default" onclick="todelete(this);"  th:value="${contract.id}">delete</a></td>
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
@@ -74,17 +107,25 @@
     <tr >
         <div class="txt"></div>
     </tr>
-
+    <!--th:href="@{/contract/update(id=${contract.id})}"-->
 </table>
 <a href="/contract/toInsert" th:href="@{/contract/toInsert}" class="btn btn-info">创建合同</a>
 <a href="/contract/list" th:href="@{/contract/list}" class="btn btn-info">管理页面</a>
+<a th:href="@{/contract/category}" class="btn btn-info">合同类型分析</a>
+<a th:href="@{/contract/execute}" class="btn btn-info">运行状态分析</a>
 
 
+<!--<th:block th:if="${result.success eq true}">-->
+    <!--<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>-->
+    <!--<div th:include="/chartTemplate/pie_chart :: pieChart(result=${result.data})"></div>-->
+<!--</th:block>-->
+<!--<th:block th:if="${result.success ne true}">-->
+    <!--暂无相关数据-->
+<!--</th:block>-->
 
 
-
-<script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>
-<script type="text/javascript"  language="javascript"  src="../js/bootstrap.min.js"></script>
+<!--<script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>-->
+<!--<script type="text/javascript"  language="javascript"  src="../js/bootstrap.min.js"></script>-->
 
 <!--<script type="text/javascript">-->
     <!--$('input[type=radio][name=category]').change(function() {-->
@@ -113,6 +154,31 @@
                     },
                     error:function (jqXHR) {
                         alert("删除失败");
+
+                    }
+                });
+            });
+        }
+        else  {
+        }
+    }
+</script>
+<script type="text/javascript">
+    function toshenhe(sender) {
+        var mymessage=confirm("是否确认通过审核？")         ;    //弹出一个窗口，询问客户信息，然后返回boolean值
+        if(mymessage==true)
+        {
+            $(document).ready(function(){
+                $.ajax({
+                    type:"GET",
+                    url:"/contract/update?id="+$(sender).attr("value"),
+                    async:false,
+                    success:function (data) {
+                        alert("更新成功");
+                        location.reload();
+                    },
+                    error:function (jqXHR) {
+                        alert("更新失败");
 
                     }
                 });

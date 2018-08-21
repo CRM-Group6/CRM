@@ -69,5 +69,4 @@ public interface BillMapper {
     List<BillStatistic> selectByDate(String year,Integer type);
     List<Bill> selectByDay();
 
-    List<Bill> selectBillByCustomerID(Customer customer);
 }

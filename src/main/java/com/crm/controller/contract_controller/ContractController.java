@@ -1,17 +1,13 @@
 package com.crm.controller.contract_controller;
 
-import com.crm.VO.ResultVO;
-import com.crm.VO.chart.Chart;
-import com.crm.VO.chart.ChartVO;
-import com.crm.VO.chart.ToolTip;
+import com.crm.VO.ShowContractVO;
+import com.crm.VO.chart.*;
 import com.crm.entity.Contract;
-import com.crm.entity.ContractStatistic;
-import com.crm.entity.Customer;
-import com.crm.entity.finance.BillStatistic;
 import com.crm.service.client.CustomerService;
 import com.crm.service.contract_service.ContractService;
 import com.crm.service.contract_service.ContractStatisticsService;
 import com.crm.utils.KeyUtils;
+import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.List;
 
 /**
@@ -46,7 +40,7 @@ public class ContractController {
     //组合查询&查询
     public ModelAndView list(Contract contract){
 
-        ModelAndView model = new ModelAndView("contract_information_management");
+        ModelAndView model = new ModelAndView("/contract/contract_information_management");
         model.addObject("contracts",contractService.findAll(request));
         return model;
 
@@ -64,14 +58,14 @@ public class ContractController {
         if (id == null){
             return new ModelAndView("redirect:/contract/list");
         }
-        ModelAndView model = new ModelAndView("contract_information_management");
+        ModelAndView model = new ModelAndView("/contract/contract_information_management");
         model.addObject("contracts",contractService.findById(id));
         return model;
     }
     @RequestMapping("/toInsert")
     public ModelAndView toInsert(){
         //System.out.println("TOADD");
-        return  new ModelAndView("/contract_information_management_add");
+        return  new ModelAndView("/contract/contract_information_management_add");
     }
 
     //插入合同
@@ -132,63 +126,85 @@ public class ContractController {
 
     @RequestMapping(path = "/tongJiList")
     public  ModelAndView TongjiList(Contract contract){
-        ModelAndView model = new ModelAndView("contract_information_management_tongji");
+        ModelAndView model = new ModelAndView("/contract/contract_information_management_tongji");
         model.addObject("contracts",contractService.findAll(request));
         return model;
     }
     @RequestMapping(path = "/statistics")
     //统计合同数量
     public  ModelAndView Tonji(Contract  contract1){
-        ModelAndView model = new ModelAndView("contract_information_management_tongji");
+        ModelAndView model = new ModelAndView("/contract/contract_information_management_tongji");
 
         model.addObject("contracts",contractService.statistics(contract1));
+
         model.addObject("number",service.statisticsByCombination(contract1));
         return model;
     }
-    @RequestMapping("/contractstatisticpage")
-    public ModelAndView contractStatistic(){
-        String year = "2018";
-        List<ContractStatistic> contracts = contractService.selectByDate(year, 1);
-        List<ContractStatistic> contracts1=contractService.selectByDate(year,0);
-        List<Double> list1=new ArrayList<Double>();
-        List<Double> list = new ArrayList<Double>();
-        for (int n = 0; n < 12; n++) {
-            list1.add(new Double(0));
-            for (int m = 0; m < contracts.size(); m++) {
-                int l = Integer.valueOf(contracts.get(m).getMonth()).intValue();
-                if (l == n+1) {
-                    list1.set(n, contracts1.get(m).getMoney());
-                }
-            }
-        }
-        for (int i = 0; i < 12; i++) {
-            list.add(new Double(0));
-            for (int j = 0; j < contracts.size(); j++) {
-                int z = Integer.valueOf(contracts.get(j).getMonth()).intValue();
-                if (z == i+1) {
-                    list.set(i, contracts.get(j).getMoney());
-                }
-            }
-        }
-        Chart chart = new Chart("全年支出情况", list);
-        Chart chart1 = new Chart("全年收入情况", list1);
-        List<Chart> charts =new ArrayList<>();
-        charts.add(chart);
-        charts.add(chart1);
-        List<String> date=new ArrayList<String>();
-        date.add("一月");date.add("二月");date.add("三月");date.add("四月");date.add("五月");
-        date.add("六月");date.add("七月");date.add("八月");date.add("九月");date.add("十月");
-        date.add("十一月");date.add("十二月");
-        ChartVO chartVO =new ChartVO(charts,"时间","金额",date,"四川铁航财务统计");
-        ToolTip toolTip = new ToolTip();
-        toolTip.setValueSuffix("元");
-        toolTip.setValuePrefix("￥");
-        chartVO.setToolTip(toolTip);
-        ModelAndView model = new ModelAndView("/contract/chart");
-        model.addObject("result",chartVO);
-        return model;
-    }
 
+    //合同类型
+    @GetMapping(value = "/category")
+    private ModelAndView contractRegionAnalysis(){
+        List<ShowContractVO> list = contractService.contractRegionAnalysis();
+        ModelAndView model= new ModelAndView("/contract/contract_information_management_tongji");
+        List<PieItem> dataList = new ArrayList<>();
+        for (int i=0;i<list.size();i++){
+                if(list.get(i).getMsg()==0){
+                    PieItem pieItem = new PieItem("收入类型",list.get(i).getNum());
+                    dataList.add(pieItem);
+                }
+                else if(list.get(i).getMsg()==1)
+                {
+                    PieItem pieItem = new PieItem("支出类型",list.get(i).getNum());
+                    dataList.add(pieItem);
+                }
+                else
+                {
+                    PieItem pieItem = new PieItem("描述类型",list.get(i).getNum());
+                    dataList.add(pieItem);
+                }
+//            PieItem pieItem = new PieItem(list.get(i).toString(),list.get(i).getNum());
+
+            }
+
+        Pie chart = new Pie("合同类型分析饼图",dataList);
+        chart.setType("pie");
+        List<Pie> charts = new ArrayList<>();
+        charts.add(chart);
+        ChartVO chartVO = new ChartVO(charts,null,null,null,"合同类型统计分析");
+        if(list!=null){
+            return model.addObject("result", ResultVOUtil.success(chartVO));
+        }else
+            return model.addObject("result",ResultVOUtil.error());
+    }
+    //来源
+    @GetMapping(value = "/execute")
+    private ModelAndView customerSourceAnalysis(){
+        List<ShowContractVO> list = contractService.contractRegionAnalysis();
+        ModelAndView model= new ModelAndView("/contract/contract_analysis");
+        List<PieItem> dataList = new ArrayList<>();
+        for (int i=0;i<list.size();i++){
+            if(list.get(i).getMsg()==1){
+                PieItem pieItem = new PieItem("正在执行",list.get(i).getNum());
+                dataList.add(pieItem);
+            }
+            else
+            {
+                PieItem pieItem = new PieItem("执行完毕",list.get(i).getNum());
+                dataList.add(pieItem);
+            }
+//            PieItem pieItem = new PieItem(list.get(i).toString(),list.get(i).getNum());
+
+        }
+        Pie chart = new Pie("运行状态分析饼图",dataList);
+        chart.setType("pie");
+        List<Pie> charts = new ArrayList<>();
+        charts.add(chart);
+        ChartVO chartVO = new ChartVO(charts,null,null,null,"合同执行状态统计分析");
+        if(list!=null){
+            return model.addObject("result",ResultVOUtil.success(chartVO));
+        }else
+            return model.addObject("result",ResultVOUtil.error());
+    }
 
 
 

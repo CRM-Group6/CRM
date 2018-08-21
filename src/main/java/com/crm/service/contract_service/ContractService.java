@@ -1,5 +1,7 @@
 package com.crm.service.contract_service;
 
+import com.crm.VO.ShowContractVO;
+import com.crm.VO.ShowSum;
 import com.crm.entity.Contract;
 import com.crm.entity.ContractStatistic;
 import com.crm.mapper.ContractMapper;
@@ -115,6 +117,22 @@ public class ContractService {
         return contractMapper.selectByDate(year, type);
     }
 
+
+
+
+    public List<ShowContractVO> contractRegionAnalysis() {
+        //寻找所有区域
+        List<ShowContractVO> list = contractMapper.selectByValue("execute_status");
+        int index=-1;
+        for (int i=0;i<list.size();i++) {
+            if (list.get(i)==null){
+                index = i;
+            }
+        }
+        if(index!=-1)
+            list.remove(index);
+        return list;
+    }
 
 
 }
