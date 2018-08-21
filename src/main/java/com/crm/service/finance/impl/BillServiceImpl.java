@@ -40,8 +40,8 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public List<Bill> getBillList() {
-        return billMapper.getBillList();
+    public List<Bill> getAllBill() {
+        return billMapper.getAllBill();
     }
 
     @Override

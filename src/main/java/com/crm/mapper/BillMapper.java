@@ -63,6 +63,7 @@ public interface BillMapper {
 
     List<Bill> selectBillByCustomerID(Customer customer);
     List<Bill> getBillList();
+    List<Bill> getAllBill();
     List<Bill> selectByType(Integer type);
     List<Bill> selectByBalance(Boolean balance);
     List<Bill> selectByTypeAndBalance(Integer type,Boolean balance);

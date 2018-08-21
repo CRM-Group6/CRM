@@ -20,7 +20,7 @@ public class BillController {
     @RequestMapping("/bill/list")
     public ModelAndView list() {
         ModelAndView model = new ModelAndView("finance/bill_management");
-        model.addObject("billList", billService.getBillList());
+        model.addObject("billList", billService.getAllBill());
         return model;
     }
     @RequestMapping("/bill/remind")

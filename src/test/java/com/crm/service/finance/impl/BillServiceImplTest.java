@@ -75,7 +75,7 @@ public class BillServiceImplTest {
 
     @Test
     public void getBillList() {
-        List<Bill> list =billService.getBillList();
+        List<Bill> list =billService.getAllBill();
         list.size();
     }
 
