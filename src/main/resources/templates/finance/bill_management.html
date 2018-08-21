@@ -18,12 +18,14 @@
     <link href="../../css/animate.css" rel="stylesheet">
 <body>
 
-<form   th:action="@{/findpaybill}">
-    <a type="submit" name="type" th:value="1" class="btn btn-default">应付管理</a>
+
+<form   th:action="@{/findpaybill}" style="top:0px; left:0px;">
+    <button type="submit" name="type" th:value="1"   class="btn btn-default">应付管理</button>
 </form>
-<form   th:action="@{/findpaybill}">
-    <a type="submit" name="type" th:value="0" class="btn btn-default">应收管理</a>
+<form   th:action="@{/findpaybill}" style="top:0px; left:200px;">
+    <button type="submit" name="type" th:value="0" class="btn btn-default">应收管理</button>
 </form>
+
 <table width="95%" border="0" align="center" cellpadding="0"
        cellspacing="0" class="table01 table" id="table01">
     <tr>
@@ -45,10 +47,10 @@
         <td th:text="${bill.balance}"></td>
         <td th:text="${#calendars.format(bill.endDate,'yyyy-MM-dd')}"></td>
         <td th:text="${#calendars.format(bill.actualEndDate,'yyyy-MM-dd')}"></td>
-        <td><a class="btn btn-default" th:href="@{/billupdatepage(id=${bill.id})}">编辑</a></td>
-        <td><a class="btn btn-default" th:href="@{/billdelete(id=${bill.id})}">删除</a></td>
+        <td><a class="btn btn-info" th:href="@{/billupdatepage(id=${bill.id})}">编辑</a></td>
+        <td><a class="btn btn-info" th:href="@{/billdelete(id=${bill.id})}">删除</a></td>
        <!-- <td><a th:href="@{/billsettlepage(id=${bill.id})}">结算</a></td>-->
-        <td><a class="btn btn-default" onclick="settlebill(this);" th:value="${bill.id}" th:value1="${bill.ammount}" >结算</a></td>
+        <td><a class="btn btn-info" onclick="settlebill(this);" th:value="${bill.id}" th:value1="${bill.ammount}" >结算</a></td>
 
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->

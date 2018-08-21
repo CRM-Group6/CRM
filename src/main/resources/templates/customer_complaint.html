@@ -71,8 +71,8 @@
         <td th:text="${complainRecord.executeDate}"></td>
         <td th:text="${complainRecord.executed}"></td>
         <td th:text="${complainRecord.customerId}"></td>
-        <td><a th:href="@{/complain/toedit(id=${complainRecord.id})}" class="btn btn-default">回复</a></td>
-        <td><a class="btn btn-default" onclick="todelete(this);"  th:value="${complainRecord.id}">delete</a></td>
+        <td><a th:href="@{/complain/toedit(id=${complainRecord.id})}" class="btn btn-info">回复</a></td>
+        <td><a class="btn btn-info" onclick="todelete(this);"  th:value="${complainRecord.id}">delete</a></td>
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
         <!--</td>-->

@@ -58,8 +58,8 @@
         <td th:text="${afterServiceProject.content}"></td>
         <th th:text="${afterServiceProject.feeScale}"></th>
 
-        <td><a th:href="@{/afterserviceproject/toedit(id=${afterServiceProject.id})}" class="btn btn-default">编辑</a></td>
-        <td><a class="btn btn-default" onclick="todelete(this);"  th:value="${afterServiceProject.id}">delete</a></td>
+        <td><a th:href="@{/afterserviceproject/toedit(id=${afterServiceProject.id})}" class="btn btn-info">编辑</a></td>
+        <td><a class="btn btn-info" onclick="todelete(this);"  th:value="${afterServiceProject.id}">delete</a></td>
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
         <!--</td>-->

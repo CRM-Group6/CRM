@@ -9,6 +9,7 @@ import com.crm.service.finance.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -59,6 +60,8 @@ public class BillServiceImpl implements BillService {
         Bill oldbill=billMapper.selectByPrimaryKey(bill.getId());
         if(oldbill.getAmmount().equals(bill.getAmmount())){
             bill.setBalance(BillStatusEnum.CLOSED.getCode());
+            Date date=new Date();
+            bill.setActualEndDate(date);// new Date()为获取当前系统时间
             return billMapper.updateByPrimaryKey(bill);
         }
        return 0;

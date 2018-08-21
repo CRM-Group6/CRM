@@ -4,6 +4,7 @@ package com.crm.service.custom_service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.crm.entity.ComplainRecord;
 import com.crm.entity.ProblemLibrary;
+import com.crm.enums.customer_services.ExecutedStatus;
 import com.crm.mapper.ComplainRecordMapper;
 
 import com.crm.utils.Md5Utils;
@@ -27,5 +28,13 @@ public class ComplaintRecordService {
 
     public List<ComplainRecord> selectAll(){
         return complainRecordMapper.selectAll();
+    }
+
+    public List<ComplainRecord> selectNotArrange(){ return complainRecordMapper.selectNotArrange();}
+    public int arrangeStaff(Long id,Long staffId){
+        ComplainRecord complainRecord=complainRecordMapper.selectByPrimaryKey(id);
+        complainRecord.setExecutorId(staffId);
+        complainRecord.setExecuted(ExecutedStatus.EXCUTED.getCode());
+        return complainRecordMapper.updateByPrimaryKey(complainRecord);
     }
 }

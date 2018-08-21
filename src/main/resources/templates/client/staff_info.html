@@ -31,7 +31,7 @@
         <td th:text="${user.account}"></td>
         <td th:text="${user.type}"></td>
         <td th:text="${user.department}"></td>
-        <td><a th:href="@{/distribute/setStaff(user_id=${user.id},department=${user.department},customer_id=${customer_id})}">分配</a></td>
+        <td><a class="btn btn-info" th:href="@{/distribute/setStaff(user_id=${user.id},department=${user.department},customer_id=${customer_id})}">分配</a></td>
 
         <!--<td><a th:href="@{/delete(id=${customer.id})}">delete</a></td>-->
         <!--<td>-->
