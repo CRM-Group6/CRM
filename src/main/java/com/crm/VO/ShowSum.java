@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 public class ShowSum {
     private String msg;
-    private int num;
-    public ShowSum(String msg,int num){
+    private long num;
+    public ShowSum(String msg,long num){
         this.msg = msg;
         this.num = num;
     }

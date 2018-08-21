@@ -46,7 +46,7 @@
         <td th:text="${#calendars.format(bill.actualEndDate,'yyyy-MM-dd')}"></td>
         <!--<td><a th:href="@{/billupdatepage(id=${bill.id})}">编辑</a></td>-->
         <!--<td><a th:href="@{/billdelete(id=${bill.id})}">删除</a></td>-->
-        <td><a th:href="@{/billsettlepage(id=${bill.id})}">结算</a></td>
+        <td><a class="btn btn-default" onclick="settlebill(this);" th:value="${bill.id}" th:value1="${bill.ammount}" >结算</a></td>
 
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
@@ -63,6 +63,35 @@
 <script type="text/javascript"  language="javascript"  src="../../js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+    function settlebill(sender) {
+        var str=  window.prompt("请输入结算金额","ammout");
+        if($(sender).attr("value1") < str){
+            alert("结算失败，金额不符");
+
+        }else{
+
+            $(document).ready(function(){
+                $.ajax({
+                    type:"GET",
+                    url:"/bill/settle?id="+$(sender).attr("value")+"&ammout="+str,
+                    async:false,
+                    success:function (data) {
+                        alert("结算成功");
+                        // if(data.msg===)
+
+                        location.reload();
+                    },
+                    error:function (jqXHR) {
+                        alert("逻辑错误");
+                    }
+                });
+            });
+        }
+
+
+
+    }
+
 </script>
 
 
