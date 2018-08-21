@@ -1,4 +1,4 @@
-package com.crm.VO;
+package com.crm.VO.client;
 
 import lombok.Data;
 

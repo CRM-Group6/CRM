@@ -1,7 +1,7 @@
 package com.crm.mapper;
 
 import com.crm.VO.ShowRegionSum;
-import com.crm.VO.ShowSum;
+import com.crm.VO.client.ShowSum;
 import com.crm.entity.Customer;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
