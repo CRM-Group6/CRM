@@ -145,7 +145,7 @@ public class ContractController {
     @GetMapping(value = "/category")
     private ModelAndView contractRegionAnalysis(){
         List<ShowContractVO> list = contractService.contractRegionAnalysis();
-        ModelAndView model= new ModelAndView("/contract/contract_information_management_tongji");
+        ModelAndView model= new ModelAndView("/contract/contract_analysis");
         List<PieItem> dataList = new ArrayList<>();
         for (int i=0;i<list.size();i++){
                 if(list.get(i).getMsg()==0){
