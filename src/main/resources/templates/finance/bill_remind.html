@@ -46,7 +46,7 @@
         <td th:text="${#calendars.format(bill.actualEndDate,'yyyy-MM-dd')}"></td>
         <!--<td><a th:href="@{/billupdatepage(id=${bill.id})}">编辑</a></td>-->
         <!--<td><a th:href="@{/billdelete(id=${bill.id})}">删除</a></td>-->
-        <td><a class="btn btn-default" onclick="settlebill(this);" th:value="${bill.id}" th:value1="${bill.ammount}" >结算</a></td>
+        <td><a class="btn btn-info" onclick="settlebill(this);" th:value="${bill.id}" th:value1="${bill.ammount}" >结算</a></td>
 
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->

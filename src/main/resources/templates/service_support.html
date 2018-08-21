@@ -62,8 +62,8 @@
         <th th:text="${problem.answer}">1</th>
         <td th:text="${problem.createDate}"></td>
         <td th:text="${problem.updateDate}"></td>
-        <td><a th:href="@{/problem/toedit(id=${problem.id})}" class="btn btn-default">edit</a></td>
-        <td><a class="btn btn-default" onclick="todelete(this);"  th:value="${problem.id}">delete</a></td>
+        <td><a th:href="@{/problem/toedit(id=${problem.id})}" class="btn btn-info">edit</a></td>
+        <td><a class="btn btn-info" onclick="todelete(this);"  th:value="${problem.id}">delete</a></td>
         <!--th:href="@{/problem/delete(id=${problem.id}) }"-->
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->

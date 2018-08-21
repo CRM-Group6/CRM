@@ -71,8 +71,8 @@
 		<td th:text="${contract.money}"></td>
 		<td th:text="${contract.deadline}"></td>
 		<td th:text="${contract.createDate}"></td>
-		<td><a  class="btn btn-default" th:href="@{/contract/update(id=${contract.id})}">审核通过</a></td>
-		<td><a class="btn btn-default" onclick="todelete(this);"  th:value="${contract.id}">delete</a></td>
+		<td><a  class="btn btn-info" th:href="@{/contract/update(id=${contract.id})}">审核通过</a></td>
+		<td><a class="btn btn-info" onclick="todelete(this);"  th:value="${contract.id}">delete</a></td>
 		<!--<td>-->
 		<!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
 		<!--</td>-->

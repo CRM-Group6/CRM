@@ -182,7 +182,7 @@ public class BillController {
 //    }
 @RequestMapping("/findpaybill")
 public ModelAndView paylist(@RequestParam("type") Integer type){
-    ModelAndView model = new ModelAndView("finance/bill_management");
+    ModelAndView model = new ModelAndView("/finance/bill_management");
     model.addObject("billList",billService.selectByType(type));
     return model;
 }

@@ -37,7 +37,7 @@
         <td th:text="${customer.area}"></td>
         <td th:text="${customer.vocation}"></td>
         <td th:text="${customer.job}"></td>
-        <td><a th:href="@{/distribute/serviceStaff(id=${customer.id})}">分配客服</a></td>
+        <td><a class="btn btn-info" th:href="@{/distribute/serviceStaff(id=${customer.id})}">分配客服</a></td>
         <!--<td><a th:href="@{/delete(id=${customer.id})}">delete</a></td>-->
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
