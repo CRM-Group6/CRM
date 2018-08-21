@@ -1,5 +1,6 @@
 package com.crm.controller.client;
 
+import com.crm.VO.ShowRegionSum;
 import com.crm.VO.ShowSum;
 import com.crm.VO.chart.Chart;
 import com.crm.VO.chart.ChartVO;
@@ -31,11 +32,11 @@ public class ClientCustomerAnalysisController {
     //区域
     @GetMapping(value = "/region")
     private ModelAndView customerRegionAnalysis(){
-        List<ShowSum> list = customerAnalysis.customerRegionAnalysis();
+        List<ShowRegionSum> list = customerAnalysis.customerRegionAnalysis();
         ModelAndView model= new ModelAndView("/client/customer_analysis");
         List<PieItem> dataList = new ArrayList<>();
         for (int i=0;i<list.size();i++){
-            PieItem pieItem = new PieItem(list.get(i).getMsg(),list.get(i).getNum());
+            PieItem pieItem = new PieItem(list.get(i).getLocation(),list.get(i).getNum());
             dataList.add(pieItem);
         }
         Pie chart = new Pie("区域分析饼图",dataList);

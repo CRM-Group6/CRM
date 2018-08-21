@@ -1,5 +1,6 @@
 package com.crm.service.client;
 
+import com.crm.VO.ShowRegionSum;
 import com.crm.VO.ShowSum;
 import com.crm.entity.Customer;
 
@@ -14,7 +15,7 @@ public interface CustomerAnalysis {
      * @Modify By: Ben wu
      * @Param: null
      */
-    List<ShowSum> customerRegionAnalysis();
+    List<ShowRegionSum> customerRegionAnalysis();
 
     /**
      * @return

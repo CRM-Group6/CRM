@@ -1,5 +1,6 @@
 package com.crm.mapper;
 
+import com.crm.VO.ShowRegionSum;
 import com.crm.VO.ShowSum;
 import com.crm.entity.Customer;
 import org.apache.ibatis.annotations.Mapper;
@@ -71,4 +72,10 @@ public interface CustomerMapper {
      * @return List<Customer>
      */
     List<ShowSum> selectSumByValue(@Param("value")String value);
+    /**
+     * Method is used to find all Customer in the same region
+     * @param
+     * @return List<ShowRegionSum>
+     */
+    List<ShowRegionSum> selectRegionSumByValue();
 }
