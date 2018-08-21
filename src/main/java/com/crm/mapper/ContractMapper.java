@@ -1,6 +1,7 @@
 package com.crm.mapper;
 
 import com.crm.entity.Contract;
+import com.crm.entity.ContractStatistic;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Page;
@@ -84,5 +85,7 @@ public interface ContractMapper {
     //根据客户类型寻找，返回数量
     List<Contract> selectByClientId(int catrgory);
     Contract findById(Long id);
+
+    List<ContractStatistic> selectByDate(String year, Integer type);
 
 }

@@ -1,8 +1,13 @@
 package com.crm.controller.contract_controller;
 
 import com.crm.VO.ResultVO;
+import com.crm.VO.chart.Chart;
+import com.crm.VO.chart.ChartVO;
+import com.crm.VO.chart.ToolTip;
 import com.crm.entity.Contract;
+import com.crm.entity.ContractStatistic;
 import com.crm.entity.Customer;
+import com.crm.entity.finance.BillStatistic;
 import com.crm.service.client.CustomerService;
 import com.crm.service.contract_service.ContractService;
 import com.crm.service.contract_service.ContractStatisticsService;
@@ -12,6 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -35,7 +41,7 @@ public class ContractController {
     private ContractStatisticsService service;
     @Autowired
     CustomerService customerService;
-    PageRequest request = PageRequest.of(0,10);
+    PageRequest request = PageRequest.of(0,1);
     @GetMapping(value = "/list")
     //组合查询&查询
     public ModelAndView list(Contract contract){
@@ -139,6 +145,50 @@ public class ContractController {
         model.addObject("number",service.statisticsByCombination(contract1));
         return model;
     }
+    @RequestMapping("/contractstatisticpage")
+    public ModelAndView contractStatistic(){
+        String year = "2018";
+        List<ContractStatistic> contracts = contractService.selectByDate(year, 1);
+        List<ContractStatistic> contracts1=contractService.selectByDate(year,0);
+        List<Double> list1=new ArrayList<Double>();
+        List<Double> list = new ArrayList<Double>();
+        for (int n = 0; n < 12; n++) {
+            list1.add(new Double(0));
+            for (int m = 0; m < contracts.size(); m++) {
+                int l = Integer.valueOf(contracts.get(m).getMonth()).intValue();
+                if (l == n+1) {
+                    list1.set(n, contracts1.get(m).getMoney());
+                }
+            }
+        }
+        for (int i = 0; i < 12; i++) {
+            list.add(new Double(0));
+            for (int j = 0; j < contracts.size(); j++) {
+                int z = Integer.valueOf(contracts.get(j).getMonth()).intValue();
+                if (z == i+1) {
+                    list.set(i, contracts.get(j).getMoney());
+                }
+            }
+        }
+        Chart chart = new Chart("全年支出情况", list);
+        Chart chart1 = new Chart("全年收入情况", list1);
+        List<Chart> charts =new ArrayList<>();
+        charts.add(chart);
+        charts.add(chart1);
+        List<String> date=new ArrayList<String>();
+        date.add("一月");date.add("二月");date.add("三月");date.add("四月");date.add("五月");
+        date.add("六月");date.add("七月");date.add("八月");date.add("九月");date.add("十月");
+        date.add("十一月");date.add("十二月");
+        ChartVO chartVO =new ChartVO(charts,"时间","金额",date,"四川铁航财务统计");
+        ToolTip toolTip = new ToolTip();
+        toolTip.setValueSuffix("元");
+        toolTip.setValuePrefix("￥");
+        chartVO.setToolTip(toolTip);
+        ModelAndView model = new ModelAndView("/contract/chart");
+        model.addObject("result",chartVO);
+        return model;
+    }
+
 
 
 

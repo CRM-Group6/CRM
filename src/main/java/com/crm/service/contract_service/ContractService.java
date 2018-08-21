@@ -1,6 +1,7 @@
 package com.crm.service.contract_service;
 
 import com.crm.entity.Contract;
+import com.crm.entity.ContractStatistic;
 import com.crm.mapper.ContractMapper;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,7 +111,9 @@ public class ContractService {
       return   contractMapper.findById(id);
     }
 
-
+     public List<ContractStatistic>  selectByDate(String year , Integer type){
+        return contractMapper.selectByDate(year, type);
+    }
 
 
 
