@@ -1,6 +1,7 @@
 package com.crm.controller.client;
 
 import com.crm.VO.ResultVO;
+import com.crm.VO.client.ShowServiceStaff;
 import com.crm.entity.Customer;
 import com.crm.entity.User;
 import com.crm.service.client.CustomerService;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,7 +40,12 @@ public class CustomerController {
     @GetMapping(value = "/serviceStaff")
     public ModelAndView findAllCustomerServiceStaff(Long id){
         ModelAndView model = new ModelAndView("/client/staff_list");
-        model.addObject("userList",customerService.findAllCustomerServiceStaff());
+        List<ShowServiceStaff> list = new ArrayList<>();
+        List<User> originList = customerService.findAllCustomerServiceStaff();
+        for (int i=0;i<originList.size();i++){
+            list.add(new ShowServiceStaff(originList.get(i)));
+        }
+        model.addObject("userList",list);
         model.addObject("customer_id",id);
         return model;
     }
