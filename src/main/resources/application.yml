@@ -1,6 +1,6 @@
 #app
 server:
-    port: 9988
+    port: 8080
 
 #spring
 spring:
@@ -11,9 +11,9 @@ spring:
 
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/crm2?useUnicode=true&characterEncoding=utf-8&useSSL=true
+    url: jdbc:mysql://localhost:3306/crm?useUnicode=true&characterEncoding=utf-8&useSSL=true
     username: root
-    password: 825546086
+    password: Superhero14mysql
     type: com.alibaba.druid.pool.DruidDataSource
     # 下面为连接池的补充设置，应用到上面所有数据源中
     # 初始化大小，最小，最大
