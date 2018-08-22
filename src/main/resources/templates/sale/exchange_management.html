@@ -36,7 +36,7 @@
         <th scope="row" th:text="${exchangeInfo.id}">1</th>
         <td bgcolor="#00ced1" th:text="${exchangeInfo.executorId}"></td>
         <td bgcolor="#00ced1" th:text="${exchangeInfo.contactId}"></td>
-        <td bgcolor="#00ced1" th:text="${exchangeInfo.time}"></td>
+        <td bgcolor="#00ced1" th:text="${#calendars.format(exchangeInfo.time,'yyyy-MM-dd')}"></td>
         <td bgcolor="#00ced1" th:text="${exchangeInfo.place}"></td>
         <td bgcolor="#00ced1" th:text="${exchangeInfo.contactWay}"></td>
         <td bgcolor="#00ced1" th:text="${exchangeInfo.outline}"></td>

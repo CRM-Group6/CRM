@@ -46,12 +46,12 @@
         <td th:text="${opportunity.clientName}"></td>
         <td th:text="${opportunity.successfulProbability}"></td>
         <td th:text="${opportunity.remark}"></td>
-        <td th:text="${opportunity.createDate}"></td>
+        <td th:text="${#calendars.format(opportunity.createDate,'yyyy-MM-dd')}"></td>
         <td th:text="${opportunity.verifyStatus}"></td>
         <td th:text="${opportunity.verifyOpinion}"></td>
         <td th:text="${opportunity.assigned}"></td>
         <td th:text="${opportunity.assignedSalesmanId}"></td>
-        <td th:text="${opportunity.assignedDate}"></td>
+        <td th:text="${#calendars.format(opportunity.assignedDate,'yyyy-MM-dd')}"></td>
 
         <td><a   class="btn btn-info" th:href="@{/sale/opportunityManage/toedit(id=${opportunity.id})}">edit</a></td>
         <td><a class="btn btn-info" onclick="todelete(this);"  th:value="${opportunity.id}">delete</a></td>
