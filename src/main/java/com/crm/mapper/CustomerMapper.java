@@ -3,6 +3,7 @@ package com.crm.mapper;
 import com.crm.VO.client.ShowRegionSum;
 import com.crm.VO.ShowSum;
 import com.crm.entity.Customer;
+import com.crm.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -79,5 +80,5 @@ public interface CustomerMapper {
      */
     List<ShowRegionSum> selectRegionSumByValue();
 
-
+    Customer selectByAccount(@Param("account") String account);
 }

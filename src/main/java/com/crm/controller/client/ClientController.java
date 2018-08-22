@@ -3,6 +3,7 @@ package com.crm.controller.client;
 import com.crm.VO.ResultVO;
 import com.crm.entity.Customer;
 import com.crm.service.client.ClientService;
+import com.crm.service.client.CustomerService;
 import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class ClientController {
     @Autowired
     private ClientService clientService;
+    @Autowired
+    private CustomerService customerService;
     //查看商旅咨询
     @GetMapping(value="/travel")
     public ModelAndView findTravelInfo(){
@@ -48,27 +51,24 @@ public class ClientController {
     }
     //查看用户订单
     @GetMapping(value="/orderList")
-    public ModelAndView findOrderList(@RequestParam("id") Long id){
-        Customer customer = new Customer();
-        customer.setId(id);
+    public ModelAndView findOrderList(@RequestParam("account") String account){
+        Customer customer =  customerService.gettByAccount(account);
         ModelAndView model = new ModelAndView("/client/client_orderList");
         model.addObject("orderList",clientService.findAllOrderList(customer));
         return model;
     }
     //查看用户账单
     @GetMapping(value="/bill")
-    public ModelAndView findBill(@RequestParam("id") Long id){
-        Customer customer = new Customer();
-        customer.setId(id);
+    public ModelAndView findBill(@RequestParam("account")  String account){
+        Customer customer =  customerService.gettByAccount(account);
         ModelAndView model = new ModelAndView("/client/client_bill");
         model.addObject("billList",clientService.findAllBill(customer));
         return model;
     }
     //查找专员客服人员
     @GetMapping(value="/serviceStaff")
-    public ModelAndView findServiceStaff(@RequestParam("id") Long id){
-        Customer customer = new Customer();
-        customer.setId(id);
+    public ModelAndView findServiceStaff(@RequestParam("account") String account){
+        Customer customer =  customerService.gettByAccount(account);
         ModelAndView model = new ModelAndView("");
         model.addObject("staff",clientService.findCustomerServiceStaff(customer));
         return model;

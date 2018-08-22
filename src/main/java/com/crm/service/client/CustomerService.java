@@ -49,4 +49,8 @@ public class CustomerService {
     public int addone(Customer customer){
         return customerMapper.insert(customer);
     }
+
+    public Customer gettByAccount(String account){
+        return customerMapper.selectByAccount(account);
+    }
 }
