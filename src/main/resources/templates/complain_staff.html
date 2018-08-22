@@ -18,13 +18,13 @@
     <link href="../../css/animate.css" rel="stylesheet">
 <body>
 <table width="95%" border="1" align="center" cellpadding="0"
-       cellspacing="0" class="table01 table" id="table01">
+       cellspacing="0" class="table01 table table-striped table-hover table-bordered" id="table01">
     <tr>
-        <th class="td_top">客服人员</th>
-        <th class="td_top">账号</th>
-        <th class="td_top">类型</th>
-        <th class="td_top">部门</th>
-        <th class="td_top">设置</th>
+        <th bgcolor="#00ced1" class="td_top">客服人员</th>
+        <th bgcolor="#00ced1" class="td_top">账号</th>
+        <th bgcolor="#00ced1" class="td_top">类型</th>
+        <th bgcolor="#00ced1" class="td_top">部门</th>
+        <th bgcolor="#00ced1" class="td_top">设置</th>
     </tr>
     <tr th:each="user : ${userList}">
         <th scope="row" th:text="${user.username}"></th>

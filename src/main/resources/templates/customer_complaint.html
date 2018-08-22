@@ -43,21 +43,21 @@
     </div>
 </section>
 <table width="95%" border="0" align="center" cellpadding="0"
-       cellspacing="0" class="table01 table" id="table01">
+       cellspacing="0"  class="table01 table table-striped table-hover table-bordered" id="table01">
     <tr>
-        <td width="7.5%" class="td_top">投诉编号</td>
-        <td width="7.5%" class="td_top">投诉类别</td>
-        <td width="7.5%" class="td_top">投诉内容</td>
-        <td width="7.5%" class="td_top">创建人员编号</td>
-        <td width="7.5%" class="td_top">处理人员编号</td>
-        <td width="7.5%" class="td_top">投诉产品编号</td>
-        <td width="7.5%" class="td_top">投诉服务编号</td>
-        <td width="7.5%" class="td_top">创建时间</td>
-        <td width="7.5%" class="td_top">处理时间</td>
-        <td width="7.5%" class="td_top">是否处理</td>
-        <td width="7.5%" class="td_top">客人编号</td>
-        <td width="7.5%" class="td_top">删除</td>
-        <td width="10%" class="td_top">回复客户投诉</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">投诉编号</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">投诉类别</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">投诉内容</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">创建人员编号</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">处理人员编号</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">投诉产品编号</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">投诉服务编号</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">创建时间</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">处理时间</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">是否处理</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">客人编号</td>
+        <td bgcolor="#00ced1" width="7.5%" class="td_top">删除</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">回复客户投诉</td>
     </tr>
     <tr th:each="complainRecord : ${complainRecords}">
         <th scope="row" th:text="${complainRecord.id}"></th>

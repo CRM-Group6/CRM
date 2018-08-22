@@ -20,23 +20,23 @@
 
 
 <form   th:action="@{/findpaybill}" style="top:0px; left:0px;">
-    <button type="submit" name="type" th:value="1"   class="btn btn-default">应付管理</button>
+    <button type="submit" name="type" th:value="1"   class="btn btn-success">应付管理</button>
 </form>
 <form   th:action="@{/findpaybill}" style="top:0px; left:200px;">
-    <button type="submit" name="type" th:value="0" class="btn btn-default">应收管理</button>
+    <button type="submit" name="type" th:value="0" class="btn btn-success">应收管理</button>
 </form>
 
 <table width="95%" border="0" align="center" cellpadding="0"
-       cellspacing="0" class="table01 table" id="table01">
+       cellspacing="0" class="table01 table table-striped table-hover table-bordered" id="table01">
     <tr>
-        <td width="10%" class="td_top">账单编号</td>
-        <td width="10%" class="td_top">单位</td>
-        <td width="10%" class="td_top">备注</td>
-        <td width="10%" class="td_top">金额</td>
-        <td width="10%" class="td_top">账户</td>
-        <td width="10%" class="td_top">结算状态</td>
-        <td width="10%" class="td_top">结算日期</td>
-        <td width="20%" class="td_top">实际结算日期</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">账单编号</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">单位</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">备注</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">金额</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">账户</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">结算状态</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">结算日期</td>
+        <td bgcolor="#00ced1" width="20%" class="td_top">实际结算日期</td>
     </tr>
     <tr th:each="bill : ${billList}">
         <th scope="row" th:text="${bill.id}">1</th>

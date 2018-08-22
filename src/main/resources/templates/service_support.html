@@ -44,16 +44,16 @@
     </div>
 </section>
 <table width="95%" border="0" align="center" cellpadding="0"
-       cellspacing="0" class="table01 table" id="table01">
+       cellspacing="0"  class="table01 table table-striped table-hover table-bordered" id="table01">
     <tr>
-        <td width="12%" class="td_top">问题编号</td>
-        <td width="12%" class="td_top">问题类别</td>
-        <td width="12%" class="td_top">问题描述</td>
-        <td width="12%" class="td_top">解决方案</td>
-        <td width="12%" class="td_top">创建时间</td>
-        <td width="12%" class="td_top">更新时间</td>
-        <td width="12%" class="td_top">修改</td>
-        <td width="16%" class="td_top">删除</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">问题编号</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">问题类别</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">问题描述</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">解决方案</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">创建时间</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">更新时间</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">修改</td>
+        <td bgcolor="#00ced1" width="16%" class="td_top">删除</td>
     </tr>
     <tr th:each="problem : ${problems}">
         <th scope="row" th:text="${problem.id}">1</th>
