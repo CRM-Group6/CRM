@@ -49,8 +49,8 @@ public class WorkPlanService {
     /**
      * 显示一个计划
      */
-    public WorkPlan findByAccount(String account){
-        return workPlanMapper.selectByAccount(account);
+    public List<WorkPlan> findByAccount(String account){
+        return  workPlanMapper.selectByAccount(account);
     }
     /**
      * 显示所有的计划

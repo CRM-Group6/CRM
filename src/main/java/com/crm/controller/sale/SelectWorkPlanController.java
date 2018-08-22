@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 
 /**
  * 销售提醒：查看工作时间计划表
@@ -26,7 +28,7 @@ public class SelectWorkPlanController {
 
 
         ModelAndView model = new ModelAndView("/sale/sales_reminding");
-        WorkPlan workPlanList = workPlanService.findByAccount(account);
+        List<WorkPlan> workPlanList = workPlanService.findByAccount(account);
         if(workPlanList == null) return model.addObject("result",ResultVOUtil.error());
         return model.addObject("result",ResultVOUtil.success(workPlanList));
     }
