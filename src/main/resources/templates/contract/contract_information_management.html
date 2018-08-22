@@ -104,8 +104,8 @@
 		<td th:text="${#calendars.format(contract.deadline,'yyyy-MM-dd')}"></td>
 		<td th:text="${#calendars.format(contract.createDate,'yyyy-MM-dd')}"></td>
 		<!--<td><a  class="btn btn-default" th:href="@{/contract/update(id=${contract.id})}">审核通过</a></td>-->
-        <td><a class="btn btn-default" onclick="toshenhe(this);"  th:value="${contract.id}">审核通过</a></td>
-		<td><a class="btn btn-default" onclick="todelete(this);"  th:value="${contract.id}">delete</a></td>
+        <td><a class="btn btn-info" onclick="toshenhe(this);"  th:value="${contract.id}">审核通过</a></td>
+		<td><a class="btn btn-danger" onclick="todelete(this);"  th:value="${contract.id}">delete</a></td>
 		<!--<td>-->
 		<!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
 		<!--</td>-->
