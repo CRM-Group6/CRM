@@ -22,16 +22,14 @@
     <tr>
         <th bgcolor="#00ced1" class="td_top">客服人员</th>
         <th bgcolor="#00ced1" class="td_top">账号</th>
-        <th bgcolor="#00ced1" class="td_top">类型</th>
         <th bgcolor="#00ced1" class="td_top">部门</th>
         <th bgcolor="#00ced1" class="td_top">设置</th>
     </tr>
     <tr th:each="user : ${userList}">
         <th scope="row" th:text="${user.username}">1</th>
         <td th:text="${user.account}"></td>
-        <td th:text="${user.type}"></td>
         <td th:text="${user.department}"></td>
-        <td><a class="btn btn-info" th:href="@{/distribute/setStaff(user_id=${user.id},department=${user.department},customer_id=${customer_id})}">分配</a></td>
+        <td><a class="btn btn-info" th:href="@{/distribute/setStaff(user_id=${user.id},department=3,customer_id=${customer_id})}">分配</a></td>
 
         <!--<td><a th:href="@{/delete(id=${customer.id})}">delete</a></td>-->
         <!--<td>-->

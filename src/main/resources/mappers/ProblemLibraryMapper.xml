@@ -11,8 +11,8 @@
       <arg column="category" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="question" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="answer" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="create_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="update_date" javaType="java.util.Date" jdbcType="DATE" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
@@ -101,10 +101,10 @@
         #{answer,jdbcType=VARCHAR},
       </if>
       <if test="createDate != null">
-        #{createDate,jdbcType=TIMESTAMP},
+        #{createDate,jdbcType=DATE},
       </if>
       <if test="updateDate != null">
-        #{updateDate,jdbcType=TIMESTAMP},
+        #{updateDate,jdbcType=DATE},
       </if>
     </trim>
   </insert>

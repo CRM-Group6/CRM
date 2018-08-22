@@ -49,13 +49,13 @@
         <div class="form-group">
             <label for="createDate" class="col-sm-2 control-label" >createDate</label>
             <div class="col-sm-10">
-                <input type="date" class="form-control" name="createDate" id="createDate"  th:value="*{createDate}"/>
+                <input type="date" class="form-control" name="createDate" id="createDate" th:attr="value=*{#dates.format(createDate, 'yyyy-MM-dd')}"/>
             </div>
         </div>
         <div class="form-group">
             <label for="executeDate" class="col-sm-2 control-label" >executeDate</label>
             <div class="col-sm-10">
-                <input type="date" class="form-control" name="executeDate" id="executeDate"  th:value="*{executeDate}"/>
+                <input type="date" class="form-control" name="executeDate" id="executeDate" th:attr="value=*{#dates.format(executeDate, 'yyyy-MM-dd')}" />
             </div>
         </div>
         <div class="form-group">

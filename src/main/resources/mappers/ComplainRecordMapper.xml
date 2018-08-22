@@ -14,8 +14,8 @@
       <arg column="executor_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="produce_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="service_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="execute_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="create_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="execute_date" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="executed" javaType="java.lang.Boolean" jdbcType="BIT" />
       <arg column="customer_id" javaType="java.lang.Long" jdbcType="BIGINT" />
     </constructor>
@@ -65,7 +65,7 @@
       executed, customer_id)
     values (#{id,jdbcType=BIGINT}, #{category,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
       #{creatorId,jdbcType=BIGINT}, #{executorId,jdbcType=BIGINT}, #{produceId,jdbcType=BIGINT}, 
-      #{serviceId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{executeDate,jdbcType=TIMESTAMP}, 
+      #{serviceId,jdbcType=BIGINT}, NOW(), NULL ,
       #{executed,jdbcType=BIT}, #{customerId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.crm.entity.ComplainRecord">
@@ -132,10 +132,10 @@
         #{serviceId,jdbcType=BIGINT},
       </if>
       <if test="createDate != null">
-        #{createDate,jdbcType=TIMESTAMP},
+        #{createDate,jdbcType=DATE},
       </if>
       <if test="executeDate != null">
-        #{executeDate,jdbcType=TIMESTAMP},
+        #{executeDate,jdbcType=DATE},
       </if>
       <if test="executed != null">
         #{executed,jdbcType=BIT},
@@ -171,10 +171,10 @@
         service_id = #{serviceId,jdbcType=BIGINT},
       </if>
       <if test="createDate != null">
-        create_date = #{createDate,jdbcType=TIMESTAMP},
+        create_date = #{createDate,jdbcType=DATE},
       </if>
       <if test="executeDate != null">
-        execute_date = #{executeDate,jdbcType=TIMESTAMP},
+        execute_date = #{executeDate,jdbcType=DATE},
       </if>
       <if test="executed != null">
         executed = #{executed,jdbcType=BIT},
@@ -197,8 +197,8 @@
       executor_id = #{executorId,jdbcType=BIGINT},
       produce_id = #{produceId,jdbcType=BIGINT},
       service_id = #{serviceId,jdbcType=BIGINT},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      execute_date = #{executeDate,jdbcType=TIMESTAMP},
+     create_date = #{createDate,jdbcType=DATE},
+      execute_date = #{executeDate,jdbcType=DATE},
       executed = #{executed,jdbcType=BIT},
       customer_id = #{customerId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}

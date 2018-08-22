@@ -51,7 +51,7 @@
         <td th:text="${#calendars.format(bill.endDate,'yyyy-MM-dd')}"></td>
         <td th:text="${#calendars.format(bill.actualEndDate,'yyyy-MM-dd')}"></td>
         <td><a class="btn btn-info" th:href="@{/billupdatepage(id=${bill.id})}">编辑</a></td>
-        <td><a class="btn btn-danger" th:href="@{/billdelete(id=${bill.id})}">删除</a></td>
+        <td><a class="btn btn-danger" onclick="todelete(this);" th:value="${bill.id}">删除</a></td>
        <!-- <td><a th:href="@{/billsettlepage(id=${bill.id})}">结算</a></td>-->
         <td><a class="btn btn-warning" onclick="settlebill(this);" th:value="${bill.id}" th:value1="${bill.ammount}" >结算</a></td>
 
@@ -70,6 +70,7 @@
 <script type="text/javascript"  language="javascript"  src="../../js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+
 function settlebill(sender) {
   var str=  window.prompt("请输入结算金额","ammout");
   if($(sender).attr("value1")<str){
@@ -99,6 +100,29 @@ function settlebill(sender) {
 
 }
 
+function todelete(sender) {
+    var mymessage=confirm("确定删除？")         ;    //弹出一个窗口，询问客户信息，然后返回boolean值
+    if(mymessage==true)
+    {
+        $(document).ready(function(){
+            $.ajax({
+                type:"GET",
+                url:"/billdelete?id="+$(sender).attr("value"),
+                async:false,
+                success:function (data) {
+                    alert("删除成功");
+                    location.reload();
+                },
+                error:function (jqXHR) {
+                    alert("删除失败");
+
+                }
+            });
+        });
+    }
+    else  {
+    }
+}
 </script>
 
 </body>

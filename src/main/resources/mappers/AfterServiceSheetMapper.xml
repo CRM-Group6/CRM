@@ -12,8 +12,8 @@
       <arg column="executor_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="executed" javaType="java.lang.Boolean" jdbcType="BIT" />
       <arg column="summary" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="execute_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="create_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="execute_date" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="custom_id" javaType="java.lang.Long" jdbcType="BIGINT" />
     </constructor>
   </resultMap>
@@ -103,10 +103,10 @@
         #{summary,jdbcType=VARCHAR},
       </if>
       <if test="createDate != null">
-        #{createDate,jdbcType=TIMESTAMP},
+        #{createDate,jdbcType=DATE},
       </if>
       <if test="executeDate != null">
-        #{executeDate,jdbcType=TIMESTAMP},
+        #{executeDate,jdbcType=DATE},
       </if>
       <if test="customId != null">
         #{customId,jdbcType=BIGINT},
@@ -133,10 +133,10 @@
         summary = #{summary,jdbcType=VARCHAR},
       </if>
       <if test="createDate != null">
-        create_date = #{createDate,jdbcType=TIMESTAMP},
+        create_date = #{createDate,jdbcType=DATE},
       </if>
       <if test="executeDate != null">
-        execute_date = #{executeDate,jdbcType=TIMESTAMP},
+        execute_date = #{executeDate,jdbcType=DATE},
       </if>
       <if test="customId != null">
         custom_id = #{customId,jdbcType=BIGINT},
