@@ -67,8 +67,8 @@
         <td th:text="${complainRecord.executorId}"></td>
         <td th:text="${complainRecord.produceId}"></td>
         <td th:text="${complainRecord.serviceId}"></td>
-        <td th:text="${complainRecord.createDate}"></td>
-        <td th:text="${complainRecord.executeDate}"></td>
+        <td th:text="${#calendars.format(complainRecord.createDate,'yyyy-MM-dd')}"></td>
+        <td th:text="${#calendars.format(complainRecord.executeDate,'yyyy-MM-dd')}"></td>
         <td th:text="${complainRecord.executed}"></td>
         <td th:text="${complainRecord.customerId}"></td>
         <td><a th:href="@{/complain/toedit(id=${complainRecord.id})}" class="btn btn-info">回复</a></td>
