@@ -17,6 +17,7 @@
     <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="../css/animate.css" rel="stylesheet">
 <body>
+<h1>客户投诉</h1>
 <section class="content container-fluid">
     <div class="box box-primary">
         <form role="form" th:action="@{/complain/findone}"  method="post">
@@ -72,7 +73,7 @@
         <td th:text="${complainRecord.executed}"></td>
         <td th:text="${complainRecord.customerId}"></td>
         <td><a th:href="@{/complain/toedit(id=${complainRecord.id})}" class="btn btn-info">回复</a></td>
-        <td><a class="btn btn-info" onclick="todelete(this);"  th:value="${complainRecord.id}">delete</a></td>
+        <td><a class="btn btn-danger" onclick="todelete(this);"  th:value="${complainRecord.id}">delete</a></td>
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
         <!--</td>-->
@@ -81,7 +82,7 @@
         <div class="txt"></div>
     </tr>
 </table>
-<a href="/complain/toAdd" th:href="@{/complain/toAdd}" class="btn btn-info">add</a>
+<a href="/complain/toAdd" th:href="@{/complain/toAdd}" class="btn btn-warning">add</a>
 
 
 <script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>

@@ -17,6 +17,7 @@
     <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="../css/animate.css" rel="stylesheet">
 <body>
+<h1>售后服务项目</h1>
 <section class="content container-fluid">
     <div class="box box-primary">
         <form role="form" th:action="@{/afterserviceproject/findone}"  method="post">
@@ -59,7 +60,7 @@
         <th th:text="${afterServiceProject.feeScale}"></th>
 
         <td><a th:href="@{/afterserviceproject/toedit(id=${afterServiceProject.id})}" class="btn btn-info">编辑</a></td>
-        <td><a class="btn btn-info" onclick="todelete(this);"  th:value="${afterServiceProject.id}">delete</a></td>
+        <td><a class="btn btn-danger" onclick="todelete(this);"  th:value="${afterServiceProject.id}">delete</a></td>
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
         <!--</td>-->
@@ -68,7 +69,7 @@
         <div class="txt"></div>
     </tr>
 </table>
-<a href="/afterserviceproject/toAdd" th:href="@{/afterserviceproject/toAdd}" class="btn btn-info">add</a>
+<a href="/afterserviceproject/toAdd" th:href="@{/afterserviceproject/toAdd}" class="btn btn-warning">add</a>
 
 
 <script type="text/javascript"  language="javascript"  src="../js/jquery-3.1.1.min.js"></script>

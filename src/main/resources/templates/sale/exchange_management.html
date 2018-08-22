@@ -42,7 +42,7 @@
         <td bgcolor="#00ced1" th:text="${exchangeInfo.outline}"></td>
 
         <td><a class="btn btn-info"  th:href="@{/sale/exchangeInfo/toedit(id=${exchangeInfo.id})}">edit</a></td>
-        <td><a class="btn btn-info" onclick="todelete(this);"  th:value="${exchangeInfo.id}">delete</a></td>
+        <td><a class="btn btn-danger" onclick="todelete(this);"  th:value="${exchangeInfo.id}">delete</a></td>
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
         <!--</td>-->
@@ -51,7 +51,7 @@
         <div class="txt"></div>
     </tr>
 </table>
-<a href="/sale/exchangeInfo/toAdd" th:href="@{/sale/exchangeInfo/toAdd}" class="btn btn-info">add</a>
+<a href="/sale/exchangeInfo/toAdd" th:href="@{/sale/exchangeInfo/toAdd}" class="btn btn-warning">add</a>
 
 
 <script type="text/javascript"  language="javascript"  src="../../js/jquery-3.1.1.min.js"></script>
