@@ -10,6 +10,8 @@ import com.crm.mapper.ComplainRecordMapper;
 import com.crm.utils.Md5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -35,6 +37,10 @@ public class ComplaintRecordService {
         ComplainRecord complainRecord=complainRecordMapper.selectByPrimaryKey(id);
         complainRecord.setExecutorId(staffId);
         complainRecord.setExecuted(ExecutedStatus.EXCUTED.getCode());
+        Date date =new Date();
+        complainRecord.setExecuteDate(date);
         return complainRecordMapper.updateByPrimaryKey(complainRecord);
     }
+    public List<ComplainRecord> selectArranged(){ return complainRecordMapper.selectArranged();}
+
 }

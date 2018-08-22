@@ -61,4 +61,5 @@ public interface ComplainRecordMapper {
     List<ComplainRecord> selectAll();
 
     List<ComplainRecord> selectNotArrange();
+    List<ComplainRecord> selectArranged();
 }

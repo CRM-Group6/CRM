@@ -74,6 +74,19 @@ public class ComplainRecordController {
         complaintRecordService.deleteone(id);
         return new ModelAndView("redirect:/complain/selectall");
     }
+
+    @RequestMapping("/allarrange")
+    public ModelAndView selectAllArrange(){
+        ModelAndView model=new ModelAndView("/customer_arrange");
+        model.addObject("complainRecords",complaintRecordService.selectAll());
+        return model;
+    }
+    @RequestMapping("/arranged")
+    public ModelAndView selectArranged(){
+        ModelAndView model=new ModelAndView("/customer_arrange");
+        model.addObject("complainRecords",complaintRecordService.selectArranged());
+        return model;
+    }
     @RequestMapping("/notarrange")
     public ModelAndView selectNotArrange(){
         ModelAndView model=new ModelAndView("/customer_arrange");

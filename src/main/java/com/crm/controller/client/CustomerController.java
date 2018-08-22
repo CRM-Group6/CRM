@@ -62,4 +62,14 @@ public class CustomerController {
         model = new ModelAndView("redirect:/distribute/unassignedCus");
         return model;
     }
+    @RequestMapping("/toRegister")
+     public ModelAndView toRegister(){
+        return new ModelAndView("/cusRegister");
+    }
+
+    @RequestMapping("/register")
+    public ModelAndView addone(Customer customer){
+        customerService.addone(customer);
+        return new ModelAndView("redirect:/sys/login");
+    }
 }

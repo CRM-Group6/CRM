@@ -31,5 +31,9 @@ public class UserService {
         return userMapper.selectByPrimaryKey(new Long(id));
 
     }
+    public int addone(User user){
+
+        return userMapper.insert(user);
+    }
 
 }

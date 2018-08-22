@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>注册</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link href="../../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+<body>
+
+<h1>添加服务单</h1>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal"   th:action="@{/distribute/register}"  method="post">
+        <div class="form-group">
+            <label for="id" class="col-sm-2 control-label">id</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="id"  id="id" placeholder="id"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="account" class="col-sm-2 control-label">account</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="account"  id="account" placeholder="account"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">password</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="password"  id="password" placeholder="password"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="name"  id="name" placeholder="name"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="telephone" class="col-sm-2 control-label">telephone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="telephone"  id="telephone" placeholder="telephone"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Submit" class="btn btn-info" />
+                &nbsp; &nbsp; &nbsp;
+                <input type="reset" value="Reset" class="btn btn-info" />
+            </div>
+
+        </div>
+    </form>
+</div>
+<script type="text/javascript"  language="javascript"  src="../../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"  language="javascript"  src="../../js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>
