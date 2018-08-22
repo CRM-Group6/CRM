@@ -3,6 +3,7 @@ package com.crm.controller.custom_service;
 import com.crm.VO.ResultVO;
 import com.crm.entity.ComplainRecord;
 import com.crm.entity.ProblemLibrary;
+import com.crm.service.client.CustomerService;
 import com.crm.service.custom_service.ComplaintRecordService;
 import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class ComplainRecordController {
 @Autowired
     private ComplaintRecordService complaintRecordService;
+@Autowired
+    private CustomerService customerService;
 //    @GetMapping("console/customer_complaint")
 //    public ResultVO findone(@RequestParam("id") Long id)
 //    {       if(complaintRecordService.findone(id)==null){
@@ -71,6 +74,39 @@ public class ComplainRecordController {
         complaintRecordService.deleteone(id);
         return new ModelAndView("redirect:/complain/selectall");
     }
+
+    @RequestMapping("/allarrange")
+    public ModelAndView selectAllArrange(){
+        ModelAndView model=new ModelAndView("/customer_arrange");
+        model.addObject("complainRecords",complaintRecordService.selectAll());
+        return model;
+    }
+    @RequestMapping("/arranged")
+    public ModelAndView selectArranged(){
+        ModelAndView model=new ModelAndView("/customer_arrange");
+        model.addObject("complainRecords",complaintRecordService.selectArranged());
+        return model;
+    }
+    @RequestMapping("/notarrange")
+    public ModelAndView selectNotArrange(){
+        ModelAndView model=new ModelAndView("/customer_arrange");
+        model.addObject("complainRecords",complaintRecordService.selectNotArrange());
+        return model;
+    }
+    // 获取所有客服
+    @GetMapping(value = "/serviceStaff")
+    public ModelAndView findAllCustomerServiceStaff(Long id){
+        ModelAndView model = new ModelAndView("/complain_staff");
+        model.addObject("userList",customerService.findAllCustomerServiceStaff());
+        model.addObject("complainId",id);
+        return model;
+    }
+    @RequestMapping("arrange")
+    public ModelAndView arrange(@RequestParam("staffId") Long staffid,@RequestParam("complainId") Long complainId){
+        complaintRecordService.arrangeStaff(complainId,staffid);
+        return new ModelAndView("redirect:/complain/notarrange");
+    }
+
 }
 
 

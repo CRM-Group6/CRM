@@ -17,17 +17,19 @@
     <link href="../../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="../../css/animate.css" rel="stylesheet">
 <body>
+<h3>客服分配</h3>
+<p><font size="3" face="arial" color="gray">    未分配客服的客户</font></p>
 <table width="95%" border="1" align="center" cellpadding="0"
-       cellspacing="0" class="table01 table" id="table01">
+       cellspacing="0"  class="table01 table table-striped table-hover table-bordered" id="table01">
     <tr>
-        <th class="td_top">客户名</th>
-        <th class="td_top">电话</th>
-        <th class="td_top">省份</th>
-        <th class="td_top">城市</th>
-        <th class="td_top">区县</th>
-        <th class="td_top">行业</th>
-        <th class="td_top">职业</th>
-        <th class="td_top">操作</th>
+        <th bgcolor="#00ced1" class="td_top">客户名</th>
+        <th bgcolor="#00ced1" class="td_top">电话</th>
+        <th bgcolor="#00ced1" class="td_top">省份</th>
+        <th bgcolor="#00ced1" class="td_top">城市</th>
+        <th bgcolor="#00ced1" class="td_top">区县</th>
+        <th bgcolor="#00ced1" class="td_top">行业</th>
+        <th bgcolor="#00ced1" class="td_top">职业</th>
+        <th bgcolor="#00ced1" class="td_top">操作</th>
     </tr>
     <tr th:each="customer : ${customerList}">
         <th scope="row" th:text="${customer.name}">1</th>
@@ -37,7 +39,8 @@
         <td th:text="${customer.area}"></td>
         <td th:text="${customer.vocation}"></td>
         <td th:text="${customer.job}"></td>
-        <td><a th:href="@{/distribute/serviceStaff(id=${customer.id})}">分配客服</a></td>
+        <td><a th:href="@{/distribute/serviceStaff(id=${customer.id})}" class="btn btn-info">分配客服</a></td>
+
         <!--<td><a th:href="@{/delete(id=${customer.id})}">delete</a></td>-->
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->

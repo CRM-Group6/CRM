@@ -1,13 +1,11 @@
 package com.crm.service.client;
 
-import com.crm.VO.ShowRegionSum;
+import com.crm.VO.client.ShowRegionSum;
 import com.crm.VO.ShowSum;
-import com.crm.entity.Customer;
 import com.crm.mapper.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

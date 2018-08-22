@@ -1,9 +1,14 @@
 package com.crm.service.contract_service;
 
+import com.crm.VO.ShowContractVO;
+import com.crm.VO.ShowSum;
 import com.crm.entity.Contract;
+import com.crm.entity.ContractStatistic;
 import com.crm.mapper.ContractMapper;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,8 +54,8 @@ public class ContractService {
      * 显示全表
      *
      */
-     public List<Contract> findAll(){
-         return contractMapper.findAll();
+     public List<Contract> findAll(Pageable pageable){
+         return contractMapper.findAll(pageable);
      }
     /**
      *项目经理审核合同,审核结果、审核状态
@@ -108,8 +113,26 @@ public class ContractService {
       return   contractMapper.findById(id);
     }
 
+     public List<ContractStatistic>  selectByDate(String year , Integer type){
+        return contractMapper.selectByDate(year, type);
+    }
 
 
+
+
+    public List<ShowContractVO> contractRegionAnalysis() {
+        //寻找所有区域
+        List<ShowContractVO> list = contractMapper.selectByValue("execute_status");
+        int index=-1;
+        for (int i=0;i<list.size();i++) {
+            if (list.get(i)==null){
+                index = i;
+            }
+        }
+        if(index!=-1)
+            list.remove(index);
+        return list;
+    }
 
 
 }

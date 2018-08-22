@@ -43,14 +43,14 @@
     </div>
 </section>
 <table width="95%" border="0" align="center" cellpadding="0"
-       cellspacing="0" class="table01 table" id="table01">
+       cellspacing="0" class="table01 table table-striped table-hover table-bordered" id="table01">
     <tr>
-        <td width="16.5%" class="td_top">售后服务项目编号</td>
-        <td width="16.5%" class="td_top">服务类型</td>
-        <td width="16.5%" class="td_top">服务内容</td>
-        <td width="16.5%" class="td_top">收费标准</td>
-        <td width="16.5%" class="td_top">编辑</td>
-        <td width="16.5%" class="td_top">删除</td>
+        <td bgcolor="#00ced1" width="16.5%" class="td_top">售后服务项目编号</td>
+        <td bgcolor="#00ced1" width="16.5%" class="td_top">服务类型</td>
+        <td bgcolor="#00ced1" width="16.5%" class="td_top">服务内容</td>
+        <td bgcolor="#00ced1" width="16.5%" class="td_top">收费标准</td>
+        <td bgcolor="#00ced1" width="16.5%" class="td_top">编辑</td>
+        <td bgcolor="#00ced1" width="16.5%" class="td_top">删除</td>
     </tr>
     <tr th:each="afterServiceProject : ${afterServiceProjects}">
         <th scope="row" th:text="${afterServiceProject.id}"></th>
@@ -58,8 +58,8 @@
         <td th:text="${afterServiceProject.content}"></td>
         <th th:text="${afterServiceProject.feeScale}"></th>
 
-        <td><a th:href="@{/afterserviceproject/toedit(id=${afterServiceProject.id})}" class="btn btn-default">编辑</a></td>
-        <td><a class="btn btn-default" onclick="todelete(this);"  th:value="${afterServiceProject.id}">delete</a></td>
+        <td><a th:href="@{/afterserviceproject/toedit(id=${afterServiceProject.id})}" class="btn btn-info">编辑</a></td>
+        <td><a class="btn btn-info" onclick="todelete(this);"  th:value="${afterServiceProject.id}">delete</a></td>
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
         <!--</td>-->

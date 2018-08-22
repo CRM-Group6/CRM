@@ -19,24 +19,24 @@
 <body>
 <!--checked="checked"-->
 <form   th:action="@{/contract/statistics}">
-    <a>合同数量为：</a>
+    <h2>合同数量为：</h2>
     <td th:text=${number}></td>
 </form>
 <tr>
 
-    <td><a th:href="@{/contract/statistics(category=${'0'})}">支出类型合同</a></td>
-    <td><a th:href="@{/contract/statistics(category=${'1'})}">描述类合同</a></td>
-    <td><a th:href="@{/contract/statistics(category=${'2'})}">收入类型合同</a></td>
+    <td ><a  class="btn btn-success" th:href="@{/contract/statistics(category=${'0'})}">支出类型合同</a></td>
+    <td ><a class="btn btn-success" th:href="@{/contract/statistics(category=${'1'})}">描述类合同</a></td>
+    <td ><a  class="btn btn-success" th:href="@{/contract/statistics(category=${'2'})}">收入类型合同</a></td>
     <br/>
-    <td><a th:href="@{/contract/statistics(verifyStatus=${'0'})}">未审核</a></td>
-    <td><a th:href="@{/contract/statistics(verifyStatus=${'1'})}">已审核</a></td>
+    <td><a  class="btn btn-success" th:href="@{/contract/statistics(verifyStatus=${'0'})}">未审核</a></td>
+    <td ><a  class="btn btn-success" th:href="@{/contract/statistics(verifyStatus=${'1'})}">已审核</a></td>
     <br/>
-    <td><a th:href="@{/contract/statistics(executeStatus=${'1'})}">正在执行</a></td>
-    <td><a th:href="@{/contract/statistics(executeStatus=${'0'})}">执行完毕</a></td>
+    <td ><a  class="btn btn-success" th:href="@{/contract/statistics(executeStatus=${'1'})}">正在执行</a></td>
+    <td ><a  class="btn btn-success" th:href="@{/contract/statistics(executeStatus=${'0'})}">执行完毕</a></td>
 
 </tr>
 <table width="95%" border="0" align="center" cellpadding="0"
-       cellspacing="0" class="table01" id="table01">
+       cellspacing="0" class="table01 table table-striped table-hover table-bordered" id="table01">
 
     <tr>
         <td width="8%" class="td_top">合同编号</td>
@@ -63,10 +63,10 @@
         <td th:text="${contract.category}"></td>
         <td th:text="${contract.executeStatus}"></td>
         <td th:text="${contract.money}"></td>
-        <td th:text="${contract.deadline}"></td>
-        <td th:text="${contract.createDate}"></td>
-        <td><a th:href="@{/contract/update(id=${contract.id})}">审核通过</a></td>
-        <td><a th:href="@{/contract/deleteContract(id=${contract.id})}">delete</a></td>
+        <td th:text="${#calendars.format(contract.deadline,'yyyy-MM-dd')}"></td>
+        <td th:text="${#calendars.format(contract.createDate,'yyyy-MM-dd')}"></td>
+        <td><a  class="btn btn-info" th:href="@{/contract/update(id=${contract.id})}">审核通过</a></td>
+        <td><a class="btn btn-info" th:href="@{/contract/deleteContract(id=${contract.id})}">delete</a></td>
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
         <!--</td>-->
@@ -76,7 +76,7 @@
     </tr>
 
 </table>
-<a href="/contract/toInsert" th:href="@{/contract/toInsert}" class="btn btn-info">创建合同</a>
+<a  href="/contract/toInsert" th:href="@{/contract/toInsert}" class="btn btn-info">创建合同</a>
 <a href="/contract/list" th:href="@{/contract/list}" class="btn btn-info">管理页面</a>
 
 

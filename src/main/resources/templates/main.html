@@ -48,7 +48,7 @@
                         <span class="ng-scope">分类</span>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="${ctx!}/admin/welcome">
+                        <a class="J_menuItem" th:href="@{/sys/toindex}">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">主页</span>
                         </a>
@@ -57,13 +57,11 @@
                     <li>
                     	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">客户服务管理</span><span class="fa arrow"></span></a>
                     	<ul class="nav nav-second-level">
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/customer_doc" >客户档案管理</a></li>
                     		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/problem/selectall">服务支持</a></li>
                     		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/afterservicesheet/selectall">维护维修</a></li>
                     		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/complain/selectall">客户投诉</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/customer_statistics">客服统计</a></li>
                     		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/afterserviceproject/selectall">客服项目</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/customer_distribute">客户分配</a></li>
+                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/complain/allarrange">客户分配</a></li>
                     	</ul>
                     </li>
 
@@ -84,6 +82,7 @@
                                     <a onclick="menu_goto(this);" value="/sale/customerAnalysis/see">
                                         <i class="fa fa-circle-o"></i>客户统计</a>
                                 </li>
+
                                 <li class="treeview">
                                     <a href="">
                                     <i class="fa fa-circle-o"></i>
@@ -92,50 +91,23 @@
                                   <i class="fa fa-angle-left pull-right"></i>
                                 </span></a>
                                     <ul class="treeview-menu">
-                                        <li class="treeview">
-                                            <a href="">
-                                                <i class="fa fa-circle-o"></i>
-                                                <span>业绩统计</span>
-                                                <span class="pull-right-container">
-                                                <i class="fa fa-angle-left pull-right"></i>
-                                                     </span></a>
-                                            <ul class="treeview-menu">
-                                                <li>
-                                                    <a onclick="menu_goto(this);" value="/sale/saleAnalysis/performance/department">
-                                                        <i class="fa fa-circle-o"></i>部门</a>
-                                                </li>
-                                                <li>
-                                                    <a onclick="menu_goto(this);" value="/sale/saleAnalysis/performance/worker">
-                                                        <i class="fa fa-circle-o"></i>人员</a>
-                                                </li>
-                                            </ul>
+                                        <li>
+                                            <a onclick="menu_goto(this);" value="/sale/saleAnalysis/performance/department">
+                                                <i class="fa fa-circle-o"></i>业绩统计</a>
                                         </li>
-                                        <li class="treeview">
-                                            <a href="">
-                                                <i class="fa fa-circle-o"></i>
-                                                <span>机会统计</span>
-                                                <span class="pull-right-container">
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </span></a>
-                                            <ul class="treeview-menu">
-                                                <li>
-                                                    <a onclick="menu_goto(this);" value="/sale/saleAnalysis/opportunity/department">
-                                                        <i class="fa fa-circle-o"></i>部门</a>
-                                                </li>
-                                                <li>
-                                                    <a onclick="menu_goto(this);" value="/sale/saleAnalysis/opportunity/worker">
-                                                        <i class="fa fa-circle-o"></i>人员</a>
-                                                </li>
-                                            </ul>
+                                        <li>
+                                            <a onclick="menu_goto(this);" value="/sale/saleAnalysis/opportunity/department">
+                                                <i class="fa fa-circle-o"></i>机会统计</a>
                                         </li>
                                     </ul>
                                 </li>
+
                                 <li>
                                     <a onclick="menu_goto(this);" value="/sale/saleAnalysis/prediction">
                                         <i class="fa fa-circle-o"></i>销售预测</a>
                                 </li>
                             </ul>
-                            </li>
+
                     		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sale/opportunityManage/selectall" >销售机会管理</a></li>
                     		<li><a class="J_menuItem" onclick="menu_goto1(this);" value="" >销售提醒</a></li>
                     		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/sale/contact/selectall" >联系人管理</a></li>
@@ -173,14 +145,7 @@
                     	</ul>
                     </li>
 
-                    <li>
-                    	<a href="#"><i class="fa fa-edit"></i><span class="nav-label">业务管理</span><span class="fa arrow"></span></a>
-                    	<ul class="nav nav-second-level">
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/plane_ticket_management.html" >机票管理</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="/hotel_management.html" >酒店管理</a></li>
-                    		<li><a class="J_menuItem" onclick="menu_goto(this);" value="product_management.html" >产品管理</a></li>
-                    	</ul>
-                    </li>
+
                     <li class="line dk"></li>
                 </ul>
             </div>

@@ -59,4 +59,7 @@ public interface ComplainRecordMapper {
     int updateByPrimaryKey(ComplainRecord record);
 
     List<ComplainRecord> selectAll();
+
+    List<ComplainRecord> selectNotArrange();
+    List<ComplainRecord> selectArranged();
 }

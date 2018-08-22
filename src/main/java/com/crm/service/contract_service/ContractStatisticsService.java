@@ -43,7 +43,8 @@ public class ContractStatisticsService {
 //        return contractMapper.selectByStatusAndType(status, category);
 //    }
 
-    public int statisticsByCombination(Contract contract){
+    public int statisticsByCombination(Contract contract)
+    {
         return contractMapper.selectByCombination(contract);
     }
 

@@ -65,4 +65,5 @@ public interface UserMapper {
     User selectByCustomerID(Customer customer);
 
     List<User> selectByDepartment(Integer department);
+
 }

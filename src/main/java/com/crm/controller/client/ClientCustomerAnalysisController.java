@@ -1,12 +1,10 @@
 package com.crm.controller.client;
 
-import com.crm.VO.ShowRegionSum;
+import com.crm.VO.client.ShowRegionSum;
 import com.crm.VO.ShowSum;
-import com.crm.VO.chart.Chart;
 import com.crm.VO.chart.ChartVO;
 import com.crm.VO.chart.Pie;
 import com.crm.VO.chart.PieItem;
-import com.crm.entity.Customer;
 import com.crm.service.client.CustomerAnalysis;
 import com.crm.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -44,26 +44,26 @@
     </div>
 </section>
 <table width="95%" border="0" align="center" cellpadding="0"
-       cellspacing="0" class="table01 table" id="table01">
+       cellspacing="0"  class="table01 table table-striped table-hover table-bordered" id="table01">
     <tr>
-        <td width="12%" class="td_top">问题编号</td>
-        <td width="12%" class="td_top">问题类别</td>
-        <td width="12%" class="td_top">问题描述</td>
-        <td width="12%" class="td_top">解决方案</td>
-        <td width="12%" class="td_top">创建时间</td>
-        <td width="12%" class="td_top">更新时间</td>
-        <td width="12%" class="td_top">修改</td>
-        <td width="16%" class="td_top">删除</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">问题编号</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">问题类别</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">问题描述</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">解决方案</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">创建时间</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">更新时间</td>
+        <td bgcolor="#00ced1" width="12%" class="td_top">修改</td>
+        <td bgcolor="#00ced1" width="16%" class="td_top">删除</td>
     </tr>
     <tr th:each="problem : ${problems}">
         <th scope="row" th:text="${problem.id}">1</th>
         <td th:text="${problem.category}"></td>
         <td th:text="${problem.question}"></td>
         <th th:text="${problem.answer}">1</th>
-        <td th:text="${problem.createDate}"></td>
-        <td th:text="${problem.updateDate}"></td>
-        <td><a th:href="@{/problem/toedit(id=${problem.id})}" class="btn btn-default">edit</a></td>
-        <td><a class="btn btn-default" onclick="todelete(this);"  th:value="${problem.id}">delete</a></td>
+        <td th:text="${#calendars.format(problem.createDate,'yyyy-MM-dd')}"></td>
+        <td th:text="${#calendars.format(problem.updateDate,'yyyy-MM-dd')}"></td>
+        <td><a th:href="@{/problem/toedit(id=${problem.id})}" class="btn btn-info">edit</a></td>
+        <td><a class="btn btn-info" onclick="todelete(this);"  th:value="${problem.id}">delete</a></td>
         <!--th:href="@{/problem/delete(id=${problem.id}) }"-->
         <!--<td>-->
         <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->

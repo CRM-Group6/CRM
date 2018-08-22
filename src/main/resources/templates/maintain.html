@@ -35,26 +35,26 @@
                     <input type="text" class="form-control" id="id" name="id" placeholder="输入编号">
                 </div>
                 <div class="box-footer ">
-                    <button type="submit" class="btn btn-primary">提交</button>、
-                    <button type="reset" class="btn btn-primary">重置</button>
+                    <button type="submit" class="btn btn-info">提交</button>、
+                    <button type="reset" class="btn btn-info">重置</button>
                 </div>
             </div>
         </form>
     </div>
 </section>
 <table width="95%" border="0" align="center" cellpadding="0"
-       cellspacing="0" class="table01 table" id="table01">
+       cellspacing="0"  class="table01 table table-striped table-hover table-bordered" id="table01">
     <tr>
-        <td width="10%" class="td_top">服务单编号</td>
-        <td width="10%" class="td_top">创建人员编号</td>
-        <td width="10%" class="td_top">处理人员编号</td>
-        <td width="10%" class="td_top">是否处理</td>
-        <td width="10%" class="td_top">概要</td>
-        <td width="10%" class="td_top">创建时间</td>
-        <td width="10%" class="td_top">处理时间</td>
-        <td width="10%" class="td_top">客人编号</td>
-        <td width="10%" class="td_top">编辑</td>
-        <td width="10%" class="td_top">删除</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">服务单编号</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">创建人员编号</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">处理人员编号</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">是否处理</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">概要</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">创建时间</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">处理时间</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">客人编号</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">编辑</td>
+        <td bgcolor="#00ced1" width="10%" class="td_top">删除</td>
 
     </tr>
     <tr th:each="afterServiceSheet : ${afterServiceSheets}">
@@ -63,8 +63,8 @@
         <td th:text="${afterServiceSheet.executorId}"></td>
         <th th:text="${afterServiceSheet.executed}"></th>
         <td th:text="${afterServiceSheet.summary}"></td>
-        <td th:text="${afterServiceSheet.createDate}"></td>
-        <td th:text="${afterServiceSheet.executeDate}"></td>
+        <td th:text="${#calendars.format(afterServiceSheet.createDate,'yyyy-MM-dd')}"></td>
+        <td th:text="${#calendars.format(afterServiceSheet.executeDate,'yyyy-MM-dd')}"></td>
         <td th:text="${afterServiceSheet.customId}"></td>
 
         <td><a th:href="@{/afterservicesheet/toedit(id=${afterServiceSheet.id})}" class="btn btn-default">回复</a></td>

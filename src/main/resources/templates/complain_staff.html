@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>客服列表</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link href="../../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+<body>
+<table width="95%" border="1" align="center" cellpadding="0"
+       cellspacing="0" class="table01 table table-striped table-hover table-bordered" id="table01">
+    <tr>
+        <th bgcolor="#00ced1" class="td_top">客服人员</th>
+        <th bgcolor="#00ced1" class="td_top">账号</th>
+        <th bgcolor="#00ced1" class="td_top">类型</th>
+        <th bgcolor="#00ced1" class="td_top">部门</th>
+        <th bgcolor="#00ced1" class="td_top">设置</th>
+    </tr>
+    <tr th:each="user : ${userList}">
+        <th scope="row" th:text="${user.username}"></th>
+        <td th:text="${user.account}"></td>
+        <td th:text="${user.type}"></td>
+        <td th:text="${user.department}"></td>
+        <td><a class="btn btn-info" th:href="@{/complain/arrange(staffId=${user.id},complainId=${complainId})}"
+               onclick="success();">分配</a></td>
+
+        <!--<td><a th:href="@{/delete(id=${customer.id})}">delete</a></td>-->
+        <!--<td>-->
+        <!--<button id="submit" th:id="${user.id}" onclick="test(this)">delete</button>-->
+        <!--</td>-->
+    </tr>
+    <tr >
+        <div class="txt"></div>
+    </tr>
+</table>
+
+
+<script type="text/javascript"  language="javascript"  src="../../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"  language="javascript"  src="../../js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    function success() {
+        alert("分配成功");
+    }
+</script>
+
+
+</body>
+</html>

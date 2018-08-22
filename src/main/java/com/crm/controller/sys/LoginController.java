@@ -1,6 +1,8 @@
 package com.crm.controller.sys;
 
+import com.crm.entity.Customer;
 import com.crm.entity.User;
+import com.crm.service.client.CustomerService;
 import com.crm.service.sys.UserService;
 import com.crm.utils.LayuiResult;
 import com.crm.utils.Md5Utils;
@@ -26,11 +28,18 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CustomerService customerService;
+
     @RequestMapping(value = "/console/index")
     public String index(){
         return "/view/index";
     }
 
+    @RequestMapping("/sys/toindex")
+    public ModelAndView toindex(){
+        return new ModelAndView("/index");
+    }
     /**
      * 后台登录入口
      * @return
@@ -42,6 +51,11 @@ public class LoginController {
     @RequestMapping("/sys/login")
     public ModelAndView loginSystem(){
         return new ModelAndView("/login");
+    }
+
+    @RequestMapping("/sys/cuslogin")
+    public ModelAndView loginCusSystem(){
+        return new ModelAndView("/cuslogin");
     }
     /**
      * 后台登录入口
@@ -57,9 +71,38 @@ public class LoginController {
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/console/login",produces = "application/json;charset=utf-8", method = RequestMethod.POST)
+    @RequestMapping(value = "/console/cuslogin",produces = "application/json;charset=utf-8", method = RequestMethod.POST)
     @ResponseBody
     public LayuiResult login(String account, String password, String code, Model model, HttpSession session, RedirectAttributes redirectAttributes, String loginPath, Boolean flag) throws Exception {
+        LayuiResult result=new LayuiResult();
+        //处理验证码
+        if (flag==null&&!(code.equalsIgnoreCase(session.getAttribute("code").toString()))) {
+            result.setMsg( "验证码错误");
+            result.setStatus(LayuiResult.FAIL);
+            return result;
+        }
+
+        Customer customer=new Customer();
+        customer.setAccount(account);
+        customer.setPassword(password);
+        customer.setPassword(new Md5Utils().getkeyBeanofStr(customer.getPassword()));
+        Customer currentCustomer = customerService.gettByAccount(customer.getAccount());
+        if(currentCustomer!=null&&customer.getAccount().equals(currentCustomer.getAccount())){
+            session.setAttribute("cUser", currentCustomer);
+            result.setStatus(LayuiResult.OK);
+            result.setMsg("/view/main");
+        }else{
+            //可以写跳转的处理异常的页面
+            result.setMsg("账号或者密码错误");
+            result.setStatus(LayuiResult.FAIL);
+        }
+        return result;
+    }
+
+
+    @RequestMapping(value = "/console/login",produces = "application/json;charset=utf-8", method = RequestMethod.POST)
+    @ResponseBody
+    public LayuiResult cuslogin(String account, String password, String code, Model model, HttpSession session, RedirectAttributes redirectAttributes, String loginPath, Boolean flag) throws Exception {
         LayuiResult result=new LayuiResult();
         //处理验证码
         if (flag==null&&!(code.equalsIgnoreCase(session.getAttribute("code").toString()))) {
@@ -84,11 +127,20 @@ public class LoginController {
         }
         return result;
     }
-
     @RequestMapping("/console/tomain")
     public ModelAndView tomain(String account){
-        ModelAndView model=new ModelAndView("/main");
-        model.addObject("account",account);
-        return model;
-    }
+            User user=userService.getByAccount(account);
+            if(user==null){  ModelAndView model=new ModelAndView("/mainForCus");
+                model.addObject("account",account);
+                return model;
+            }
+            else {
+                ModelAndView model=new ModelAndView("/main");
+                model.addObject("account",account);
+                return model;
+            }
+
 }
+
+
+    }
