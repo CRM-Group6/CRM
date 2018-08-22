@@ -87,17 +87,16 @@ public class LoginController {
 
     @RequestMapping("/console/tomain")
     public ModelAndView tomain(String account){
-        if(account == "admin"){
-            ModelAndView model=new ModelAndView("/main");
-            model.addObject("account",account);
-            return model;
-        }
-
-    else{
-            ModelAndView model=new ModelAndView("/mainForCus");
-            model.addObject("account",account);
-            return model;
-        }
+            User user=userService.getByAccount(account);
+            if(user==null){  ModelAndView model=new ModelAndView("/mainForCus");
+                model.addObject("account",account);
+                return model;
+            }
+            else {
+                ModelAndView model=new ModelAndView("/main");
+                model.addObject("account",account);
+                return model;
+            }
 
 }
     }

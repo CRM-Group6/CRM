@@ -144,17 +144,20 @@
         from user
         where account=#{account,jdbcType=VARCHAR}
     </select>
+
   <select id="selectByCustomerID" parameterType="com.crm.entity.Customer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user
     where id=(select custom_service_id from customer where id =#{id,jdbcType=BIGINT})
   </select>
+
   <select id="selectByDepartment" parameterType="java.lang.Integer" resultType="com.crm.entity.User">
     select
     <include refid="Base_Column_List" />
     from user
     where department = #{department,jdbcType=INTEGER}
   </select>
+
 
 </mapper>
