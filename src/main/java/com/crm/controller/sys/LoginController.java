@@ -36,6 +36,10 @@ public class LoginController {
         return "/view/index";
     }
 
+    @RequestMapping("/sys/toindex")
+    public ModelAndView toindex(){
+        return new ModelAndView("/index");
+    }
     /**
      * 后台登录入口
      * @return
