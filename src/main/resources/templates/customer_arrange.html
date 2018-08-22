@@ -39,7 +39,7 @@
         <td th:text="${complainRecord.customerId}"></td>
         <td th:text="${complainRecord.content}"></td>
         <td th:text="${complainRecord.executed}"></td>
-        <td th:text="${complainRecord.createDate}"></td>
+        <td th:text="${#calendars.format(complainRecord.createDate,'yyyy-MM-dd')}"></td>
         <td th:text="${complainRecord.produceId}"></td>
         <td th:text="${complainRecord.serviceId}"></td>
         <td><a class="btn btn-info" th:href="@{/complain/serviceStaff(id=${complainRecord.id})}">分配客服</a></td>

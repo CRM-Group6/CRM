@@ -60,8 +60,8 @@
         <td th:text="${problem.category}"></td>
         <td th:text="${problem.question}"></td>
         <th th:text="${problem.answer}">1</th>
-        <td th:text="${problem.createDate}"></td>
-        <td th:text="${problem.updateDate}"></td>
+        <td th:text="${#calendars.format(problem.createDate,'yyyy-MM-dd')}"></td>
+        <td th:text="${#calendars.format(problem.updateDate,'yyyy-MM-dd')}"></td>
         <td><a th:href="@{/problem/toedit(id=${problem.id})}" class="btn btn-info">edit</a></td>
         <td><a class="btn btn-info" onclick="todelete(this);"  th:value="${problem.id}">delete</a></td>
         <!--th:href="@{/problem/delete(id=${problem.id}) }"-->
