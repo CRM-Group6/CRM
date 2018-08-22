@@ -63,8 +63,8 @@
         <td th:text="${afterServiceSheet.executorId}"></td>
         <th th:text="${afterServiceSheet.executed}"></th>
         <td th:text="${afterServiceSheet.summary}"></td>
-        <td th:text="${afterServiceSheet.createDate}"></td>
-        <td th:text="${afterServiceSheet.executeDate}"></td>
+        <td th:text="${#calendars.format(afterServiceSheet.createDate,'yyyy-MM-dd')}"></td>
+        <td th:text="${#calendars.format(afterServiceSheet.executeDate,'yyyy-MM-dd')}"></td>
         <td th:text="${afterServiceSheet.customId}"></td>
 
         <td><a th:href="@{/afterservicesheet/toedit(id=${afterServiceSheet.id})}" class="btn btn-default">回复</a></td>
